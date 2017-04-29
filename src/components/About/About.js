@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styles from './About.css';
+import './About.css';
 
 const About = () => (
   <div id="about" className="parent-component">

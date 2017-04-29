@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styles from './Involved.css';
+import './Involved.css';
 
 const Involved = () => (
   <div id="involved" className="parent-component">

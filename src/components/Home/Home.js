@@ -7,8 +7,7 @@ import Contact from '../Contact/Contact.js';
 import Where from '../Where/Where.js';
 import About from '../About/About.js';
 import SideBar from '../SideBar/SideBar.js';
-import styles from './Home.css';
-
+import './Home.css';
 
 const Home = () => (
 	<div id="home">
