@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Involved.css';
 
 const Involved = () => (
-  <div id="involved">
+  <div id="involved" className="parent-component">
     <h2>Get involved</h2>
     <div className="blurb">
       <div id="icon2"></div>

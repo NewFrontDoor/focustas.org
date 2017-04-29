@@ -1,0 +1,14 @@
+#Photo_4 {
+  background-image: url(students_small.png);
+  width: 400px;
+  height: 260px;
+  background-repeat: no-repeat;
+}
+
+#iconRow {
+    margin: 20px 0;
+    background-repeat: no-repeat;
+    background-image: url(../../static/icon_row_small.png);
+    clear: both;
+    height: 102px;
+}

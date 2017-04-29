@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './Where.css';
 
 const Where = () => (
-  <div id="where">
+  <div id="where" className="parent-component">
     <h2>Where we meet</h2>
     <div className="blurb">
       <div id="icon"></div>

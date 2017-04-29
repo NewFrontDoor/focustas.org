@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './About.css';
 
 const About = () => (
-  <div id="about">
+  <div id="about" className="parent-component">
     <h2>About us</h2>
     <div className="blurb">
       <div id="icon3"></div>

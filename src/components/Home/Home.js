@@ -7,6 +7,8 @@ import Contact from '../Contact/Contact.js';
 import Where from '../Where/Where.js';
 import About from '../About/About.js';
 import SideBar from '../SideBar/SideBar.js';
+import styles from './Home.css';
+
 
 const Home = () => (
 	<div id="home">
@@ -16,10 +18,9 @@ const Home = () => (
 						<Welcome />
             <Events />
             <Involved />
-            <Events />
+            <About />
             <Contact />
             <Where />
-            <About />
 					</div>
           <SideBar />
 				</div>

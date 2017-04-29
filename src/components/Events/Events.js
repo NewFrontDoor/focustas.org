@@ -4,7 +4,7 @@ import styles from './Events.css';
 
 const Events = () => (
 
-<div id="events">
+<div id="events" className="parent-component">
   <h2>Events</h2>
   <div className="blurb">
     <div id="icon"></div>
