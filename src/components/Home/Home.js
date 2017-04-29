@@ -12,7 +12,7 @@ import styles from './Home.css';
 
 const Home = () => (
 	<div id="home">
-			<div className="container">
+			<div className="home-container">
 				<div className="row">
 					<div className="col-xs-12 col-sm-9">
 						<Welcome />

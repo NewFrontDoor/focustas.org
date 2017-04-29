@@ -60,3 +60,8 @@ a:hover, a:focus {
 .parent-component {
   padding-top: 70px;
 }
+
+.home-container {
+  margin: 0 auto;
+  padding: 70px 15px 0 15px;
+}
