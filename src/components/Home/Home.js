@@ -19,8 +19,8 @@ const Home = () => (
             <Events />
             <Involved />
             <About />
-            <Contact />
             <Where />
+            <Contact />
 					</div>
           <SideBar />
 				</div>

@@ -1,5 +1,5 @@
 #logo {
-  background-image: url(Just_leaves-01_small.png);
+  background-image: url(Just_leaves-01_smallest.png);
     width: 110px;
     height: 122px;
     margin-left: 0;
@@ -22,7 +22,6 @@
     margin-bottom: 10px;
     font-family: Raleway, sans-serif;
     color: #3C3;
-    letter-spacing: -2pt;
     line-height: 1.1;
 }
 

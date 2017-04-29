@@ -19,12 +19,12 @@ const About = () => (
       <p>The FOCUS team is made up of about twenty student leaders and staff, who make everything run smoothly. Our team loves to share God's Good News with students, as all of our student leaders and staff are dedicated Christians and Luke and Sam are theologically trained.</p>
     </div>
     <div className="blurb">
-      <div id="Luke"></div>
+      <div id="Luke" className="team-member"></div>
       <h3>Luke Hansard</h3>
       <p>Luke is a real Tasmanian local and our only full-time staff. He trained at Moore College in Sydney and gives most of the talks and oversees most of the running of FOCUS. Luke is a husband to Jan and father to three young boys. He likes to cook and eat strange things, especially weird meat. He might ask you to try his cooking.</p>
     </div>
     <div className="blurb">
-      <div id="Sam"></div>
+      <div id="Sam" className="team-member"></div>
       <h3>Sam Gough</h3>
       <p>Sam is a graduate of the University of Tasmania, Sydney Missionary Bible College and Moore College. Having trained and worked as a doctor, he made the switch from medicine to FOCUS. Sam is married to Beck and has two young kids, Henry and Phoebe. He loves Maccas, cheap instant coffee and wearing trackies.</p>
     </div>

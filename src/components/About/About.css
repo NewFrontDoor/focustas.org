@@ -1,0 +1,18 @@
+.team-member {
+    background-color: #036;
+    float: left;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px 50px 50px 50px;
+    margin-right: 600px;
+    margin-bottom: 15px;
+    margin-top: 40px;
+}
+
+#Luke {
+    background-image: url(Luke_mug.jpg);
+}
+
+#Sam {
+    background-image: url(Sam_mug.jpg);
+}
