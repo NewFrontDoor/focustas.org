@@ -1,0 +1,24 @@
+.nav {
+  margin: 7.5px -15px;
+  padding-left: 0px;
+  list-style: none;
+}
+
+.nav__item {
+  display: list-item;
+  margin-right: -10px;
+  margin-left: -10px;
+  padding-left: 0px;
+  float: left;
+}
+
+.nav__item-link {
+  display: block;
+  position: relative;
+  padding: 10px 30px;
+  color: #FFF;
+  font-family: 'Raleway';
+  font-size: 16px;
+  line-height: 30px;
+  text-decoration: none;
+}

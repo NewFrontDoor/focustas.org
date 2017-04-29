@@ -1,30 +1,39 @@
 // @flow
-import React from 'react'
+import React, { Component } from 'react'
+import cx from 'classnames';
 import './NavBar.css';
+import Nav from './Nav';
+import ToggleButton from './ToggleButton';
 
-const NavBar = () => (
-  <div className="navbar" role="navigation">
-    <div className="navbar-wrapper">
-      <div className="navbar-header">
-        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span className="sr-only">Toggle navigation</span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-          <span className="icon-bar"></span>
-        </button>
-        <a className="navbar-brand" href="#focus"></a>
+class NavBar extends Component {
+  state = {
+    collapsed: true,  
+  }
+  
+  toggleCollapse = (event: Event) => {
+    event.preventDefault();
+    this.setState({ collapsed: !this.state.collapsed });
+  }
+  
+  render() {
+    const collapseClass = cx('navbar-collapse', {
+      'collapsed': this.state.collapsed,
+    });
+    
+    return (
+      <div className="navbar" role="navigation">
+        <div className="navbar-wrapper">
+          <div className="navbar-header">
+            <ToggleButton onClick={this.toggleCollapse}/>
+            <a className="navbar-brand" href="#focus"></a>
+          </div>
+          <div className={collapseClass}>
+            <Nav />
+          </div>
+        </div>
       </div>
-      <div className="navbar-collapse">
-        <ul className="nav navbar-nav">
-          <li><a className="scroll" data-speed="1000" data-easing="easeInOutCubic" href="#home">Home</a></li>
-          <li><a className="scroll" data-speed="1000" data-easing="easeInOutCubic" href="#events">Events</a></li>
-          <li><a className="scroll" data-speed="1000" data-easing="easeInOutCubic" href="#involved">Get involved</a></li>
-          <li><a className="scroll" data-speed="1000" data-easing="easeInOutCubic" href="#about">About us</a></li>
-          <li><a className="scroll" data-speed="1000" data-easing="easeInOutCubic" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+};
 
 export default NavBar;
