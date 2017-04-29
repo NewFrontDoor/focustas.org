@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styles from './Contact.css';
+import './Contact.css';
 
 const Contact = () => (
   <div id="contact" className="parent-component">

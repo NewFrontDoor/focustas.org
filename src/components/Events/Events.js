@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styles from './Events.css';
+import './Events.css';
 
 const Events = () => (
 

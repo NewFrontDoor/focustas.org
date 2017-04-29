@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styles from './Welcome.css';
+import './Welcome.css';
 
 const Welcome = () => (
   <div className="Welcome">
