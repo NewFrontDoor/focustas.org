@@ -1,0 +1,38 @@
+#logo {
+  background-image: url(Just_leaves-01_small.png);
+  width: 155px;
+  height: 188px;
+  margin-left: 0;
+  margin-bottom: -65px;
+}
+.jumbotron {
+    padding-left: 0px;
+    padding-right: 40px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-right: -100px;
+}
+
+.jumbotron h1 {
+    font-size: 120px;
+    font-family: Raleway, sans-serif;
+    color: #3C3;
+    letter-spacing: -2pt;
+    line-height: 110px;
+}
+
+.jumbotron p {
+    font-weight: 200;
+    font-size: 25px;
+    line-height: 32px;
+    padding-right: 200px;
+    padding-top: 5px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+#big_photo {
+    background-image: url(students_for_web.png);
+    height: 567px;
+    width: 850px;
+    margin-top: -50px;
+}
