@@ -2,12 +2,13 @@
 import React from 'react'
 import GoogleMap from '../GoogleMap/GoogleMap';
 import './Where.css';
+import Blurb from '../Blurb/Blurb';
 
 const Where = () => (
   <div id="where" className="parent-component">
     <h2>Where we meet</h2>
-    <div className="blurb">
-      <div id="icon"></div>
+    <div id="icon"></div>
+    <Blurb>
       <div id="map">
         <p>We meet for Friday night FOCUS at Sandy Bay Baptist Church.<br /></p>
         <div id="mapChurch">
@@ -18,7 +19,7 @@ const Where = () => (
           <GoogleMap query="Wellspring+Anglican,+43-47+Grosvenor+St,+Sandy+Bay+TAS+7005" />
         </div>
       </div>
-    </div>
+    </Blurb>
   </div>
 );
 
