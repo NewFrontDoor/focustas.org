@@ -2,6 +2,7 @@
 import React from 'react'
 import './Events.css';
 import Blurb from '../Blurb/Blurb'
+import photo from './students_small.png';
 
 const Events = () => (
 
@@ -15,7 +16,7 @@ const Events = () => (
 			<li><b>Where:</b> Sandy Bay Baptist Church, 239 Sandy Bay Road. <a href="#mapChurch">(See map)</a></li>
 		</ul>
   </Blurb>
-  <div id="Photo_4"></div>
+  <img className="events-image" src={photo} alt="Group of students" />
   <Blurb h3="The Good Life Studies" text="Do you want a good life? Do you want to hear what the Bible teaches about this subject? Read the Bible, find answers and enjoy some discussion.">
     <ul>
       <li><b>What:</b> A short course to learn how to live God's good life.</li>
@@ -44,7 +45,6 @@ const Events = () => (
     </ul>
   </Blurb>
 </div>
-
 );
 
 export default Events;

@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react'
-import cx from 'classnames';
 import './NavBar.css';
 import Nav from './Nav';
 import ToggleButton from './ToggleButton';
+import logo from './logo-long-white.png';
 
 class NavBar extends Component {
   state = {
@@ -16,22 +16,14 @@ class NavBar extends Component {
   }
   
   render() {
-    const collapseClass = cx('navbar-collapse', {
-      'collapsed': this.state.collapsed,
-    });
-    
     return (
-      <div className="navbar" role="navigation">
-        <div className="navbar-wrapper">
-          <div className="navbar-header">
-            <ToggleButton onClick={this.toggleCollapse}/>
-            <a className="navbar-brand" href="#focus"></a>
-          </div>
-          <div className={collapseClass}>
-            <Nav />
-          </div>
-        </div>
-      </div>
+      <nav className="navbar" role="navigation">
+        <ToggleButton onClick={this.toggleCollapse}/>
+        <a className="navbar-brand" href="#focus">
+          <img src={logo} height="40px" alt="focus logo"/>
+        </a>
+        <Nav collapsed={this.state.collapsed} />
+      </nav>
     );
   }
 };

@@ -1,13 +1,13 @@
-.side-bar {
+.google-map {
   position: relative;
   display: block;
   width: 100%;
   padding: 0;
   overflow: hidden;
-  padding-bottom: 150%;
+  padding-bottom: 50%;
 }
 
-.side-bar-item {
+.google-map-item {
   position: absolute;
   top: 0;
   bottom: 0;

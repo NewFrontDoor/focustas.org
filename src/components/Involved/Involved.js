@@ -2,6 +2,7 @@
 import React from 'react'
 import './Involved.css';
 import Blurb from '../Blurb/Blurb'
+import photo from './girls_on_bridge_small.jpg';
 
 const Involved = () => (
   <div id="involved" className="parent-component">
@@ -12,7 +13,7 @@ const Involved = () => (
       <p>Whether you're a Christian from nearby or overseas, there are many ways you or your church group can partner with FOCUS, including prayer, donations, cooking meals, volunteering time, sharing about FOCUS, etc. To learn more, contact: <a href="mailto:staff@focustas.org">staff@focustas.org</a>.</p>
       <p>You can also <a target='blank' href="http://sub.afes.org.au/_donate/?campus=dbddf054ea53849d57604be4d006cee2&sessid=e7dec603c7a7ac8c737d27cfc624eecf">donate to FOCUS</a>.</p>
     </Blurb>
-    <div id="photo2"></div>
+    <img className="involved-image" src={photo} alt="Girls on a bridge" />
   </div>
 );
 

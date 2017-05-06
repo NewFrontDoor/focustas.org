@@ -1,4 +1,4 @@
-#photo2 {
+/*#photo2 {
     background-image: url(girls_on_bridge_small.jpg);
     height: 439px;
     width: 630px;
@@ -7,4 +7,12 @@
     background-repeat: no-repeat;
     clear: both;
     margin: 20px 0 -50px;
+}*/
+
+.involved-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
