@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
-import Todo from './Todo'
-import type { Todos, Id } from '../types'
+import React from 'react';
+import Todo from './Todo';
+import type { Todos, Id } from '../types';
 
 export type Props = {
   todos: Todos,
@@ -18,6 +18,6 @@ const TodoList = ({ todos, onTodoClick }: Props) => (
       />
     )}
   </ul>
-)
+);
 
-export default TodoList
+export default TodoList;

@@ -17,7 +17,7 @@
 }
 
 .jumbotron .h1 {
-  font-size: 60px;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -27,7 +27,6 @@
 }
 
 .jumbotron p {
-  font-size: 18px;
   line-height: 25px;
   padding-right: 5px;
   padding-top: 5px;

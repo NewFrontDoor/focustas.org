@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
+import React from 'react';
 import './Events.css';
-import Blurb from '../Blurb/Blurb'
+import Blurb from '../Blurb/Blurb';
 import photo from './students_small.png';
 
 const Events = () => (

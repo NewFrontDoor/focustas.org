@@ -4,11 +4,14 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "fela": "^4.3.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-fela": "^4.3.5",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
-    "reset-css": "^2.2.0"
+    "reset-css": "^2.2.0",
+    "typography": "^0.15.10"
   },
   "devDependencies": {
     "flow-bin": "^0.45.0",
@@ -22,6 +25,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": [
+        2,
+        "always"
+      ]
+    }
   }
 }

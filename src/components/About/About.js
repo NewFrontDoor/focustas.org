@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
+import React from 'react';
 import './About.css';
-import Blurb from '../Blurb/Blurb'
+import Blurb from '../Blurb/Blurb';
 
 const About = () => (
   <div id="about" className="parent-component">

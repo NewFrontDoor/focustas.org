@@ -1,5 +1,5 @@
 // @flow
-import React from 'react'
+import React from 'react';
 import GoogleMap from '../GoogleMap/GoogleMap';
 import './Where.css';
 import Blurb from '../Blurb/Blurb';

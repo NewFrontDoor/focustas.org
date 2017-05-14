@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
+import React from 'react';
 import './Contact.css';
-import Blurb from '../Blurb/Blurb'
+import Blurb from '../Blurb/Blurb';
 
 const Contact = () => (
   <div id="contact" className="parent-component">

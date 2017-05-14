@@ -1,11 +1,11 @@
-import todos from './todos'
+import todos from './todos';
 
 describe('todos reducer', () => {
   it('should handle initial state', () => {
     expect(
       todos(undefined, {})
-    ).toEqual([])
-  })
+    ).toEqual([]);
+  });
 
   it('should handle ADD_TODO', () => {
     expect(
@@ -20,7 +20,7 @@ describe('todos reducer', () => {
         completed: false,
         id: 0
       }
-    ])
+    ]);
 
     expect(
       todos([
@@ -44,7 +44,7 @@ describe('todos reducer', () => {
         completed: false,
         id: 1
       }
-    ])
+    ]);
 
     expect(
       todos([
@@ -76,8 +76,8 @@ describe('todos reducer', () => {
         completed: false,
         id: 2
       }
-    ])
-  })
+    ]);
+  });
 
   it('should handle TOGGLE_TODO', () => {
     expect(
@@ -105,7 +105,7 @@ describe('todos reducer', () => {
         completed: false,
         id: 0
       }
-    ])
-  })
+    ]);
+  });
 
-})
+});

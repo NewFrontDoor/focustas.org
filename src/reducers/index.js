@@ -1,12 +1,12 @@
 // @flow
 
-import { combineReducers } from 'redux'
-import todos from './todos'
-import visibilityFilter from './visibility-filter'
+import { combineReducers } from 'redux';
+import todos from './todos';
+import visibilityFilter from './visibility-filter';
 
 const todoApp = combineReducers({
   todos,
   visibilityFilter
-})
+});
 
-export default todoApp
+export default todoApp;

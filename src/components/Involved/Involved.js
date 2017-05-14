@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
+import React from 'react';
 import './Involved.css';
-import Blurb from '../Blurb/Blurb'
+import Blurb from '../Blurb/Blurb';
 import photo from './girls_on_bridge_small.jpg';
 
 const Involved = () => (

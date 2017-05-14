@@ -1,5 +1,7 @@
 // @flow
+
 import React from 'react';
+import { createComponent } from 'react-fela';
 import Welcome from '../Welcome/Welcome.js';
 import Events from '../Events/Events.js';
 import Involved from '../Involved/Involved.js';
@@ -7,24 +9,26 @@ import Contact from '../Contact/Contact.js';
 import Where from '../Where/Where.js';
 import About from '../About/About.js';
 import SideBar from '../SideBar/SideBar.js';
-import './Home.css';
+import Container from '../Container/Container';
+
+const HomeContainer = createComponent(() => ({
+	paddingTop: '70px',
+	paddingLeft: '1rem',
+	paddingRight: '1rem'
+}), Container());
 
 const Home = () => (
-	<div id="home">
-			<div className="home-container">
-				<div className="row">
-					<div className="col-xs-12 col-sm-9">
-						<Welcome />
-            <Events />
-            <Involved />
-            <About />
-            <Where />
-            <Contact />
-					</div>
-          <SideBar />
-				</div>
-			</div>
+	<HomeContainer>
+		<div id="home">
+			<Welcome />
+      <Events />
+      <Involved />
+      <About />
+      <Where />
+      <Contact />
 		</div>
+    <SideBar />
+	</HomeContainer>
 );
 
 export default Home;

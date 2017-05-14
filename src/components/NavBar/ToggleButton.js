@@ -1,14 +1,20 @@
 // @flow
-import React from 'react';
-import './ToggleButton.css';
+import { createComponent } from 'react-fela';
+import { media } from '../../constants';
 
-const ToggleButton = ({ onClick }: { onClick: Function }) => (
-  <button type="button" className="navbar-toggle" onClick={onClick}>
-    <span className="sr-only">Toggle navigation</span>
-    <span className="icon-bar"></span>
-    <span className="icon-bar"></span>
-    <span className="icon-bar"></span>
-  </button>
-);
+const ToggleButton = createComponent(() => ({
+  alignSelf: 'flex-start',
+  paddingTop: '12px',
+  paddingRight: '10px',
+  paddingBottom: '12px',
+  paddingLeft: '10px',
+  backgroundColor: 'transparent',
+  backgroundImage: 'none',
+  border: '1px solid #333',
+  borderRadius: '4px',
+  [media.tablet]: {
+    display: 'none',
+  }
+}), 'button', ['type', 'onClick']);
 
 export default ToggleButton;

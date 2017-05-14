@@ -21,10 +21,6 @@ h2 	{
   margin-bottom: 25px;
 }
 
-#contact h2 {
-	margin-left: 0;
-}
-
 h3 {
   font-size: 20px;
   margin-bottom: 3px;
@@ -33,7 +29,6 @@ h3 {
 
 p {
 	font-weight: 200;
-	font-size: 16px;
 	line-height: 24px;
 	margin-bottom: 10px;
 }
@@ -55,13 +50,4 @@ a {
 a:hover, a:focus {
     color: #339933;
     text-decoration: underline;
-}
-
-.parent-component {
-  padding-top: 70px;
-}
-
-.home-container {
-  margin: 0 auto;
-  padding: 70px 15px 0 15px;
 }

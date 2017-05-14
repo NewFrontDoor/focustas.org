@@ -1,38 +1,38 @@
 // @flow
-import React from 'react'
-import { connect } from 'react-redux'
-import { addTodo } from '../actions'
-import type { Dispatch } from '../types'
-import type { Connector } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions';
+import type { Dispatch } from '../types';
+import type { Connector } from 'react-redux';
 
 type Props = {
   dispatch: Dispatch
 };
 
 const AddTodo = ({ dispatch }) => {
-  let input
+  let input;
 
   return (
     <div>
       <form onSubmit={e => {
-        e.preventDefault()
+        e.preventDefault();
         if (!input.value.trim()) {
-          return
+          return;
         }
-        dispatch(addTodo(input.value))
-        input.value = ''
+        dispatch(addTodo(input.value));
+        input.value = '';
       }}>
         <input ref={node => {
-          input = node
+          input = node;
         }} />
         <button type="submit">
           Add Todo
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-const connector: Connector<{}, Props> = connect()
+const connector: Connector<{}, Props> = connect();
 
-export default connector(AddTodo)
+export default connector(AddTodo);
