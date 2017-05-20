@@ -3,6 +3,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "reset-css";
+import "typeface-raleway";
 import Typography from "typography";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -35,12 +36,6 @@ const typography = new Typography({
     "Helvetica",
     "Arial",
     "sans-serif"
-  ],
-  googleFonts: [
-    {
-      name: "Raleway",
-      styles: ["200", "400", "500", "700"]
-    }
   ]
 });
 

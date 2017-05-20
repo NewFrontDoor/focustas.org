@@ -11,6 +11,7 @@
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "reset-css": "^2.2.0",
+    "typeface-raleway": "^0.0.22",
     "typography": "^0.15.10"
   },
   "devDependencies": {
