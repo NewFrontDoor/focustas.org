@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React from "react";
 
 export type Props = {
   active: boolean,
@@ -13,11 +13,12 @@ const Link = ({ active, children, onClick }: Props) => {
   }
 
   return (
-    <a href="#"
-       onClick={e => {
-         e.preventDefault();
-         onClick();
-       }}
+    <a
+      href="#"
+      onClick={e => {
+        e.preventDefault();
+        onClick();
+      }}
     >
       {children}
     </a>

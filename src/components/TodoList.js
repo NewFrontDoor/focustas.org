@@ -1,7 +1,7 @@
 // @flow
-import React from 'react';
-import Todo from './Todo';
-import type { Todos, Id } from '../types';
+import React from "react";
+import Todo from "./Todo";
+import type { Todos, Id } from "../types";
 
 export type Props = {
   todos: Todos,
@@ -10,13 +10,9 @@ export type Props = {
 
 const TodoList = ({ todos, onTodoClick }: Props) => (
   <ul>
-    {todos.map(todo =>
-      <Todo
-        key={todo.id}
-        {...todo}
-        onClick={() => onTodoClick(todo.id)}
-      />
-    )}
+    {todos.map(todo => (
+      <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
+    ))}
   </ul>
 );
 

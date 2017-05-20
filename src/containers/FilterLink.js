@@ -1,10 +1,10 @@
 // @flow
-import { connect } from 'react-redux';
-import { setVisibilityFilter } from '../actions';
-import Link from '../components/Link';
-import type { Props } from '../components/Link';
-import type { State, Dispatch, VisibilityFilter } from '../types';
-import type { Connector } from 'react-redux';
+import { connect } from "react-redux";
+import { setVisibilityFilter } from "../actions";
+import Link from "../components/Link";
+import type { Props } from "../components/Link";
+import type { State, Dispatch, VisibilityFilter } from "../types";
+import type { Connector } from "react-redux";
 
 type OwnProps = {
   filter: VisibilityFilter
