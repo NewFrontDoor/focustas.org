@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { createComponent } from 'react-fela';
+import { Link } from 'react-scroll';
 import { media } from '../../constants';
 
 const NavCollapse = createComponent(({ collapsed }) => ({
@@ -64,6 +65,7 @@ const NavLink = createComponent(
     fontWeight: 'normal',
     lineHeight: '30px',
     textDecoration: 'none',
+    cursor: 'pointer',
     ':hover': {
       color: '#FFF',
       textDecoration: 'none'
@@ -83,8 +85,8 @@ const NavLink = createComponent(
       paddingLeft: '30px'
     }
   }),
-  'a',
-  ['href']
+  Link,
+  ['to', 'smooth', 'duration', 'offset']
 );
 
 export type Props = {
@@ -95,11 +97,29 @@ const Nav = ({ collapsed }: Props) => {
   return (
     <NavCollapse collapsed={collapsed}>
       <NavList>
-        <NavItem><NavLink href="#home">Home</NavLink></NavItem>
-        <NavItem><NavLink href="#events">Events</NavLink></NavItem>
-        <NavItem><NavLink href="#involved">Get involved</NavLink></NavItem>
-        <NavItem><NavLink href="#about">About us</NavLink></NavItem>
-        <NavItem><NavLink href="#contact">Contact</NavLink></NavItem>
+        <NavItem>
+          <NavLink to="home" smooth duration={500} offset={-70}>Home</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="events" smooth duration={500} offset={-70}>
+            Events
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="involved" smooth duration={500} offset={-70}>
+            Get involved
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="about" smooth duration={500} offset={-70}>
+            About us
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="contact" smooth duration={500} offset={-70}>
+            Contact
+          </NavLink>
+        </NavItem>
       </NavList>
     </NavCollapse>
   );

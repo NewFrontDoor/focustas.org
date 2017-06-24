@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { createComponent } from 'react-fela';
+import { Events } from 'react-scroll';
 import SrOnly from '../SrOnly/SrOnly';
 import { Container } from '../Container/Container';
 import { media } from '../../constants';
@@ -48,16 +49,18 @@ const IconBar = createComponent(({ marginTop }) => ({
 const FlexContainer = createComponent(() => ({
   display: 'flex',
   justifyContent: 'flex-end'
-  // paddingTop: '.5rem',
-  // paddingRight: '1rem',
-  // paddingBottom: '.5rem',
-  // paddingLeft: '1rem'
 }));
 
 class NavBar extends Component {
   state = {
     collapsed: true
   };
+
+  componentDidMount() {
+    Events.scrollEvent.register('begin', () => {
+      this.setState({ collapsed: true });
+    });
+  }
 
   toggleCollapse = (event: Event) => {
     event.preventDefault();

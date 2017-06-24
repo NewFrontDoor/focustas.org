@@ -9,6 +9,7 @@
     "react-dom": "^15.5.4",
     "react-fela": "^5.0.3",
     "react-redux": "^5.0.4",
+    "react-scroll": "^1.5.3",
     "redux": "^3.6.0",
     "typeface-raleway": "^0.0.29",
     "typography": "^0.15.10"
@@ -32,9 +33,9 @@
         "always"
       ],
       "quotes": [
-       "error",
-       "single"
-     ]
+        "error",
+        "single"
+      ]
     }
   }
 }
