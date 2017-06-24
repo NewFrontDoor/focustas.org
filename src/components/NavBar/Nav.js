@@ -65,7 +65,6 @@ const NavLink = createComponent(
     fontWeight: 'normal',
     lineHeight: '30px',
     textDecoration: 'none',
-    cursor: 'pointer',
     ':hover': {
       color: '#FFF',
       textDecoration: 'none'
@@ -86,7 +85,7 @@ const NavLink = createComponent(
     }
   }),
   Link,
-  ['to', 'smooth', 'duration', 'offset']
+  ['href', 'to', 'smooth', 'duration', 'offset']
 );
 
 export type Props = {
@@ -98,25 +97,45 @@ const Nav = ({ collapsed }: Props) => {
     <NavCollapse collapsed={collapsed}>
       <NavList>
         <NavItem>
-          <NavLink to="home" smooth duration={500} offset={-70}>Home</NavLink>
+          <NavLink href="#home" to="home" smooth duration={500} offset={-70}>
+            Home
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="events" smooth duration={500} offset={-70}>
+          <NavLink
+            href="#events"
+            to="events"
+            smooth
+            duration={500}
+            offset={-70}
+          >
             Events
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="involved" smooth duration={500} offset={-70}>
+          <NavLink
+            href="#involved"
+            to="involved"
+            smooth
+            duration={500}
+            offset={-70}
+          >
             Get involved
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="about" smooth duration={500} offset={-70}>
+          <NavLink href="#about" to="about" smooth duration={500} offset={-70}>
             About us
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="contact" smooth duration={500} offset={-70}>
+          <NavLink
+            href="#contact"
+            to="contact"
+            smooth
+            duration={500}
+            offset={-70}
+          >
             Contact
           </NavLink>
         </NavItem>

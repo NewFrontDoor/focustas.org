@@ -41,7 +41,7 @@ const Involved = () =>
         {' '}
         <a
           target="blank"
-          href="http://sub.afes.org.au/_donate/?campus=dbddf054ea53849d57604be4d006cee2&sessid=e7dec603c7a7ac8c737d27cfc624eecf"
+          href="https://support.afes.org.au/support-hobart-focus-university-of-tasmania-hobart-1747"
         >
           donate to FOCUS
         </a>

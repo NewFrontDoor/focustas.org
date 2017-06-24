@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { createComponent } from 'react-fela';
+import { Link } from 'react-scroll';
 import Blurb from '../Blurb/Blurb';
 import Heading from '../Heading/Heading';
 import photo from './students_small.png';
@@ -44,7 +45,15 @@ const Events = () =>
           {' '}
           Sandy Bay Baptist Church, 239 Sandy Bay Road.
           {' '}
-          <a href="#mapChurch">(See map)</a>
+          <Link
+            href="#mapChurch"
+            to="mapChurch"
+            smooth
+            duration={500}
+            offset={-70}
+          >
+            (See map)
+          </Link>
         </li>
       </ul>
     </Blurb>
@@ -58,7 +67,12 @@ const Events = () =>
           <b>What:</b> A short course to learn how to live God's good life.
         </li>
         <li><b>When:</b> You can choose!</li>
-        <li><b>Where:</b> Wellspring Church. <a href="#mapHQ">(See map)</a></li>
+        <li>
+          <b>Where:</b> Wellspring Church.{' '}
+          <Link href="#mapHQ" to="mapHQ" smooth duration={500} offset={-70}>
+            (See map)
+          </Link>
+        </li>
       </ul>
     </Blurb>
     <Blurb
@@ -78,7 +92,12 @@ const Events = () =>
       <ul>
         <li><b>What:</b> Study the Bible in a group.</li>
         <li><b>When:</b> Wednesdays 7.00-8:30pm.</li>
-        <li><b>Where:</b> Wellspring Church. <a href="#mapHQ">(See map)</a></li>
+        <li>
+          <b>Where:</b> Wellspring Church.{' '}
+          <Link href="#mapHQ" to="mapHQ" smooth duration={500} offset={-70}>
+            (See map)
+          </Link>
+        </li>
       </ul>
     </Blurb>
     <Blurb
