@@ -1,37 +1,49 @@
 // @flow
 
-import React from "react";
-import { createComponent } from "react-fela";
-import Welcome from "../Welcome/Welcome.js";
-import Events from "../Events/Events.js";
-import Involved from "../Involved/Involved.js";
-import Contact from "../Contact/Contact.js";
-import Where from "../Where/Where.js";
-import About from "../About/About.js";
-import SideBar from "../SideBar/SideBar.js";
-import Container from "../Container/Container";
+import React from 'react';
+import { createComponent } from 'react-fela';
+import Welcome from '../Welcome/Welcome';
+import Events from '../Events/Events';
+import Involved from '../Involved/Involved';
+import Contact from '../Contact/Contact';
+import Where from '../Where/Where';
+import About from '../About/About';
+import SideBar from '../SideBar/SideBar';
+import { Container, Column } from '../Container/Container';
+import { media } from '../../constants';
 
 const HomeContainer = createComponent(
   () => ({
-    paddingTop: "70px",
-    paddingLeft: "1rem",
-    paddingRight: "1rem"
+    paddingTop: '4rem'
   }),
   Container()
 );
 
-const Home = () => (
+const HomeColumn = createComponent(() => ({}), Column, ['id']);
+
+const SideBarColumn = createComponent(
+  () => ({
+    paddingTop: '4rem',
+    [media.tablet]: {
+      minWidth: '340px'
+    }
+  }),
+  Column
+);
+
+const Home = () =>
   <HomeContainer>
-    <div id="home">
+    <HomeColumn id="home" width={{ tablet: '100%', desktop: '70%' }}>
       <Welcome />
       <Events />
       <Involved />
       <About />
       <Where />
       <Contact />
-    </div>
-    <SideBar />
-  </HomeContainer>
-);
+    </HomeColumn>
+    <SideBarColumn width={{ tablet: '100%', desktop: '30%' }}>
+      <SideBar />
+    </SideBarColumn>
+  </HomeContainer>;
 
 export default Home;

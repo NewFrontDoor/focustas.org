@@ -1,18 +1,39 @@
 // @flow
-import React from "react";
-import "./SideBar.css";
 
-const SideBar = () => (
-  <div className="side-bar">
-    <iframe
+import React from 'react';
+import { createComponent } from 'react-fela';
+
+const FrameContainer = createComponent(() => ({
+  position: 'relative',
+  display: 'block',
+  width: '100%',
+  padding: '0',
+  overflow: 'hidden',
+  height: '500px'
+}));
+
+const IFrame = createComponent(
+  () => ({
+    position: 'absolute',
+    top: '0',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    border: '0'
+  }),
+  'iframe',
+  ['title', 'src', 'scrolling', 'allowTransparency']
+);
+
+const SideBar = () =>
+  <FrameContainer>
+    <IFrame
       title="facebook"
       src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Ffocustas&amp;colorscheme=light&amp;height=500&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=false&amp;appId=114634505698"
-      className="side-bar-item"
       scrolling="no"
-      style={{ border: "none", overflow: "hidden", height: "500px" }}
       allowTransparency="true"
     />
-  </div>
-);
+  </FrameContainer>;
 
 export default SideBar;

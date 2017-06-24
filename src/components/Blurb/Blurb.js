@@ -1,19 +1,30 @@
-import React, { Component } from "react";
-import "./Blurb.css";
+import React from 'react';
+import { createComponent } from 'react-fela';
 
-class Blurb extends Component {
-  render() {
-    return (
-      <div className="blurb">
-        {this.props.h2 ? <h2>{this.props.h2}</h2> : ""}
-        {this.props.h3 ? <h3>{this.props.h3}</h3> : ""}
-        {this.props.teamImg
-          ? <div id={this.props.teamImg} className="team-member" />
-          : ""}
-        {this.props.children}
-        {this.props.text ? <p>{this.props.text}</p> : ""}
-      </div>
-    );
-  }
-}
+const Mug = createComponent(
+  () => ({
+    backgroundColor: '#036',
+    float: 'left',
+    height: '100px',
+    width: '100px',
+    borderRadius: '100%',
+    marginRight: '1.5rem',
+    marginBottom: '1.5rem',
+    marginTop: '1.5rem'
+  }),
+  'img',
+  ['src']
+);
+
+const BlurbContainer = createComponent(() => ({}));
+
+const Blurb = ({ h2, h3, teamImg, children, text }) =>
+  <BlurbContainer>
+    {h2 && <h2>{h2}</h2>}
+    {h3 && <h3>{h3}</h3>}
+    {teamImg && <Mug src={teamImg} />}
+    {children}
+    {text && <p>{text}</p>}
+  </BlurbContainer>;
+
 export default Blurb;

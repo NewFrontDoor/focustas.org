@@ -1,13 +1,37 @@
 // @flow
-import React from "react";
-import "./Events.css";
-import Blurb from "../Blurb/Blurb";
-import photo from "./students_small.png";
+import React from 'react';
+import { createComponent } from 'react-fela';
+import Blurb from '../Blurb/Blurb';
+import Heading from '../Heading/Heading';
+import photo from './students_small.png';
+import coffee from './coffee-icon.png';
+import icon from '../../static/icon_row_small.png';
+import { media } from '../../constants';
 
-const Events = () => (
-  <div id="events" className="parent-component">
-    <h2>Events</h2>
-    <div id="icon" />
+const Container = createComponent(
+  () => ({
+    marginTop: '6rem'
+  }),
+  'div',
+  ['id']
+);
+
+const Photo = createComponent(
+  ({ mobile }) => ({
+    width: 'auto',
+    display: mobile ? 'block' : 'none',
+    [media.tablet]: {
+      maxHeight: '100%',
+      display: mobile ? 'none' : 'block'
+    }
+  }),
+  'img',
+  ['src']
+);
+
+const Events = () =>
+  <Container id="events">
+    <Heading image={coffee}>Events</Heading>
     <Blurb
       h3="Friday Night FOCUS"
       text="Join us every Friday during semester to eat, sing, pray, play, and learn from the Bible. We share a meal together and then have a church style meeting. Everything is run to help people who have never been to church feel comfortable. It's a great place to practice English, make friends, experience different cultures, and learn about God's will for your life."
@@ -17,9 +41,9 @@ const Events = () => (
         <li><b>When:</b> Fridays 6.00–8.30pm.</li>
         <li>
           <b>Where:</b>
-          {" "}
+          {' '}
           Sandy Bay Baptist Church, 239 Sandy Bay Road.
-          {" "}
+          {' '}
           <a href="#mapChurch">(See map)</a>
         </li>
       </ul>
@@ -46,7 +70,7 @@ const Events = () => (
         <li><b>When + Where:</b> You decide.</li>
       </ul>
     </Blurb>
-    <div id="iconRow" />
+    <Photo mobile src={icon} />
     <Blurb
       h3="Small group"
       text="Our small group is an excellent way for Christians to discover move about what we learn at Friday Night FOCUS. Our group will mature and encourage you in your faith."
@@ -66,7 +90,6 @@ const Events = () => (
         <li><b>When + Where:</b> Varies week to week.</li>
       </ul>
     </Blurb>
-  </div>
-);
+  </Container>;
 
 export default Events;

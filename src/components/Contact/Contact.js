@@ -1,18 +1,26 @@
 // @flow
-import React from "react";
-import "./Contact.css";
-import Blurb from "../Blurb/Blurb";
+import React from 'react';
+import { createComponent } from 'react-fela';
+import Heading from '../Heading/Heading';
+import Blurb from '../Blurb/Blurb';
 
-const Contact = () => (
-  <div id="contact" className="parent-component">
+const Container = createComponent(
+  () => ({
+    marginTop: '6rem'
+  }),
+  'div',
+  ['id']
+);
 
-    <Blurb h2="Contact Us">
+const Contact = () =>
+  <Container id="contact">
+    <Heading>Contact Us</Heading>
+    <Blurb>
       <p>
         We'd love to hear from you.<br />
         <a href="mailto:staff@focustas.org">staff@focustas.org</a>
       </p>
     </Blurb>
-  </div>
-);
+  </Container>;
 
 export default Contact;
