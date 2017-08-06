@@ -4,38 +4,38 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "express": "^4.15.3",
+    "express-graphql": "^0.6.7",
     "fela": "^5.0.1",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "fela-preset-web": "^5.0.6",
+    "graphql": "^0.10.5",
+    "graphql-compose": "^2.2.0",
+    "graphql-compose-connection": "^2.2.2",
+    "graphql-compose-mongoose": "^1.6.0",
+    "keystone": "^4.0.0-beta.5",
+    "model-transform": "^2.0.0",
+    "next": "^3.0.1-beta.20",
+    "pino-colada": "^1.4.1",
+    "pino-http": "^2.6.1",
+    "react": "^15.6.1",
+    "react-apollo": "^1.4.10",
+    "react-dom": "^15.6.1",
     "react-fela": "^5.0.3",
     "react-redux": "^5.0.4",
     "react-scroll": "^1.5.3",
     "redux": "^3.6.0",
-    "typeface-raleway": "^0.0.29",
-    "typography": "^0.15.10"
+    "typeface-raleway": "0.0.33",
+    "typography": "^0.16.0"
   },
   "devDependencies": {
-    "flow-bin": "^0.48.0",
-    "react-scripts": "1.0.7"
+    "flow-bin": "^0.52.0",
+    "nodemon": "^1.11.0",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "scripts": {
     "flow": "flow",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "semi": [
-        "error",
-        "always"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ]
-    }
+    "dev": "nodemon --watch server.js server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   }
 }
