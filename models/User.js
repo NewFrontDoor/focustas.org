@@ -29,8 +29,6 @@ User.add(
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(() => true);
 
-User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
-
 User.schema.methods.wasActive = function wasActive() {
   this.lastActiveOn = new Date();
   return this;

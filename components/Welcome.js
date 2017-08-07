@@ -57,14 +57,15 @@ const To = createComponent(
   'span'
 );
 
-const P = createComponent(
+const Description = createComponent(
   () => ({
     fontSize: '1.25rem',
     lineHeight: '1.2',
     color: '#777',
     fontWeight: '200'
   }),
-  'p'
+  'div',
+  ['dangerouslySetInnerHTML']
 );
 
 const Photo = createComponent(
@@ -82,7 +83,7 @@ const Photo = createComponent(
   ['src']
 );
 
-const Welcome = () =>
+const Welcome = ({ description }: { description: string }) =>
   <div>
     <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves" />
 
@@ -94,16 +95,9 @@ const Welcome = () =>
         {' '}
         FOCUS
       </Heading>
-      <P>
-        We love to share good things with you at FOCUS, like food, fun, and
-        friendship. Even better, we love to share good news with you about God,
-        who loved you so much He died to save you from this broken world.
-      </P>
-      <P>
-        FOCUS stands for the Fellowship of Overseas Christian University
-        Students. But you don't have to be a Christian to come to FOCUS — FOCUS
-        welcomes all international students.
-      </P>
+      <Description dangerouslySetInnerHTML={{
+        __html: description
+      }}/>
     </Jumbotron>
     <Photo src="/static/students_for_web.png" />
     <Photo mobile src="/static/icon_row_small.png" />

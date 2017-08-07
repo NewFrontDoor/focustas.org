@@ -3,18 +3,16 @@ const { GraphQLString } = require('graphql');
 const { GQC } = require('graphql-compose');
 const { composeWithMongoose } = require('graphql-compose-mongoose');
 
-console.log(composeWithMongoose);
-
 const UserTC = composeWithMongoose(keystone.list('User').model);
-const PostTC = composeWithMongoose(keystone.list('Post').model);
-const PostCategoryTC = composeWithMongoose(keystone.list('PostCategory').model);
+const PageTC = composeWithMongoose(keystone.list('Page').model);
+const EventTC = composeWithMongoose(keystone.list('Event').model);
 
-PostTC.addFields({
-  link: {
-    type: GraphQLString,
-    resolve: source => `/post/${source.slug}`,
-    projection: { slug: true },
+PageTC.addRelation('events', {
+  resolver: () => EventTC.getResolver('findByIds'),
+  prepareArgs: {
+    _ids: (source) => source.events || [],
   },
+  projection: { events: true },
 });
 
 GQC.rootQuery().addFields({
@@ -30,19 +28,19 @@ GQC.rootQuery().addFields({
   userTotal: UserTC.getResolver('count'),
   userConnection: UserTC.getResolver('connection'),
 
-  postById: PostTC.getResolver('findById'),
-  postByIds: PostTC.getResolver('findByIds'),
-  postOne: PostTC.getResolver('findOne'),
-  postMany: PostTC.getResolver('findMany'),
-  postTotal: PostTC.getResolver('count'),
-  postConnection: PostTC.getResolver('connection'),
+  pageById: PageTC.getResolver('findById'),
+  pageByIds: PageTC.getResolver('findByIds'),
+  pageOne: PageTC.getResolver('findOne'),
+  pageMany: PageTC.getResolver('findMany'),
+  pageTotal: PageTC.getResolver('count'),
+  pageConnection: PageTC.getResolver('connection'),
 
-  postCategoryById: PostCategoryTC.getResolver('findById'),
-  postCategoryByIds: PostCategoryTC.getResolver('findByIds'),
-  postCategoryOne: PostCategoryTC.getResolver('findOne'),
-  postCategoryMany: PostCategoryTC.getResolver('findMany'),
-  postCategoryTotal: PostCategoryTC.getResolver('count'),
-  postCategoryConnection: PostCategoryTC.getResolver('connection'),
+  eventById: EventTC.getResolver('findById'),
+  eventByIds: EventTC.getResolver('findByIds'),
+  eventOne: EventTC.getResolver('findOne'),
+  eventMany: EventTC.getResolver('findMany'),
+  eventTotal: EventTC.getResolver('count'),
+  eventConnection: EventTC.getResolver('connection'),
 });
 
 const schema = GQC.buildSchema();

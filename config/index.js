@@ -31,7 +31,7 @@ const locals = {};
 
 const nav = {
   people: ['users'],
-  content: ['posts'],
+  content: ['pages', 'events'],
 };
 
 module.exports = {

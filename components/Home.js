@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import { gql, graphql } from 'react-apollo'
 import { createComponent } from 'react-fela';
 import Welcome from './Welcome';
 import Events from './Events';
@@ -31,11 +32,11 @@ const SideBarColumn = createComponent(
   Column
 );
 
-const Home = () =>
+const Home = ({ page }) =>
   <HomeContainer>
     <HomeColumn id="home" width={{ tablet: '100%', desktop: '70%' }}>
-      <Welcome />
-      <Events />
+      <Welcome description={page.description} />
+      <Events events={page.events} />
       <Involved />
       <About />
       <Where />
@@ -46,4 +47,30 @@ const Home = () =>
     </SideBarColumn>
   </HomeContainer>;
 
-export default Home;
+const firstPage = gql`
+query firstPage($input: FilterFindOnePageInput) {
+  page: pageOne(filter: $input) {
+    description
+    events {
+      name
+      description
+      what
+      when
+      where
+    }
+  }
+}
+`;
+
+export default graphql(firstPage, {
+  options: (_) => ({
+    variables: {
+      input: {
+        slug: 'home',
+      }
+    },
+  }),
+  props: ({ data }) => ({
+    page: data.page,
+  })
+})(Home);
