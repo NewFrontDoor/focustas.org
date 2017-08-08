@@ -12,40 +12,10 @@ const Container = createComponent(
   ['id']
 );
 
-const Involved = () =>
+const Involved = ({ description }: { description: String }) =>
   <Container id="involved">
     <Heading image="/static/bible.png">Get involved</Heading>
-    <Blurb h3="Join our list">
-      <p>
-        Do you want to keep up-to-date with our events? Contact
-        {' '}
-        <a href="mailto:staff@focustas.org">staff@focustas.org</a>
-        {' '}
-        to join our email list.
-      </p>
-    </Blurb>
-    <Blurb h3="Support FOCUS">
-      <p>
-        Whether you're a Christian from nearby or overseas, there are many ways
-        you or your church group can partner with FOCUS, including prayer,
-        donations, cooking meals, volunteering time, sharing about FOCUS, etc.
-        To learn more, contact:
-        {' '}
-        <a href="mailto:staff@focustas.org">staff@focustas.org</a>
-        .
-      </p>
-      <p>
-        You can also
-        {' '}
-        <a
-          target="blank"
-          href="https://support.afes.org.au/support-hobart-focus-university-of-tasmania-hobart-1747"
-        >
-          donate to FOCUS
-        </a>
-        .
-      </p>
-    </Blurb>
+    <div dangerouslySetInnerHTML={{ __html: description }} />
     <img src="/static/girls_on_bridge_small.jpg" alt="Girls on a bridge" />
   </Container>;
 

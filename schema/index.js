@@ -1,5 +1,7 @@
+// @flow
+
 const keystone = require('keystone');
-const { GraphQLString } = require('graphql');
+const { GraphQLString, GraphQLBoolean } = require('graphql');
 const { GQC } = require('graphql-compose');
 const { composeWithMongoose } = require('graphql-compose-mongoose');
 
@@ -7,10 +9,39 @@ const UserTC = composeWithMongoose(keystone.list('User').model);
 const PageTC = composeWithMongoose(keystone.list('Page').model);
 const EventTC = composeWithMongoose(keystone.list('Event').model);
 
+const API_KEY = 'AIzaSyAKlXmkxql5J_iKGqRwReGSn1jUGnA1DHU';
+
+EventTC.addFields({
+  hasLocation: {
+    type: GraphQLBoolean,
+    resolve: source => source.location.street1 !== null,
+    projection: { location: true },
+  },
+  mapUrl: {
+    type: GraphQLString,
+    resolve: ({ location }) => {
+      const query = [
+        location.number,
+        location.name,
+        location.street1,
+        location.street2,
+        location.street3,
+        location.suburb,
+        location.state,
+        location.postcode,
+        location.country,
+      ].filter(Boolean).join('').replace(/\s/, '+');
+
+      return `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${query}`;
+    },
+    projection: { location: true },
+  }
+});
+
 PageTC.addRelation('events', {
   resolver: () => EventTC.getResolver('findByIds'),
   prepareArgs: {
-    _ids: (source) => source.events || [],
+    _ids: (source) => source.events || []
   },
   projection: { events: true },
 });

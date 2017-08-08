@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import kebabCase from 'lodash/kebabCase';
 import { createComponent } from 'react-fela';
 import { Link } from 'react-scroll';
 import Blurb from './Blurb';
@@ -33,6 +34,10 @@ type Event = {
   what: String,
   when: String,
   where: String,
+  location: {
+    street1: String,
+  },
+  hasLocation: Boolean,
 }
 
 const Events = ({ events }: { events: Array<Event> }) =>
@@ -52,15 +57,17 @@ const Events = ({ events }: { events: Array<Event> }) =>
             {' '}
             {item.where}
             {' '}
-            <Link
-              href="#mapChurch"
-              to="mapChurch"
-              smooth
-              duration={500}
-              offset={-70}
-            >
-              (See map)
-            </Link>
+            {item.hasLocation && (
+              <Link
+                href={`#${kebabCase(item.location.street1)}`}
+                to={kebabCase(item.location.street1)}
+                smooth
+                duration={500}
+                offset={-70}
+              >
+                (See map)
+              </Link>
+            )}
           </li>
         </ul>
       </Blurb>

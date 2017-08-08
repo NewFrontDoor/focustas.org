@@ -37,10 +37,10 @@ const Home = ({ page }) =>
     <HomeColumn id="home" width={{ tablet: '100%', desktop: '70%' }}>
       <Welcome description={page.description} />
       <Events events={page.events} />
-      <Involved />
-      <About />
+      <Involved description={page.getInvolved} />
+      <About {...page.aboutUs}/>
       <Where />
-      <Contact />
+      <Contact description={page.contactUs} />
     </HomeColumn>
     <SideBarColumn width={{ tablet: '100%', desktop: '30%' }}>
       <SideBar />
@@ -57,7 +57,17 @@ query firstPage($input: FilterFindOnePageInput) {
       what
       when
       where
+      location {
+        street1
+      }
+      hasLocation
     }
+    getInvolved
+    aboutUs {
+      description
+      team
+    }
+    contactUs
   }
 }
 `;

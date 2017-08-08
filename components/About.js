@@ -12,40 +12,12 @@ const Container = createComponent(
   ['id']
 );
 
-const About = () =>
+type Team = {}
+
+const About = ({ description, team}: { description: String, team: Array<Team> }) =>
   <Container id="about">
     <Heading image="/static/apple.png">About us</Heading>
-    <Blurb h3="Who we are">
-      <p>
-        FOCUS is a Christian international student society of the Tasmanian
-        University Union (TUU) on the Hobart campus of the University of
-        Tasmania. Our society and our staff are also part of the
-        {' '}
-        <a target="blank" href="http://www.afes.org.au">
-          Australian Fellowship of Evangelical Students
-        </a>
-        .
-      </p>
-    </Blurb>
-    <Blurb h3="What we believe">
-      <p>
-        We believe in the historic Christian faith in the Truine God, who is
-        Father, Son, and Holy Spirit, the same faith shared by Christians across
-        time and throughout the world. For this reason, our students and staff
-        come from many different countries and backgrounds and are members of
-        many different Christian churches. You can read our doctrinal statement
-        {' '}
-        <a target="blank" href="http://www.afes.org.au/about/doctrinal-basis">
-          here
-        </a>
-        .
-        {' '}
-      </p>
-    </Blurb>
-    <Blurb
-      h3="The FOCUS Team"
-      text="The FOCUS team is made up of about twenty student leaders and staff, who make everything run smoothly. Our team loves to share God's Good News with students, as all of our student leaders and staff are dedicated Christians and Luke and Sam are theologically trained."
-    />
+    <div dangerouslySetInnerHTML={{ __html: description }} />
     <Blurb
       h3="Luke Hansard"
       teamImg="/static/Luke_mug.jpg"

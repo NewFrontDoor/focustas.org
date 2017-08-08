@@ -12,15 +12,10 @@ const Container = createComponent(
   ['id']
 );
 
-const Contact = () =>
+const Contact = ({ description }: { description: String }) =>
   <Container id="contact">
     <Heading>Contact Us</Heading>
-    <Blurb>
-      <p>
-        We'd love to hear from you.<br />
-        <a href="mailto:staff@focustas.org">staff@focustas.org</a>
-      </p>
-    </Blurb>
+    <div dangerouslySetInnerHTML={{ __html: description }} />
   </Container>;
 
 export default Contact;
