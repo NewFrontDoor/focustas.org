@@ -24,7 +24,7 @@ const Blurb = ({ h2, h3, teamImg, children, text }) =>
     {h3 && <h3>{h3}</h3>}
     {teamImg && <Mug src={teamImg} />}
     {children}
-    {text && <span dangerouslySetInnerHTML={{ __html: text }} />}
+    {text && <p dangerouslySetInnerHTML={{ __html: text }} />}
   </BlurbContainer>;
 
 export default Blurb;
