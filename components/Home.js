@@ -1,8 +1,9 @@
 // @flow
 
 import React from 'react';
-import { gql, graphql } from 'react-apollo'
-import { createComponent } from 'react-fela';
+import {gql, graphql} from 'react-apollo';
+import {createComponent} from 'react-fela';
+import {media} from '../config/constants';
 import Welcome from './Welcome';
 import Events from './Events';
 import Involved from './Involved';
@@ -10,14 +11,13 @@ import Contact from './Contact';
 import Where from './Where';
 import About from './About';
 import SideBar from './SideBar';
-import { Container, Column } from './Container';
-import { media } from '../config/constants';
+import {createContainer, Column} from './Container';
 
 const HomeContainer = createComponent(
   () => ({
     paddingTop: '4rem'
   }),
-  Container()
+  createContainer()
 );
 
 const HomeColumn = createComponent(() => ({}), Column, ['id']);
@@ -32,20 +32,25 @@ const SideBarColumn = createComponent(
   Column
 );
 
-const Home = ({ page }) =>
+type Props = {
+  page: any;
+};
+
+const Home = ({page}: Props) => (
   <HomeContainer>
-    <HomeColumn id="home" width={{ tablet: '100%', desktop: '70%' }}>
-      <Welcome description={page.description} />
-      <Events events={page.events} />
-      <Involved description={page.getInvolved} />
+    <HomeColumn id="home" width={{tablet: '100%', desktop: '70%'}}>
+      <Welcome description={page.description}/>
+      <Events events={page.events}/>
+      <Involved description={page.getInvolved}/>
       <About {...page.aboutUs}/>
-      <Where />
-      <Contact description={page.contactUs} />
+      <Where/>
+      <Contact description={page.contactUs}/>
     </HomeColumn>
-    <SideBarColumn width={{ tablet: '100%', desktop: '30%' }}>
-      <SideBar />
+    <SideBarColumn width={{tablet: '100%', desktop: '30%'}}>
+      <SideBar/>
     </SideBarColumn>
-  </HomeContainer>;
+  </HomeContainer>
+);
 
 const firstPage = gql`
 query firstPage($input: FilterFindOnePageInput) {
@@ -72,15 +77,17 @@ query firstPage($input: FilterFindOnePageInput) {
 }
 `;
 
-export default graphql(firstPage, {
-  options: (_) => ({
+const withData = graphql(firstPage, {
+  options: ({slug}) => ({
     variables: {
       input: {
-        slug: 'home',
+        slug
       }
-    },
+    }
   }),
-  props: ({ data }) => ({
-    page: data.page,
+  props: ({data}) => ({
+    page: data.page || {}
   })
-})(Home);
+});
+
+export default withData(Home);

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { createComponent } from 'react-fela';
+import {createComponent} from 'react-fela';
 
 const FrameContainer = createComponent(() => ({
   position: 'relative',
@@ -26,7 +26,7 @@ const IFrame = createComponent(
   ['title', 'src', 'scrolling', 'allowTransparency']
 );
 
-const SideBar = () =>
+const SideBar = () => (
   <FrameContainer>
     <IFrame
       title="facebook"
@@ -34,6 +34,7 @@ const SideBar = () =>
       scrolling="no"
       allowTransparency="true"
     />
-  </FrameContainer>;
+  </FrameContainer>
+);
 
 export default SideBar;

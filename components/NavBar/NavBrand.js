@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { createComponent } from 'react-fela';
-import { media } from '../../config/constants';
+import {createComponent} from 'react-fela';
+import {media} from '../../config/constants';
 
 const BrandImage = createComponent(
   () => ({
@@ -31,9 +31,10 @@ const BrandLink = createComponent(
   ['href']
 );
 
-const NavBrand = () =>
+const NavBrand = () => (
   <BrandLink href="#focus">
-    <BrandImage src="/static/logo-long-white.png" alt="focus logo" />
-  </BrandLink>;
+    <BrandImage src="/static/logo-long-white.png" alt="focus logo"/>
+  </BrandLink>
+);
 
 export default NavBrand;

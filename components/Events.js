@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import { createComponent } from 'react-fela';
-import { Link } from 'react-scroll';
+import {createComponent} from 'react-fela';
+import {Link} from 'react-scroll';
+import {media} from '../config/constants';
 import Blurb from './Blurb';
 import Heading from './Heading';
-import { media } from '../config/constants';
 
 const Container = createComponent(
   () => ({
@@ -16,7 +16,7 @@ const Container = createComponent(
 );
 
 const Photo = createComponent(
-  ({ mobile }) => ({
+  ({mobile}) => ({
     width: 'auto',
     display: mobile ? 'block' : 'none',
     [media.tablet]: {
@@ -29,19 +29,19 @@ const Photo = createComponent(
 );
 
 type Event = {
-  name: String,
-  description: String,
-  what: String,
-  when: String,
-  where: String,
+  name: string,
+  description: string,
+  what: string,
+  when: string,
+  where: string,
   location: {
-    street1: String,
+    street1: string,
   },
   hasLocation: Boolean,
 }
 
-const Events = ({ events }: { events: Array<Event> }) => {
-  const elements = events.map((item, key) =>
+const Events = ({events}: { events: Array<Event> }) => {
+  const elements = events.map(item => (
     <Blurb
       key={item.name}
       h3={item.name}
@@ -69,10 +69,10 @@ const Events = ({ events }: { events: Array<Event> }) => {
         </li>
       </ul>
     </Blurb>
-  );
+  ));
 
-  elements.splice(1, 0, <img key="group-of-students" className="events-image" src="/static/students_small.png" alt="Group of students" />);
-  elements.splice(3, 0, <Photo key="icon-row-small" mobile src="/static/icon_row_small.png" />);
+  elements.splice(1, 0, <img key="group-of-students" className="events-image" src="/static/students_small.png" alt="Group of students"/>);
+  elements.splice(3, 0, <Photo key="icon-row-small" mobile src="/static/icon_row_small.png"/>);
 
   return (
     <Container id="events">

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { createComponent } from 'react-fela';
+import {createComponent} from 'react-fela';
 
 const MapContainer = createComponent(() => ({
   position: 'relative',
@@ -25,14 +25,14 @@ const MapFrame = createComponent(
   ['title', 'src', 'allowFullScreen']
 );
 
-const GoogleMap = ({ query }: { query: string }) =>
+const GoogleMap = ({query}: { query: string }) => (
   <MapContainer>
     <MapFrame
       title={`Google map ${query}`}
       src={query}
-      className="google-map-item"
       allowFullScreen
     />
-  </MapContainer>;
+  </MapContainer>
+);
 
 export default GoogleMap;

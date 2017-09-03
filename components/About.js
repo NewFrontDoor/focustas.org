@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { createComponent } from 'react-fela';
+import {createComponent} from 'react-fela';
 import Blurb from './Blurb';
 import Heading from './Heading';
 
@@ -12,12 +12,13 @@ const Container = createComponent(
   ['id']
 );
 
-type Team = {}
-
-const About = ({ description, team}: { description: String, team: Array<Team> }) =>
+const About = ({description}: { description: string }) => (
   <Container id="about">
     <Heading image="/static/apple.png">About us</Heading>
-    <div dangerouslySetInnerHTML={{ __html: description }} />
+    <div
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{__html: description}}
+    />
     <Blurb
       h3="Luke Hansard"
       teamImg="/static/Luke_mug.jpg"
@@ -28,6 +29,7 @@ const About = ({ description, team}: { description: String, team: Array<Team> })
       teamImg="/static/Sam_mug.jpg"
       text="Sam is a graduate of the University of Tasmania, Sydney Missionary Bible College and Moore College. Having trained and worked as a doctor, he made the switch from medicine to FOCUS. Sam is married to Beck and has two young kids, Henry and Phoebe. He loves Maccas, cheap instant coffee and wearing trackies."
     />
-  </Container>;
+  </Container>
+ );
 
 export default About;

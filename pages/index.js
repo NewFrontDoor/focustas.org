@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import { createComponent } from 'react-fela';
-import withData from '../lib/with-data'
-import Page from '../layout'
+import {createComponent} from 'react-fela';
+import withData from '../lib/with-data';
+import Page from '../lib/layout';
 import NavBar from '../components/NavBar/NavBar';
 import Home from '../components/Home';
 
@@ -16,15 +16,15 @@ const Footer = createComponent(
   'footer'
 );
 
-export default withData((props) => (
+export default withData(() => (
   <Page>
     <div>
-      <NavBar />
-      <Home />
+      <NavBar/>
+      <Home slug="home"/>
       <Footer>
-        <hr />
+        <hr/>
         <p>© Shiloh Design 2014</p>
       </Footer>
     </div>
   </Page>
-))
+));

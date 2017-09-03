@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import { createComponent } from 'react-fela';
-import { media } from '../config/constants';
+import {createComponent} from 'react-fela';
+import {media} from '../config/constants';
 
 const Logo = createComponent(
   () => ({
@@ -69,7 +69,7 @@ const Description = createComponent(
 );
 
 const Photo = createComponent(
-  ({ mobile }) => ({
+  ({mobile}) => ({
     marginTop: '-40px',
     maxHeight: '90px',
     width: 'auto',
@@ -83,24 +83,27 @@ const Photo = createComponent(
   ['src']
 );
 
-const Welcome = ({ description }: { description: string }) =>
+const Welcome = ({description}: { description: string }) => (
   <div>
-    <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves" />
+    <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves"/>
 
     <Jumbotron>
       <Heading>
         Welcome
-        <br />
+        <br/>
         <To>to</To>
         {' '}
         FOCUS
       </Heading>
-      <Description dangerouslySetInnerHTML={{
-        __html: description
-      }}/>
+      <Description
+        dangerouslySetInnerHTML={{
+          __html: description
+        }}
+      />
     </Jumbotron>
-    <Photo src="/static/students_for_web.png" />
-    <Photo mobile src="/static/icon_row_small.png" />
-  </div>;
+    <Photo src="/static/students_for_web.png"/>
+    <Photo mobile src="/static/icon_row_small.png"/>
+  </div>
+);
 
 export default Welcome;

@@ -1,10 +1,11 @@
 // @flow
-import React, { Component } from 'react';
-import { createComponent } from 'react-fela';
-import { Events } from 'react-scroll';
+
+import * as React from 'react';
+import {createComponent} from 'react-fela';
+import {Events} from 'react-scroll';
 import SrOnly from '../SrOnly';
-import { Container } from '../Container';
-import { media } from '../../config/constants';
+import {createContainer} from '../Container';
+import {media} from '../../config/constants';
 import Nav from './Nav';
 import ToggleButton from './ToggleButton';
 import NavBrand from './NavBrand';
@@ -32,11 +33,11 @@ const NavBarContainer = createComponent(
       flexDirection: 'row'
     }
   }),
-  Container('nav'),
+  createContainer('nav'),
   ['role']
 );
 
-const IconBar = createComponent(({ marginTop }) => ({
+const IconBar = createComponent(({marginTop}) => ({
   backgroundColor: '#fff',
   display: 'block',
   width: '22px',
@@ -50,20 +51,24 @@ const FlexContainer = createComponent(() => ({
   justifyContent: 'flex-end'
 }));
 
-class NavBar extends Component {
+type State = {
+  collapsed: boolean;
+};
+
+class NavBar extends React.Component<void, State> {
   state = {
     collapsed: true
   };
 
   componentDidMount() {
     Events.scrollEvent.register('begin', () => {
-      this.setState({ collapsed: true });
+      this.setState({collapsed: true});
     });
   }
 
-  toggleCollapse = (event: Event) => {
+  handleCollapse = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    this.setState({ collapsed: !this.state.collapsed });
+    this.setState({collapsed: !this.state.collapsed});
   };
 
   render() {
@@ -71,15 +76,15 @@ class NavBar extends Component {
       <FixedNavBar>
         <NavBarContainer role="navigation">
           <FlexContainer>
-            <NavBrand />
-            <ToggleButton type="button" onClick={this.toggleCollapse}>
+            <NavBrand/>
+            <ToggleButton type="button" onClick={this.handleCollapse}>
               <SrOnly>Toggle navigation</SrOnly>
-              <IconBar />
-              <IconBar marginTop="4px" />
-              <IconBar marginTop="4px" />
+              <IconBar/>
+              <IconBar marginTop="4px"/>
+              <IconBar marginTop="4px"/>
             </ToggleButton>
           </FlexContainer>
-          <Nav collapsed={this.state.collapsed} />
+          <Nav collapsed={this.state.collapsed}/>
         </NavBarContainer>
       </FixedNavBar>
     );

@@ -1,9 +1,9 @@
 // @flow
 
-import { createComponent } from 'react-fela';
-import { media } from '../config/constants';
+import {createComponent} from 'react-fela';
+import {media} from '../config/constants';
 
-export const Container = (type: ?string) =>
+export const createContainer = (type: ?string) =>
   createComponent(
     () => ({
       display: 'block',
@@ -22,7 +22,7 @@ export const Container = (type: ?string) =>
     type
   );
 
-export const Column = createComponent(({ width }) => ({
+export const Column = createComponent(({width}) => ({
   paddingLeft: '1rem',
   paddingRight: '1rem',
   [media.tablet]: {
@@ -33,4 +33,4 @@ export const Column = createComponent(({ width }) => ({
   }
 }));
 
-export default Container;
+export default createContainer;

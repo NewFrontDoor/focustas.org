@@ -1,10 +1,11 @@
 // @flow
-import React from 'react';
-import { createComponent } from 'react-fela';
-import { Link } from 'react-scroll';
-import { media } from '../../config/constants';
 
-const NavCollapse = createComponent(({ collapsed }) => ({
+import React from 'react';
+import {createComponent} from 'react-fela';
+import {Link} from 'react-scroll';
+import {media} from '../../config/constants';
+
+const NavCollapse = createComponent(({collapsed}) => ({
   maxHeight: '340px',
   overflowX: 'visible',
   paddingTop: '.5rem',
@@ -92,7 +93,7 @@ export type Props = {
   collapsed: boolean
 };
 
-const Nav = ({ collapsed }: Props) => {
+const Nav = ({collapsed}: Props) => {
   return (
     <NavCollapse collapsed={collapsed}>
       <NavList>

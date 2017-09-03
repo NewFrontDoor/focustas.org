@@ -1,19 +1,16 @@
-const express = require('express')
+const express = require('express');
 const expressGraphQL = require('express-graphql');
-const keystone = require('keystone')
-const next = require('next')
+const keystone = require('keystone');
 const pinoColada = require('pino-colada');
 const pinoHttp = require('pino-http');
 
-const config = require('./config');
-
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
-const handle = app.getRequestHandler();
 
-app.prepare()
-.then(() => {
-  const server = express()
+const start = ({
+  config,
+  handle = () => {}
+}) => {
+  const app = express();
   const pretty = pinoColada();
   pretty.pipe(process.stdout);
 
@@ -25,34 +22,50 @@ app.prepare()
   keystone.initDatabaseConfig();
   keystone.initExpressSession();
 
-  server.use('/keystone', keystone.Admin.Server.createStaticRouter(keystone));
-  server.use(express.static('static'));
-  server.use(keystone.get('session options').cookieParser);
-  server.use(keystone.expressSession);
-  server.use(keystone.session.persist);
+  app.use('/keystone', keystone.Admin.Server.createStaticRouter(keystone));
+  app.use(express.static('static'));
+  app.use(keystone.get('session options').cookieParser);
+  app.use(keystone.expressSession);
+  app.use(keystone.session.persist);
 
-  server.use(pinoHttp({ stream: pretty }));
-  server.use('/keystone', keystone.Admin.Server.createDynamicRouter(keystone));
+  app.use(pinoHttp({stream: pretty}));
+  app.use('/keystone', keystone.Admin.Server.createDynamicRouter(keystone));
 
-  server.use(
+  app.use(
     '/graphql',
     expressGraphQL(req => ({
-      // eslint-disable-next-line global-require
       schema: require('./schema'),
       graphiql: dev,
-      rootValue: { request: req },
-      pretty: dev,
+      rootValue: {request: req},
+      pretty: dev
     }))
   );
 
-  server.get('*', (req, res) => {
-    return handle(req, res)
-  })
-
-  keystone.openDatabaseConnection(() => {
-    server.listen(3000, (err) => {
-      if (err) throw err
-      console.log('> Ready on http://localhost:3000')
-    })
+  app.get('*', (req, res) => {
+    return handle(req, res);
   });
-}).catch(err => console.error(err));
+
+  return new Promise((resolve, reject) => {
+    keystone.openDatabaseConnection(() => {
+      const server = app.listen(3000, err => {
+        if (err) {
+          return reject(err);
+        }
+        console.log('> Ready on http://localhost:3000');
+        return resolve(server);
+      });
+    });
+  });
+};
+
+const stop = server => new Promise(resolve => {
+  keystone.closeDatabaseConnection(() => {
+    server.close();
+    resolve();
+  });
+});
+
+module.exports = {
+  start,
+  stop
+};

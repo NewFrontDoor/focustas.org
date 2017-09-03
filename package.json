@@ -4,39 +4,74 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
-    "express": "^4.15.3",
-    "express-graphql": "^0.6.7",
-    "fela": "^5.0.1",
-    "fela-preset-web": "^5.0.6",
+    "express": "^4.15.4",
+    "express-graphql": "^0.6.11",
+    "fela": "^5.2.0",
+    "fela-dom": "^5.0.8",
+    "fela-preset-web": "^5.0.8",
     "graphql": "^0.10.5",
-    "graphql-compose": "^2.2.0",
+    "graphql-compose": "^2.4.0",
     "graphql-compose-connection": "^2.2.2",
-    "graphql-compose-mongoose": "^1.6.0",
+    "graphql-compose-mongoose": "^1.8.1",
+    "isomorphic-fetch": "^2.2.1",
     "keystone": "^4.0.0-beta.5",
     "lodash": "^4.17.4",
     "model-transform": "^2.0.0",
-    "next": "^3.0.1-beta.20",
-    "pino-colada": "^1.4.1",
-    "pino-http": "^2.6.1",
+    "next": "^3.2.1",
+    "pino-colada": "^1.4.2",
+    "pino-http": "^2.6.2",
     "react": "^15.6.1",
-    "react-apollo": "^1.4.10",
+    "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
-    "react-fela": "^5.0.3",
-    "react-redux": "^5.0.4",
+    "react-fela": "^5.3.0",
+    "react-redux": "^5.0.6",
     "react-scroll": "^1.5.3",
     "redux": "^3.6.0",
-    "typeface-raleway": "0.0.33",
-    "typography": "^0.16.0"
+    "typeface-raleway": "^0.0.35",
+    "typography": "^0.16.4"
   },
   "devDependencies": {
-    "flow-bin": "^0.52.0",
+    "ava": "^0.22.0",
+    "babel-eslint": "^7.2.3",
+    "eslint-config-xo-react": "^0.13.0",
+    "eslint-plugin-flowtype": "^2.35.1",
+    "eslint-plugin-react": "^7.3.0",
+    "flow-bin": "^0.54.0",
+    "mongomem": "^0.1.9",
     "nodemon": "^1.11.0",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "nyc": "^11.1.0",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "xo": "^0.18.2"
   },
   "scripts": {
     "flow": "flow",
-    "dev": "nodemon --watch server.js server.js",
+    "dev": "nodemon --watch index.js index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node index.js",
+    "test": "xo && ava"
+  },
+  "xo": {
+    "extends": [
+      "xo-react",
+      "plugin:flowtype/recommended"
+    ],
+    "plugins": [
+      "flowtype"
+    ],
+    "parser": "babel-eslint",
+    "space": true,
+    "overrides": [
+      {
+        "files": "{components,models}/**/*.js",
+        "rules": {
+          "unicorn/filename-case": [
+            "error",
+            {
+              "case": "pascalCase"
+            }
+          ]
+        }
+      }
+    ]
   }
 }

@@ -1,6 +1,7 @@
 // @flow
-import { createComponent } from 'react-fela';
-import { media } from '../../config/constants';
+
+import {createComponent} from 'react-fela';
+import {media} from '../../config/constants';
 
 const ToggleButton = createComponent(
   () => ({

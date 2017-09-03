@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
-import { createComponent } from 'react-fela';
+import {createComponent} from 'react-fela';
 import Heading from './Heading';
-import Blurb from './Blurb';
 
 const Container = createComponent(
   () => ({
@@ -12,10 +11,14 @@ const Container = createComponent(
   ['id']
 );
 
-const Contact = ({ description }: { description: String }) =>
+const Contact = ({description}: { description: string }) => (
   <Container id="contact">
     <Heading>Contact Us</Heading>
-    <div dangerouslySetInnerHTML={{ __html: description }} />
-  </Container>;
+    <div
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{__html: description}}
+    />
+  </Container>
+);
 
 export default Contact;

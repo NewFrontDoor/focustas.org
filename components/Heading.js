@@ -1,10 +1,10 @@
 // @flow
 
-import { createComponent } from 'react-fela';
-import { media } from '../config/constants';
+import {createComponent} from 'react-fela';
+import {media} from '../config/constants';
 
 const Heading = createComponent(
-  ({ image }) => ({
+  ({image}) => ({
     position: 'relative',
     [media.desktop]: {
       ':before': {
