@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {gql, graphql} from 'react-apollo';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {media} from '../config/constants';
 import Welcome from './Welcome';
 import Events from './Events';
@@ -13,24 +13,16 @@ import About from './About';
 import SideBar from './SideBar';
 import {createContainer, Column} from './Container';
 
-const HomeContainer = createComponent(
-  () => ({
-    paddingTop: '4rem'
-  }),
-  createContainer()
-);
+const HomeContainer = styled(createContainer())`
+  padding-top: 4rem;
+`;
 
-const HomeColumn = createComponent(() => ({}), Column, ['id']);
-
-const SideBarColumn = createComponent(
-  () => ({
-    paddingTop: '4rem',
-    [media.tablet]: {
-      minWidth: '340px'
-    }
-  }),
-  Column
-);
+const SideBarColumn = styled(Column)`
+  padding-top: 4rem;
+  ${media.tablet} {
+    min-width: 340px;
+  }
+`;
 
 type Props = {
   page: any;
@@ -38,15 +30,15 @@ type Props = {
 
 const Home = ({page}: Props) => (
   <HomeContainer>
-    <HomeColumn id="home" width={{tablet: '100%', desktop: '70%'}}>
+    <Column id="home" screen={{tablet: '100%', desktop: '70%'}}>
       <Welcome description={page.description}/>
       <Events events={page.events}/>
       <Involved description={page.getInvolved}/>
       <About {...page.aboutUs}/>
       <Where/>
       <Contact description={page.contactUs}/>
-    </HomeColumn>
-    <SideBarColumn width={{tablet: '100%', desktop: '30%'}}>
+    </Column>
+    <SideBarColumn screen={{tablet: '100%', desktop: '30%'}}>
       <SideBar/>
     </SideBarColumn>
   </HomeContainer>
@@ -86,7 +78,7 @@ const withData = graphql(firstPage, {
     }
   }),
   props: ({data}) => ({
-    page: data.page || {}
+    page: data.page || {events: []}
   })
 });
 

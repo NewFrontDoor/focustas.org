@@ -1,30 +1,34 @@
 // @flow
-import React from 'react';
-import {createComponent} from 'react-fela';
+
+import * as React from 'react';
+import {hydrate, injectGlobal, fontFace} from 'emotion';
+import styled from 'react-emotion';
 import withData from '../lib/with-data';
-import Page from '../lib/layout';
 import NavBar from '../components/NavBar/NavBar';
 import Home from '../components/Home';
+import {raleway, ralewayBold, typography} from '../config/constants';
 
-const Footer = createComponent(
-  () => ({
-    paddingTop: '2rem',
-    paddingRight: '1.5rem',
-    paddingBottom: '2rem',
-    paddingLeft: '1.5rem'
-  }),
-  'footer'
-);
+// Adds server generated styles to emotion cache.
+// '__NEXT_DATA__.ids' is set in '_document.js'
+if (typeof global.window !== 'undefined') {
+  hydrate(global.window.__NEXT_DATA__.ids);
+}
+
+injectGlobal(typography.toString());
+fontFace(raleway);
+fontFace(ralewayBold);
+
+const Footer = styled.footer`
+  padding: 2rem 1.5rem;
+`;
 
 export default withData(() => (
-  <Page>
-    <div>
-      <NavBar/>
-      <Home slug="home"/>
-      <Footer>
-        <hr/>
-        <p>© Shiloh Design 2014</p>
-      </Footer>
-    </div>
-  </Page>
+  <div>
+    <NavBar/>
+    <Home slug="home"/>
+    <Footer>
+      <hr/>
+      <p>© Shiloh Design 2014</p>
+    </Footer>
+  </div>
 ));

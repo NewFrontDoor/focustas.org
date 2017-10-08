@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 
-const MapContainer = createComponent(() => ({
+const MapContainer = styled.div(() => ({
   position: 'relative',
   display: 'block',
   width: '100%',
@@ -11,7 +11,7 @@ const MapContainer = createComponent(() => ({
   paddingBottom: '50vh'
 }));
 
-const MapFrame = createComponent(
+const MapFrame = styled.iframe(
   () => ({
     position: 'absolute',
     top: '0',
@@ -21,8 +21,6 @@ const MapFrame = createComponent(
     height: '50vh',
     border: '0'
   }),
-  'iframe',
-  ['title', 'src', 'allowFullScreen']
 );
 
 const GoogleMap = ({query}: { query: string }) => (

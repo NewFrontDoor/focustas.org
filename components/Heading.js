@@ -1,26 +1,23 @@
 // @flow
 
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {media} from '../config/constants';
 
-const Heading = createComponent(
-  ({image}) => ({
-    position: 'relative',
-    [media.desktop]: {
-      ':before': {
-        content: '" "',
-        backgroundImage: `url(${image})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'bottom',
-        width: '70px',
-        left: '-80px',
-        bottom: '-10px',
-        height: '100px',
-        position: 'absolute'
-      }
+const Heading = styled.h2`
+  position: relative;
+  ${media.desktop} {
+    :before {
+      content: ' ';
+      background-image: ${({image}) => image && `url(${image})`};
+      background-repeat: no-repeat;
+      background-position: bottom;
+      width: 70px;
+      left: -80px;
+      bottom: -10px;
+      height: 100px;
+      position: absolute;
     }
-  }),
-  'h2'
-);
+  }
+`;
 
 export default Heading;

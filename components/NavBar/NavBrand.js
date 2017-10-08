@@ -1,35 +1,27 @@
 // @flow
 import React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {media} from '../../config/constants';
 
-const BrandImage = createComponent(
-  () => ({
-    margin: 0,
-    verticalAlign: 'middle',
-    width: '160px',
-    [media.tablet]: {
-      width: '250px'
-    }
-  }),
-  'img',
-  ['src', 'alt']
-);
+const BrandImage = styled.img`
+  margin: 0;
+  vertical-align: middle;
+  width: 160px;
+  ${media.tablet} {
+    width: '250px'
+  }
+`;
 
-const BrandLink = createComponent(
-  () => ({
-    textAlign: 'right',
-    display: 'inline-block',
-    fontSize: '1.25rem',
-    lineHeight: '3rem',
-    whiteSpace: 'nowrap',
-    [media.tablet]: {
-      textAlign: 'left'
-    }
-  }),
-  'a',
-  ['href']
-);
+const BrandLink = styled.a`
+  text-align: right;
+  display: inline-block;
+  font-size: 1.25rem;
+  line-height: 3rem;
+  white-space: nowrap;
+  ${media.tablet} {
+    text-align: left
+  }
+`;
 
 const NavBrand = () => (
   <BrandLink href="#focus">

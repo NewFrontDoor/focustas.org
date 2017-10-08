@@ -41,9 +41,7 @@ const start = ({
     }))
   );
 
-  app.get('*', (req, res) => {
-    return handle(req, res);
-  });
+  app.get('*', handle);
 
   return new Promise((resolve, reject) => {
     keystone.openDatabaseConnection(() => {

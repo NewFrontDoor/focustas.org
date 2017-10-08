@@ -1,93 +1,77 @@
 // @flow
 
 import React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {Link} from 'react-scroll';
 import {media} from '../../config/constants';
 
-const NavCollapse = createComponent(({collapsed}) => ({
-  maxHeight: '340px',
-  overflowX: 'visible',
-  paddingTop: '.5rem',
-  paddingRight: '1rem',
-  paddingBottom: '.5rem',
-  paddingLeft: '1rem',
-  borderTop: '1px solid transparent',
-  boxShadow: 'inset 0 1px 0 rgba(255,255,255,.1)',
-  webkitOverflowScrolling: 'touch',
-  height: collapsed ? '1px' : 'auto',
-  display: collapsed ? 'none' : 'block',
-  marginLeft: '-1rem',
-  marginRight: '-1rem',
-  [media.tablet]: {
-    height: 'auto',
-    display: 'flex',
-    flexBasis: '100%'
+const NavCollapse = styled.div`
+  max-height: 340px;
+  overflow-x: visible;
+  padding-top: .5rem;
+  padding-right: 1rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  border-top: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+  --webkit-overflow-scrolling: touch;
+  height: ${({collapsed}) => collapsed ? '1px' : 'auto'};
+  display: ${({collapsed}) => collapsed ? 'none' : 'block'};
+  margin-left: -1rem;
+  margin-right: -1rem;
+  ${media.tablet} {
+    height: auto;
+    display: flex;
+    flex-basis: 100;
   }
-}));
+`;
 
-const NavList = createComponent(
-  () => ({
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    alignContent: 'space-between',
-    paddingLeft: 0,
-    margin: 0,
-    flexBasis: '100%',
-    listStyle: 'none',
-    [media.tablet]: {
-      justifyContent: 'flex-end'
-    }
-  }),
-  'ul'
-);
+const NavList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-between;
+  padding-left: 0;
+  margin: 0;
+  flex-basis: 100%;
+  list-style: none;
+  ${media.tablet} {
+    justify-content: flex-end;
+  }
+`;
 
-const NavItem = createComponent(
-  () => ({
-    display: 'list-item',
-    marginBottom: 0
-  }),
-  'li'
-);
+const NavItem = styled.li`
+  display: list-item;
+  margin-bottom: 0;
+`;
 
-const NavLink = createComponent(
-  () => ({
-    display: 'inline-block',
-    position: 'relative',
-    paddingTop: '10px',
-    paddingRight: '1rem',
-    paddingBottom: '10px',
-    paddingLeft: '1rem',
-    color: '#FFF',
-    fontFamily: 'Raleway',
-    fontSize: '1rem',
-    fontWeight: 'normal',
-    lineHeight: '30px',
-    textDecoration: 'none',
-    ':hover': {
-      color: '#FFF',
-      textDecoration: 'none'
-    },
-    ':active': {
-      color: '#FFF',
-      textDecoration: 'none'
-    },
-    ':visited': {
-      color: '#FFF',
-      textDecoration: 'none'
-    },
-    [media.tablet]: {
-      paddingTop: 0,
-      paddingRight: '30px',
-      paddingBottom: 0,
-      paddingLeft: '30px'
-    }
-  }),
-  Link,
-  ['href', 'to', 'smooth', 'duration', 'offset']
-);
+const NavLink = styled(Link)`
+  display: inline-block;
+  position: relative;
+  padding: 10px 1rem;
+  color: #FFF;
+  font-family: Raleway;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 30px;
+  text-decoration: none;
+  &:hover {
+    color: #FFF;
+    text-decoration: none;
+  }
+  &:active {
+    color: #FFF;
+    text-decoration: none;
+  }
+  &:visited {
+    color: #FFF;
+    text-decoration: none;
+  }
+  ${media.tablet} {
+    padding: 0 30px;
+  }
+`;
 
 export type Props = {
   collapsed: boolean

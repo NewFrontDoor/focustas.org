@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {Events} from 'react-scroll';
 import SrOnly from '../SrOnly';
 import {createContainer} from '../Container';
@@ -10,52 +10,45 @@ import Nav from './Nav';
 import ToggleButton from './ToggleButton';
 import NavBrand from './NavBrand';
 
-const FixedNavBar = createComponent(
-  () => ({
-    backgroundImage: `url(/static/background.jpg)`,
-    backgroundRepeat: 'repeat-x',
-    left: 0,
-    position: 'fixed',
-    right: 0,
-    zIndex: 10,
-    [media.tablet]: {
-      marginBottom: '20px'
-    }
-  }),
-  'header'
-);
+const FixedNavBar = styled.header`
+  background-image: url(/static/background.jpg);
+  background-repeat: repeat-x;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 10;
+  ${media.tablet} {
+    margin-bottom: 20px;
+  }
+`;
 
-const NavBarContainer = createComponent(
-  () => ({
-    display: 'flex',
-    flexDirection: 'column',
-    [media.tablet]: {
-      flexDirection: 'row'
-    }
-  }),
-  createContainer('nav'),
-  ['role']
-);
+const NavBarContainer = styled(createContainer('nav'))`
+  display: flex;
+  flex-direction: column;
+  ${media.tablet} {
+    flex-direction: row;
+  }
+`;
 
-const IconBar = createComponent(({marginTop}) => ({
-  backgroundColor: '#fff',
-  display: 'block',
-  width: '22px',
-  height: '2px',
-  borderRadius: '1px',
-  marginTop
-}));
+const IconBar = styled.div`
+  background-color: #fff;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  margin-top: ${({marginTop}) => marginTop};
+`;
 
-const FlexContainer = createComponent(() => ({
-  display: 'flex',
-  justifyContent: 'flex-end'
-}));
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 type State = {
   collapsed: boolean;
 };
 
-class NavBar extends React.Component<void, State> {
+class NavBar extends React.Component<{}, State> {
   state = {
     collapsed: true
   };

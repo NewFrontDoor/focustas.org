@@ -1,15 +1,11 @@
 // @flow
 import React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import Heading from './Heading';
 
-const Container = createComponent(
-  () => ({
-    marginTop: '6rem'
-  }),
-  'div',
-  ['id']
-);
+const Container = styled.div`
+  margin-top: 6rem;
+`;
 
 const Involved = ({description}: { description: string }) => (
   <Container id="involved">

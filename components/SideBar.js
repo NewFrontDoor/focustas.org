@@ -1,30 +1,26 @@
 // @flow
 
 import React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 
-const FrameContainer = createComponent(() => ({
-  position: 'relative',
-  display: 'block',
-  width: '100%',
-  padding: '0',
-  overflow: 'hidden',
-  height: '500px'
-}));
+const FrameContainer = styled.div`
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  height: 500px;
+`;
 
-const IFrame = createComponent(
-  () => ({
-    position: 'absolute',
-    top: '0',
-    bottom: '0',
-    left: '0',
-    width: '100%',
-    height: '100%',
-    border: '0'
-  }),
-  'iframe',
-  ['title', 'src', 'scrolling', 'allowTransparency']
-);
+const IFrame = styled.iframe`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+`;
 
 const SideBar = () => (
   <FrameContainer>

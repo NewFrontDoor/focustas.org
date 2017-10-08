@@ -14,14 +14,22 @@ test.before('start server', async () => {
 });
 
 test.after.always('cleanup database', async () => {
-  MongoDBServer.tearDown();
   await server.stop(testServer);
+  MongoDBServer.tearDown();
 });
 
 function graphqlQuery(port, query) {
   const normalizedQuery = query.replace(/[\s,]+/g, ' ').trim();
   return fetch(`http://localhost:${port}/graphql?query=${normalizedQuery}`);
 }
+
+test.skip('should respond with site', async t => {
+  const port = testServer.address().port;
+
+  const response = await fetch(`http://localhost:${port}`);
+
+  t.snapshot(response);
+});
 
 test('should respond with User fields', async t => {
   const port = testServer.address().port;

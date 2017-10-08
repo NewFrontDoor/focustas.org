@@ -1,28 +1,24 @@
 // @flow
 
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {media} from '../../config/constants';
 
-const ToggleButton = createComponent(
-  () => ({
-    alignSelf: 'flex-start',
-    paddingTop: '12px',
-    paddingRight: '10px',
-    paddingBottom: '12px',
-    paddingLeft: '10px',
-    marginTop: '.5rem',
-    marginRight: '1rem',
-    marginBottom: '.5rem',
-    backgroundColor: 'transparent',
-    backgroundImage: 'none',
-    border: '1px solid #333',
-    borderRadius: '4px',
-    [media.tablet]: {
-      display: 'none'
-    }
-  }),
-  'button',
-  ['type', 'onClick']
-);
+const ToggleButton = styled.button`
+  align-self: flex-start;
+  padding-top: 12px;
+  padding-right: 10px;
+  padding-bottom: 12px;
+  padding-left: 10px;
+  margin-top: .5rem;
+  margin-right: 1rem;
+  margin-bottom: .5rem;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  ${media.tablet} {
+    display: none;
+  }
+`;
 
 export default ToggleButton;

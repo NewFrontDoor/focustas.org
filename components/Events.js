@@ -1,32 +1,24 @@
 // @flow
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 import {Link} from 'react-scroll';
 import {media} from '../config/constants';
 import Blurb from './Blurb';
 import Heading from './Heading';
 
-const Container = createComponent(
-  () => ({
-    marginTop: '6rem'
-  }),
-  'div',
-  ['id']
-);
+const Container = styled.div`
+  margin-top: 6rem;
+`;
 
-const Photo = createComponent(
-  ({mobile}) => ({
-    width: 'auto',
-    display: mobile ? 'block' : 'none',
-    [media.tablet]: {
-      maxHeight: '100%',
-      display: mobile ? 'none' : 'block'
-    }
-  }),
-  'img',
-  ['src']
-);
+const Photo = styled.img`
+  width: auto;
+  display: ${({mobile}) => mobile ? 'block' : 'none'};
+  ${media.tablet} {
+    max-height: 100%;
+    display: ${({mobile}) => mobile ? 'none' : 'block'};
+  }
+`;
 
 type Event = {
   name: string,

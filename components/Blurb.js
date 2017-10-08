@@ -1,24 +1,18 @@
 // @flow
 
 import * as React from 'react';
-import {createComponent} from 'react-fela';
+import styled from 'react-emotion';
 
-const Mug = createComponent(
-  () => ({
-    backgroundColor: '#036',
-    float: 'left',
-    height: '100px',
-    width: '100px',
-    borderRadius: '100%',
-    marginRight: '1.5rem',
-    marginBottom: '1.5rem',
-    marginTop: '1.5rem'
-  }),
-  'img',
-  ['src']
-);
-
-const BlurbContainer = createComponent(() => ({}));
+const Mug = styled.img`
+  background-color: #036;
+  float: left;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  margin-right: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+`;
 
 type Props = {
   h2?: string;
@@ -29,7 +23,7 @@ type Props = {
 };
 
 const Blurb = ({h2, h3, teamImg, children, text}: Props) => (
-  <BlurbContainer>
+  <div>
     {h2 && <h2>{h2}</h2>}
     {h3 && <h3>{h3}</h3>}
     {teamImg && <Mug src={teamImg}/>}
@@ -40,7 +34,7 @@ const Blurb = ({h2, h3, teamImg, children, text}: Props) => (
         dangerouslySetInnerHTML={{__html: text}}
       />
     )}
-  </BlurbContainer>
+  </div>
  );
 
 Blurb.defaultProps = {
