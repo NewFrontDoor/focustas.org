@@ -1,6 +1,10 @@
 {
   "presets": [
-    "next/babel"
+    ["next/babel", {
+      "preset-env": {
+        "modules": "commonjs"
+      }
+    }],
   ],
   "plugins": [
     ["emotion", { "inline": true }]
