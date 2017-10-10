@@ -24,7 +24,7 @@ function graphqlQuery(port, query) {
 }
 
 test.skip('should respond with site', async t => {
-  const port = testServer.address().port;
+  const {port} = testServer.address();
 
   const response = await fetch(`http://localhost:${port}`);
 
