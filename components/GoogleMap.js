@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import styled from 'react-emotion';
 
 const MapContainer = styled.div(() => ({

@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import styled from 'react-emotion';
 import {Link} from 'react-scroll';
 import {media} from '../../config/constants';

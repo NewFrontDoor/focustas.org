@@ -1,12 +1,21 @@
 // @flow
 
-import React from 'react';
+import type {OperationComponent, QueryProps} from 'react-apollo';
+
+import * as React from 'react';
 import {gql, graphql} from 'react-apollo';
 import styled from 'react-emotion';
 import kebabCase from 'lodash/kebabCase';
+import type {Event} from '../types';
 import GoogleMap from './GoogleMap';
 import Blurb from './Blurb';
 import Heading from './Heading';
+
+type Response = {
+  events: Array<Event>;
+};
+
+type Props = Response & QueryProps;
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -16,19 +25,25 @@ const MapContainer = styled.div`
   margin-bottom: 1.5rem;
 `;
 
-type Event = {
-  hasLocation: boolean;
-  mapUrl: string;
-  location: {
-    street1: string;
-  };
-};
+const events = gql`
+{
+  events: eventMany {
+    hasLocation
+    mapUrl
+    location {
+      street1
+    }
+  }
+}
+`;
 
-type Props = {
-  locations: Array<Event>;
-};
+const withData: OperationComponent<Response, {}, Props> = graphql(events, {
+  props: ({data}) => ({
+    events: (data.events || []).filter(item => item.hasLocation)
+  })
+});
 
-const Where = ({locations: [sandyBayBaptist, wellspringChurch]}: Props) => {
+const Where = withData(({events: [sandyBayBaptist, wellspringChurch]}: Props) => {
   if (sandyBayBaptist && wellspringChurch) {
     return (
       <Container id="where">
@@ -52,24 +67,6 @@ const Where = ({locations: [sandyBayBaptist, wellspringChurch]}: Props) => {
   }
 
   return null;
-};
-
-const events = gql`
-{
-  events: eventMany {
-    hasLocation
-    mapUrl
-    location {
-      street1
-    }
-  }
-}
-`;
-
-const withData = graphql(events, {
-  props: ({data}) => ({
-    locations: (data.events || []).filter(item => item.hasLocation)
-  })
 });
 
-export default withData(Where);
+export default Where;

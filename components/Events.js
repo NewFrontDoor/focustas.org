@@ -1,8 +1,9 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import kebabCase from 'lodash/kebabCase';
 import styled from 'react-emotion';
 import {Link} from 'react-scroll';
+import type {Event} from '../types';
 import {media} from '../config/constants';
 import Blurb from './Blurb';
 import Heading from './Heading';
@@ -20,19 +21,11 @@ const Photo = styled.img`
   }
 `;
 
-type Event = {
-  name: string,
-  description: string,
-  what: string,
-  when: string,
-  where: string,
-  location: {
-    street1: string,
-  },
-  hasLocation: Boolean,
-}
+type Props = {
+  events: Array<Event>;
+};
 
-const Events = ({events}: { events: Array<Event> }) => {
+const Events = ({events}: Props) => {
   const elements = events.map(item => (
     <Blurb
       key={item.name}
