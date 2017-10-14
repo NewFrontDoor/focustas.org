@@ -56,15 +56,7 @@ const NavLink = styled(Link)`
   font-weight: normal;
   line-height: 30px;
   text-decoration: none;
-  &:hover {
-    color: #FFF;
-    text-decoration: none;
-  }
-  &:active {
-    color: #FFF;
-    text-decoration: none;
-  }
-  &:visited {
+  &:hover, &:focus, &:active, &:visited {
     color: #FFF;
     text-decoration: none;
   }

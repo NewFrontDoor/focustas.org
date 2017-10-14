@@ -3,6 +3,7 @@
 /.next
 /.nyc_output
 /data
+/out
 
 # misc
 .DS_Store
