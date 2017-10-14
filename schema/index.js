@@ -8,12 +8,13 @@ const {composeWithMongoose} = require('graphql-compose-mongoose');
 const UserTC = composeWithMongoose(keystone.list('User').model);
 const PageTC = composeWithMongoose(keystone.list('Page').model);
 const EventTC = composeWithMongoose(keystone.list('Event').model);
+const VenueTC = composeWithMongoose(keystone.list('Venue').model);
 
 const API_KEY = 'AIzaSyAKlXmkxql5J_iKGqRwReGSn1jUGnA1DHU';
 
 UserTC.removeField(['email', 'password']);
 
-EventTC.addFields({
+VenueTC.addFields({
   hasLocation: {
     type: GraphQLBoolean,
     resolve: source => source.location.street1 !== null,
@@ -48,6 +49,14 @@ PageTC.addRelation('events', {
   projection: {events: true}
 });
 
+EventTC.addRelation('venue', {
+  resolver: () => VenueTC.getResolver('findById'),
+  prepareArgs: {
+    _id: source => source.venue
+  },
+  projection: {venue: true}
+});
+
 GQC.rootQuery().addFields({
   hello: {
     type: GraphQLString,
@@ -73,7 +82,14 @@ GQC.rootQuery().addFields({
   eventOne: EventTC.getResolver('findOne'),
   eventMany: EventTC.getResolver('findMany'),
   eventTotal: EventTC.getResolver('count'),
-  eventConnection: EventTC.getResolver('connection')
+  eventConnection: EventTC.getResolver('connection'),
+
+  venueById: VenueTC.getResolver('findById'),
+  venueByIds: VenueTC.getResolver('findByIds'),
+  venueOne: VenueTC.getResolver('findOne'),
+  venueMany: VenueTC.getResolver('findMany'),
+  venueTotal: VenueTC.getResolver('count'),
+  venueConnection: VenueTC.getResolver('connection')
 });
 
 const schema = GQC.buildSchema();

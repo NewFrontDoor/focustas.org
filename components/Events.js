@@ -40,10 +40,10 @@ const Events = ({events}: Props) => {
           {' '}
           {item.where}
           {' '}
-          {item.hasLocation && (
+          {item.venue && (
             <Link
-              href={`#${kebabCase(item.location.street1)}`}
-              to={kebabCase(item.location.street1)}
+              href={`#${kebabCase(item.venue.location.street1)}`}
+              to={kebabCase(item.venue.location.street1)}
               smooth
               duration={500}
               offset={-70}
