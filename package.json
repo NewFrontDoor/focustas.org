@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.4",
+    "babel-plugin-emotion": "^8.0.6",
     "classnames": "^2.2.5",
-    "emotion": "^8.0.5",
-    "emotion-server": "^8.0.5",
+    "emotion": "^8.0.6",
+    "emotion-server": "^8.0.6",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
     "graphql": "^0.11.7",
@@ -24,7 +24,7 @@
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
-    "react-emotion": "^8.0.5",
+    "react-emotion": "^8.0.6",
     "react-redux": "^5.0.6",
     "react-scroll": "^1.5.3",
     "redux": "^3.6.0",
@@ -37,19 +37,22 @@
     "eslint-config-xo-react": "^0.13.0",
     "eslint-plugin-flowtype": "^2.35.1",
     "eslint-plugin-react": "^7.3.0",
-    "flow-bin": "^0.56.0",
+    "flow-bin": "^0.57.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
     "mongomem": "^0.1.9",
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "xo": "^0.18.2"
+    "prettier": "^1.7.4",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "scripts": {
     "flow": "flow",
     "dev": "nodemon index.js",
     "build": "next build",
     "start": "NODE_ENV=production node index.js",
-    "test": "xo && nyc ava"
+    "test": "xo && nyc ava",
+    "precommit": "lint-staged"
   },
   "nodemonConfig": {
     "watch": [
@@ -58,34 +61,14 @@
       "package.json"
     ]
   },
-  "xo": {
-    "extends": [
-      "xo-react",
-      "plugin:flowtype/recommended"
-    ],
-    "plugins": [
-      "flowtype"
-    ],
-    "parser": "babel-eslint",
-    "space": true,
-    "overrides": [
-      {
-        "files": "{components,models}/**/*.js",
-        "rules": {
-          "unicorn/filename-case": [
-            "error",
-            {
-              "case": "pascalCase"
-            }
-          ]
-        }
-      },
-      {
-        "files": "test/**/*.js",
-        "rules": {
-          "ava/no-skip-test": "warn"
-        }
-      }
+  "prettier": {
+    "parser": "flow",
+    "trailingComma": "es5"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "prettier --write",
+      "git add"
     ]
   }
 }

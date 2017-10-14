@@ -1,17 +1,17 @@
 // @flow
 
-import type {OperationComponent, QueryProps} from 'react-apollo';
+import type { OperationComponent, QueryProps } from 'react-apollo';
 
 import * as React from 'react';
-import {gql, graphql} from 'react-apollo';
+import { gql, graphql } from 'react-apollo';
 import styled from 'react-emotion';
 import kebabCase from 'lodash/kebabCase';
-import type {Event} from '../types';
+import type { Event } from '../types';
 import GoogleMap from './GoogleMap';
 import Heading from './Heading';
 
 type Response = {
-  events: Array<Event>;
+  events: Array<Event>,
 };
 
 type Props = Response & QueryProps;
@@ -25,40 +25,40 @@ const MapContainer = styled.div`
 `;
 
 const venues = gql`
-{
-  venues: venueMany {
-    description
-    hasLocation
-    mapUrl
-    location {
-      street1
+  {
+    venues: venueMany {
+      description
+      hasLocation
+      mapUrl
+      location {
+        street1
+      }
     }
   }
-}
 `;
 
 const withData: OperationComponent<Response, {}, Props> = graphql(venues, {
-  props: ({data}) => ({
-    venues: (data.venues || []).filter(item => item.hasLocation)
-  })
+  props: ({ data }) => ({
+    venues: (data.venues || []).filter(item => item.hasLocation),
+  }),
 });
 
-const Where = withData(({venues}: Props) => {
+const Where = withData(({ venues }: Props) => {
   return (
     <Container id="where">
       <Heading image="/static/coffee-icon.png">Where we meet</Heading>
       <div id="map">
-        { venues.map(venue => (
-          <div key={venue.name} id={kebabCase(venue.location.street1)} >
+        {venues.map(venue => (
+          <div key={venue.name} id={kebabCase(venue.location.street1)}>
             <div
               // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{__html: venue.description}}
+              dangerouslySetInnerHTML={{ __html: venue.description }}
             />
             <MapContainer>
-              <GoogleMap query={venue.mapUrl}/>
+              <GoogleMap query={venue.mapUrl} />
             </MapContainer>
-          </div>)
-          )}
+          </div>
+        ))}
       </div>
     </Container>
   );
