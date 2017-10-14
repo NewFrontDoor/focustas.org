@@ -11,7 +11,7 @@ Event.add({
   what: {type: String},
   when: {type: String},
   where: {type: String},
-  location: {type: Types.Location, defaults: {country: 'Australia'}}
+  venue: {type: Types.Relationship, ref: 'Venue'}
 });
 
 Event.defaultColumns =

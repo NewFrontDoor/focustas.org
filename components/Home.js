@@ -55,10 +55,13 @@ query firstPage($input: FilterFindOnePageInput) {
       what
       when
       where
-      location {
-        street1
+      venue {
+        name
+        description
+        location {
+          street1
+        }
       }
-      hasLocation
     }
     getInvolved
     aboutUs {
