@@ -1,21 +1,43 @@
 // @flow
 
 import * as React from 'react';
+import {gql, graphql} from 'react-apollo';
 import styled from 'react-emotion';
 import Blurb from './Blurb';
 import Heading from './Heading';
+
+type Response = {
+  staffMembers: Array<Staff>;
+};
+
+type Props = Response & QueryProps;
+
+const staffMembers = gql`
+query staffMembers {
+  staffMany {
+  name {
+    first
+    last
+  }
+  bio
+  image
+}
+}
+`;
+
+const withData: OperationComponent<Response, Props> = graphql(staffMembers, {
+  props: ({data}) => ({
+    staffMembers: data.staffMany || {staffMembers: []}
+  })
+});
 
 const Container = styled.div`
   margin-top: 6rem;
 `;
 
-const About = ({description}: { description: string }) => (
+const About = withData(({staffMemebers}: Props) => (
   <Container id="about">
     <Heading image="/static/apple.png">About us</Heading>
-    <div
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{__html: description}}
-    />
     <Blurb
       h3="Luke Hansard"
       teamImg="/static/Luke_mug.jpg"
@@ -27,6 +49,6 @@ const About = ({description}: { description: string }) => (
       text="Sam is a graduate of the University of Tasmania, Sydney Missionary Bible College and Moore College. Having trained and worked as a doctor, he made the switch from medicine to FOCUS. Sam is married to Beck and has two young kids, Henry and Phoebe. He loves Maccas, cheap instant coffee and wearing trackies."
     />
   </Container>
- );
+));
 
 export default About;

@@ -9,6 +9,7 @@ const UserTC = composeWithMongoose(keystone.list('User').model);
 const PageTC = composeWithMongoose(keystone.list('Page').model);
 const EventTC = composeWithMongoose(keystone.list('Event').model);
 const VenueTC = composeWithMongoose(keystone.list('Venue').model);
+const StaffTC = composeWithMongoose(keystone.list('Staff').model);
 
 const API_KEY = 'AIzaSyAKlXmkxql5J_iKGqRwReGSn1jUGnA1DHU';
 
@@ -89,7 +90,14 @@ GQC.rootQuery().addFields({
   venueOne: VenueTC.getResolver('findOne'),
   venueMany: VenueTC.getResolver('findMany'),
   venueTotal: VenueTC.getResolver('count'),
-  venueConnection: VenueTC.getResolver('connection')
+  venueConnection: VenueTC.getResolver('connection'),
+
+  staffById: StaffTC.getResolver('findById'),
+  staffByIDs: StaffTC.getResolver('findByIds'),
+  staffOne: StaffTC.getResolver('findOne'),
+  staffMany: StaffTC.getResolver('findMany'),
+  stafftotal: StaffTC.getResolver('count'),
+  staffConnection: StaffTC.getResolver('connection')
 });
 
 const schema = GQC.buildSchema();
