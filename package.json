@@ -2,6 +2,15 @@
   "name": "focustas.org",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "flow": "flow",
+    "dev": "nodemon index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node index.js",
+    "test": "nyc ava",
+    "test:watch": "ava --watch",
+    "precommit": "lint-staged"
+  },
   "dependencies": {
     "babel-plugin-emotion": "^8.0.6",
     "classnames": "^2.2.5",
@@ -45,14 +54,6 @@
     "nyc": "^11.1.0",
     "prettier": "^1.7.4",
     "webpack-bundle-analyzer": "^2.9.0"
-  },
-  "scripts": {
-    "flow": "flow",
-    "dev": "nodemon index.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node index.js",
-    "test": "xo && nyc ava",
-    "precommit": "lint-staged"
   },
   "nodemonConfig": {
     "watch": [

@@ -6,12 +6,12 @@ import * as React from 'react';
 import { gql, graphql } from 'react-apollo';
 import styled from 'react-emotion';
 import kebabCase from 'lodash/kebabCase';
-import type { Event } from '../types';
+import type { Venue } from '../types';
 import GoogleMap from './GoogleMap';
 import Heading from './Heading';
 
 type Response = {
-  events: Array<Event>,
+  venues: Array<Venue>,
 };
 
 type Props = Response & QueryProps;
@@ -27,6 +27,7 @@ const MapContainer = styled.div`
 const venues = gql`
   {
     venues: venueMany {
+      _id
       description
       hasLocation
       mapUrl
@@ -43,25 +44,23 @@ const withData: OperationComponent<Response, {}, Props> = graphql(venues, {
   }),
 });
 
-const Where = withData(({ venues }: Props) => {
-  return (
-    <Container id="where">
-      <Heading image="/static/coffee-icon.png">Where we meet</Heading>
-      <div id="map">
-        {venues.map(venue => (
-          <div key={venue.name} id={kebabCase(venue.location.street1)}>
-            <div
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: venue.description }}
-            />
-            <MapContainer>
-              <GoogleMap query={venue.mapUrl} />
-            </MapContainer>
-          </div>
-        ))}
-      </div>
-    </Container>
-  );
-});
+const Where = ({ venues }: Props) => (
+  <Container id="where">
+    <Heading image="/static/coffee-icon.png">Where we meet</Heading>
+    <div id="map">
+      {venues.map(venue => (
+        <div key={venue._id} id={kebabCase(venue.location.street1)}>
+          <div
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: venue.description }}
+          />
+          <MapContainer>
+            <GoogleMap query={venue.mapUrl} />
+          </MapContainer>
+        </div>
+      ))}
+    </div>
+  </Container>
+);
 
-export default Where;
+export default withData(Where);

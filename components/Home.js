@@ -1,12 +1,12 @@
 // @flow
 
-import type {OperationComponent, QueryProps} from 'react-apollo';
+import type { OperationComponent, QueryProps } from 'react-apollo';
 
 import * as React from 'react';
-import {gql, graphql} from 'react-apollo';
+import { gql, graphql } from 'react-apollo';
 import styled from 'react-emotion';
-import {media} from '../config/constants';
-import type {Event} from '../types';
+import { media } from '../config/constants';
+import type { Event } from '../types';
 import Welcome from './Welcome';
 import Events from './Events';
 import Involved from './Involved';
@@ -14,22 +14,22 @@ import Contact from './Contact';
 import Where from './Where';
 import About from './About';
 import SideBar from './SideBar';
-import {createContainer, Column} from './Container';
+import { createContainer, Column } from './Container';
 
 type Response = {
   page: {
-    events: Array<Event>;
-    description: string;
+    events: Array<Event>,
+    description: string,
     aboutUs: {
-      description: string;
-    };
-    getInvolved: string;
-    contactUs: string;
-  };
+      description: string,
+    },
+    getInvolved: string,
+    contactUs: string,
+  },
 };
 
 type InputProps = {
-  slug: string;
+  slug: string,
 };
 
 type Props = Response & QueryProps;
@@ -46,60 +46,47 @@ const SideBarColumn = styled(Column)`
 `;
 
 const firstPage = gql`
-query firstPage($input: FilterFindOnePageInput) {
-  page: pageOne(filter: $input) {
-    description
-    events {
-      name
+  query firstPage($input: FilterFindOnePageInput) {
+    page: pageOne(filter: $input) {
       description
-      what
-      when
-      where
-      venue {
-        name
-        description
-        location {
-          street1
-        }
-      }
+      getInvolved
+      aboutUs
+      contactUs
     }
-    getInvolved
-    aboutUs {
-      description
-      team
-    }
-    contactUs
   }
-}
 `;
 
-const withData: OperationComponent<Response, InputProps, Props> = graphql(firstPage, {
-  options: ({slug}) => ({
+const withData: OperationComponent<
+  Response,
+  InputProps,
+  Props
+> = graphql(firstPage, {
+  options: ({ slug }) => ({
     variables: {
       input: {
-        slug
-      }
-    }
+        slug,
+      },
+    },
   }),
-  props: ({data}) => ({
-    page: data.page || {events: []}
-  })
+  props: ({ data }) => ({
+    page: data.page || { aboutUs: {} },
+  }),
 });
 
-const Home = withData(({page}: Props) => (
+const Home = ({ page }: Props) => (
   <HomeContainer>
-    <Column id="home" screen={{tablet: '100%', desktop: '70%'}}>
-      <Welcome description={page.description}/>
-      <Events events={page.events}/>
-      <Involved description={page.getInvolved}/>
-      <About {...page.aboutUs}/>
-      <Where/>
-      <Contact description={page.contactUs}/>
+    <Column id="home" screen={{ tablet: '100%', desktop: '70%' }}>
+      <Welcome description={page.description} />
+      <Events />
+      <Involved description={page.getInvolved} />
+      <About description={page.aboutUs} />
+      <Where />
+      <Contact description={page.contactUs} />
     </Column>
-    <SideBarColumn screen={{tablet: '100%', desktop: '30%'}}>
-      <SideBar/>
+    <SideBarColumn screen={{ tablet: '100%', desktop: '30%' }}>
+      <SideBar />
     </SideBarColumn>
   </HomeContainer>
-));
+);
 
-export default Home;
+export default withData(Home);

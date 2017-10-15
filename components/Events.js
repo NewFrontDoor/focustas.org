@@ -1,12 +1,24 @@
 // @flow
+
+import type { OperationComponent, QueryProps } from 'react-apollo';
+
 import * as React from 'react';
+import { gql, graphql } from 'react-apollo';
 import kebabCase from 'lodash/kebabCase';
 import styled from 'react-emotion';
-import {Link} from 'react-scroll';
-import type {Event} from '../types';
-import {media} from '../config/constants';
+import { Link } from 'react-scroll';
+import type { Event } from '../types';
+import { media } from '../config/constants';
 import Blurb from './Blurb';
 import Heading from './Heading';
+
+type Response = {
+  events: Array<Event>,
+};
+
+type InputProps = {};
+
+type Props = Response & QueryProps;
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -14,32 +26,54 @@ const Container = styled.div`
 
 const Photo = styled.img`
   width: auto;
-  display: ${({mobile}) => mobile ? 'block' : 'none'};
+  display: ${({ mobile }) => (mobile ? 'block' : 'none')};
   ${media.tablet} {
     max-height: 100%;
-    display: ${({mobile}) => mobile ? 'none' : 'block'};
+    display: ${({ mobile }) => (mobile ? 'none' : 'block')};
   }
 `;
 
-type Props = {
-  events: Array<Event>;
-};
+const events = gql`
+  {
+    events: eventMany {
+      name
+      description
+      what
+      when
+      where
+      venue {
+        name
+        description
+        location {
+          street1
+        }
+      }
+    }
+  }
+`;
 
-const Events = ({events}: Props) => {
+const withData: OperationComponent<
+  Response,
+  InputProps,
+  Props
+> = graphql(events, {
+  props: ({ data }) => ({
+    events: data.events || [],
+  }),
+});
+
+const Events = ({ events }: Props) => {
   const elements = events.map(item => (
-    <Blurb
-      key={item.name}
-      h3={item.name}
-      text={item.description}
-    >
+    <Blurb key={item.name} h3={item.name} text={item.description}>
       <ul>
-        <li><b>What:</b> {item.what}</li>
-        <li><b>When:</b> {item.when}</li>
         <li>
-          <b>Where:</b>
-          {' '}
-          {item.where}
-          {' '}
+          <b>What:</b> {item.what}
+        </li>
+        <li>
+          <b>When:</b> {item.when}
+        </li>
+        <li>
+          <b>Where:</b> {item.where}{' '}
           {item.venue && (
             <Link
               href={`#${kebabCase(item.venue.location.street1)}`}
@@ -56,8 +90,21 @@ const Events = ({events}: Props) => {
     </Blurb>
   ));
 
-  elements.splice(1, 0, <img key="group-of-students" className="events-image" src="/static/students_small.png" alt="Group of students"/>);
-  elements.splice(3, 0, <Photo key="icon-row-small" mobile src="/static/icon_row_small.png"/>);
+  elements.splice(
+    1,
+    0,
+    <img
+      key="group-of-students"
+      className="events-image"
+      src="/static/students_small.png"
+      alt="Group of students"
+    />
+  );
+  elements.splice(
+    3,
+    0,
+    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png" />
+  );
 
   return (
     <Container id="events">
@@ -67,4 +114,4 @@ const Events = ({events}: Props) => {
   );
 };
 
-export default Events;
+export default withData(Events);
