@@ -1,22 +1,21 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import {Link} from 'react-scroll';
-import {media} from '../../config/constants';
+import { Link } from 'react-scroll';
+import { media } from '../../config/constants';
 
 const NavCollapse = styled.div`
   max-height: 340px;
   overflow-x: visible;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
   padding-right: 1rem;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   padding-left: 1rem;
   border-top: 1px solid transparent;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   --webkit-overflow-scrolling: touch;
-  height: ${({collapsed}) => collapsed ? '1px' : 'auto'};
-  display: ${({collapsed}) => collapsed ? 'none' : 'block'};
+  height: ${({ collapsed }) => (collapsed ? '1px' : 'auto')};
+  display: ${({ collapsed }) => (collapsed ? 'none' : 'block')};
   margin-left: -1rem;
   margin-right: -1rem;
   ${media.tablet} {
@@ -50,14 +49,17 @@ const NavLink = styled(Link)`
   display: inline-block;
   position: relative;
   padding: 10px 1rem;
-  color: #FFF;
+  color: #fff;
   font-family: Raleway;
   font-size: 1rem;
   font-weight: normal;
   line-height: 30px;
   text-decoration: none;
-  &:hover, &:focus, &:active, &:visited {
-    color: #FFF;
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: #fff;
     text-decoration: none;
   }
   ${media.tablet} {
@@ -65,11 +67,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-export type Props = {
-  collapsed: boolean
-};
-
-const Nav = ({collapsed}: Props) => {
+const Nav = ({ collapsed }) => {
   return (
     <NavCollapse collapsed={collapsed}>
       <NavList>
@@ -119,6 +117,10 @@ const Nav = ({collapsed}: Props) => {
       </NavList>
     </NavCollapse>
   );
+};
+
+Nav.propTypes = {
+  collapsed: PropTypes.bool.isRequired,
 };
 
 export default Nav;

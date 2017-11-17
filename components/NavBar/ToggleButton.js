@@ -1,7 +1,5 @@
-// @flow
-
 import styled from 'react-emotion';
-import {media} from '../../config/constants';
+import { media } from '../../config/constants';
 
 const ToggleButton = styled.button`
   align-self: flex-start;
@@ -9,9 +7,9 @@ const ToggleButton = styled.button`
   padding-right: 10px;
   padding-bottom: 12px;
   padding-left: 10px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   margin-right: 1rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   background-color: transparent;
   background-image: none;
   border: 1px solid #333;

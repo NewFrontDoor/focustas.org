@@ -1,5 +1,3 @@
-// @flow
-
 import styled from 'react-emotion';
 
 const SrOnly = styled.span`
@@ -9,7 +7,7 @@ const SrOnly = styled.span`
   margin: -1px;
   padding: 0;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 `;
 

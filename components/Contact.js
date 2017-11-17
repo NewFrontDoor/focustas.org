@@ -1,5 +1,5 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import Heading from './Heading';
 
@@ -7,14 +7,18 @@ const Container = styled.div`
   margin-top: 6rem;
 `;
 
-const Contact = ({description}: { description: string }) => (
+const Contact = ({ description }) => (
   <Container id="contact">
     <Heading>Contact Us</Heading>
     <div
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{__html: description}}
+      dangerouslySetInnerHTML={{ __html: description }}
     />
   </Container>
 );
+
+Contact.propTypes = {
+  description: PropTypes.string.isRequired,
+};
 
 export default Contact;

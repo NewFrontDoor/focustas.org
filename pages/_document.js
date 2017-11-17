@@ -1,30 +1,23 @@
-// @flow
-
-import * as React from 'react';
-import Document, {Head, Main, NextScript} from 'next/document';
-import {extractCritical} from 'emotion-server';
-import {flush} from 'emotion';
-
-type Props = {
-  __NEXT_DATA__: *,
-  ids: *,
-}
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+import { extractCritical } from 'emotion-server';
+import { flush } from 'emotion';
 
 const dev = process.env.NODE_ENV !== 'production';
 
 export default class MyDocument extends Document {
-  static getInitialProps({renderPage}) {
+  static getInitialProps({ renderPage }) {
     if (dev) {
       flush();
     }
     const page = renderPage();
     const styles = extractCritical(page.html);
-    return {...page, ...styles};
+    return { ...page, ...styles };
   }
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
-    const {__NEXT_DATA__, ids} = props;
+    const { __NEXT_DATA__, ids } = props;
     if (ids) {
       __NEXT_DATA__.ids = ids;
     }
@@ -34,19 +27,22 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <meta charSet="utf-8"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-          <meta httpEquiv="x-ua-compatible" content="ie=edge"/>
-          <link rel="shortcut icon" href="/static/favicon.ico"/>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <title>FOCUS</title>
           <style
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{__html: this.props.css}}
+            dangerouslySetInnerHTML={{ __html: this.props.css }}
           />
         </Head>
         <body>
-          <Main/>
-          <NextScript/>
+          <Main />
+          <NextScript />
         </body>
       </html>
     );

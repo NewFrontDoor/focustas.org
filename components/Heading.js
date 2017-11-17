@@ -1,14 +1,12 @@
-// @flow
-
 import styled from 'react-emotion';
-import {media} from '../config/constants';
+import { media } from '../config/constants';
 
 const Heading = styled.h2`
   position: relative;
   ${media.desktop} {
     :before {
       content: ' ';
-      background-image: ${({image}) => image && `url(${image})`};
+      background-image: ${({ image }) => image && `url(${image})`};
       background-repeat: no-repeat;
       background-position: bottom;
       width: 70px;

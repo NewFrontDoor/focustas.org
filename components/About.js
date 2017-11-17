@@ -1,28 +1,10 @@
-// @flow
-
-import type { OperationComponent, QueryProps } from 'react-apollo';
-
-import * as React from 'react';
-import { gql, graphql } from 'react-apollo';
+import React from 'react';
+import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import styled from 'react-emotion';
 import Blurb from './Blurb';
 import Heading from './Heading';
-
-type Staff = {
-  name: {
-    first: string,
-    last: string,
-  },
-  bio: string,
-  image: string,
-};
-
-type Response = {
-  description: string,
-  staffMembers: Array<Staff>,
-};
-
-type Props = Response & QueryProps;
 
 const staffMembers = gql`
   {
@@ -38,20 +20,17 @@ const staffMembers = gql`
   }
 `;
 
-const withData: OperationComponent<Response, {}, Props> = graphql(
-  staffMembers,
-  {
-    props: ({ data }) => ({
-      staffMembers: data.staffMembers || [],
-    }),
-  }
-);
+const withData = graphql(staffMembers, {
+  props: ({ data }) => ({
+    staffMembers: data.staffMembers || [],
+  }),
+});
 
 const Container = styled.div`
   margin-top: 6rem;
 `;
 
-const About = ({ description, staffMembers }: Props) => (
+const About = ({ description, staffMembers }) => (
   <Container id="about">
     <Heading image="/static/apple.png">About us</Heading>
     <div
@@ -68,5 +47,20 @@ const About = ({ description, staffMembers }: Props) => (
     ))}
   </Container>
 );
+
+About.propTypes = {
+  description: PropTypes.string.isRequired,
+  staffMembers: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      bio: PropTypes.string,
+      image: PropTypes.string,
+      name: PropTypes.shape({
+        first: PropTypes.string,
+        last: PropTypes.string,
+      }),
+    })
+  ).isRequired,
+};
 
 export default withData(About);

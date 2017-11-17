@@ -1,8 +1,7 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import {media} from '../config/constants';
+import { media } from '../config/constants';
 
 const Logo = styled.img`
   margin-left: 0;
@@ -43,7 +42,7 @@ const To = styled.span`
   display: block;
   ${media.tablet} {
     display: inline;
-    font-size: 3rem
+    font-size: 3rem;
   }
 `;
 
@@ -51,41 +50,43 @@ const Description = styled.div`
   font-size: 1.25rem;
   line-height: 1.2;
   color: #777;
-  font-weight: 200
+  font-weight: 200;
 `;
 
 const Photo = styled.img`
   margin-top: -40px;
   max-height: 90px;
   width: auto;
-  display: ${({mobile}) => mobile ? 'block' : 'none'};
+  display: ${({ mobile }) => (mobile ? 'block' : 'none')};
   ${media.tablet} {
     max-height: 100%;
-    display: ${({mobile}) => mobile ? 'none' : 'block'};
+    display: ${({ mobile }) => (mobile ? 'none' : 'block')};
   }
 `;
 
-const Welcome = ({description}: { description: string }) => (
+const Welcome = ({ description }) => (
   <div>
-    <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves"/>
+    <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves" />
 
     <Jumbotron>
       <Heading>
         Welcome
-        <br/>
-        <To>to</To>
-        {' '}
-        FOCUS
+        <br />
+        <To>to</To> FOCUS
       </Heading>
       <Description
         dangerouslySetInnerHTML={{
-          __html: description
+          __html: description,
         }}
       />
     </Jumbotron>
-    <Photo src="/static/students_for_web.png"/>
-    <Photo mobile src="/static/icon_row_small.png"/>
+    <Photo src="/static/students_for_web.png" />
+    <Photo mobile src="/static/icon_row_small.png" />
   </div>
 );
+
+Welcome.propTypes = {
+  description: PropTypes.string.isRequired,
+};
 
 export default Welcome;

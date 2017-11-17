@@ -1,20 +1,11 @@
-// @flow
-
-import type { OperationComponent, QueryProps } from 'react-apollo';
-
-import * as React from 'react';
-import { gql, graphql } from 'react-apollo';
+import React from 'react';
+import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import styled from 'react-emotion';
 import kebabCase from 'lodash/kebabCase';
-import type { Venue } from '../types';
 import GoogleMap from './GoogleMap';
 import Heading from './Heading';
-
-type Response = {
-  venues: Array<Venue>,
-};
-
-type Props = Response & QueryProps;
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -38,13 +29,13 @@ const venues = gql`
   }
 `;
 
-const withData: OperationComponent<Response, {}, Props> = graphql(venues, {
+const withData = graphql(venues, {
   props: ({ data }) => ({
     venues: (data.venues || []).filter(item => item.hasLocation),
   }),
 });
 
-const Where = ({ venues }: Props) => (
+const Where = ({ venues }) => (
   <Container id="where">
     <Heading image="/static/coffee-icon.png">Where we meet</Heading>
     <div id="map">
@@ -62,5 +53,19 @@ const Where = ({ venues }: Props) => (
     </div>
   </Container>
 );
+
+Where.propTypes = {
+  venues: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      description: PropTypes.string,
+      hasLocation: PropTypes.string,
+      mapUrl: PropTypes.string,
+      location: PropTypes.shape({
+        street1: PropTypes.string,
+      }),
+    })
+  ).isRequired,
+};
 
 export default withData(Where);

@@ -1,5 +1,5 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
 const MapContainer = styled.div`
@@ -21,10 +21,14 @@ const MapFrame = styled.iframe`
   border: 0;
 `;
 
-const GoogleMap = ({ query }: { query: string }) => (
+const GoogleMap = ({ query }) => (
   <MapContainer>
     <MapFrame title={`Google map ${query}`} src={query} allowFullScreen />
   </MapContainer>
 );
+
+GoogleMap.propTypes = {
+  query: PropTypes.string.isRequired,
+};
 
 export default GoogleMap;

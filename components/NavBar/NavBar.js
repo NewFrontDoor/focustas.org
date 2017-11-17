@@ -1,11 +1,9 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
 import styled from 'react-emotion';
-import {Events} from 'react-scroll';
+import { Events } from 'react-scroll';
 import SrOnly from '../SrOnly';
-import {createContainer} from '../Container';
-import {media} from '../../config/constants';
+import { createContainer } from '../Container';
+import { media } from '../../config/constants';
 import Nav from './Nav';
 import ToggleButton from './ToggleButton';
 import NavBrand from './NavBrand';
@@ -36,7 +34,7 @@ const IconBar = styled.div`
   width: 22px;
   height: 2px;
   border-radius: 1px;
-  margin-top: ${({marginTop}) => marginTop};
+  margin-top: ${({ marginTop }) => marginTop};
 `;
 
 const FlexContainer = styled.div`
@@ -44,24 +42,20 @@ const FlexContainer = styled.div`
   justify-content: flex-end;
 `;
 
-type State = {
-  collapsed: boolean;
-};
-
-class NavBar extends React.Component<{}, State> {
+class NavBar extends React.Component {
   state = {
-    collapsed: true
+    collapsed: true,
   };
 
   componentDidMount() {
     Events.scrollEvent.register('begin', () => {
-      this.setState({collapsed: true});
+      this.setState({ collapsed: true });
     });
   }
 
-  handleCollapse = (event: SyntheticMouseEvent<HTMLButtonElement>) => {
+  handleCollapse = event => {
     event.preventDefault();
-    this.setState({collapsed: !this.state.collapsed});
+    this.setState({ collapsed: !this.state.collapsed });
   };
 
   render() {
@@ -69,15 +63,15 @@ class NavBar extends React.Component<{}, State> {
       <FixedNavBar>
         <NavBarContainer role="navigation">
           <FlexContainer>
-            <NavBrand/>
+            <NavBrand />
             <ToggleButton type="button" onClick={this.handleCollapse}>
               <SrOnly>Toggle navigation</SrOnly>
-              <IconBar/>
-              <IconBar marginTop="4px"/>
-              <IconBar marginTop="4px"/>
+              <IconBar />
+              <IconBar marginTop="4px" />
+              <IconBar marginTop="4px" />
             </ToggleButton>
           </FlexContainer>
-          <Nav collapsed={this.state.collapsed}/>
+          <Nav collapsed={this.state.collapsed} />
         </NavBarContainer>
       </FixedNavBar>
     );

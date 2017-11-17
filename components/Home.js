@@ -1,12 +1,9 @@
-// @flow
-
-import type { OperationComponent, QueryProps } from 'react-apollo';
-
-import * as React from 'react';
-import { gql, graphql } from 'react-apollo';
+import React from 'react';
+import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import styled from 'react-emotion';
 import { media } from '../config/constants';
-import type { Event } from '../types';
 import Welcome from './Welcome';
 import Events from './Events';
 import Involved from './Involved';
@@ -15,24 +12,6 @@ import Where from './Where';
 import About from './About';
 import SideBar from './SideBar';
 import { createContainer, Column } from './Container';
-
-type Response = {
-  page: {
-    events: Array<Event>,
-    description: string,
-    aboutUs: {
-      description: string,
-    },
-    getInvolved: string,
-    contactUs: string,
-  },
-};
-
-type InputProps = {
-  slug: string,
-};
-
-type Props = Response & QueryProps;
 
 const HomeContainer = styled(createContainer())`
   padding-top: 4rem;
@@ -56,11 +35,7 @@ const firstPage = gql`
   }
 `;
 
-const withData: OperationComponent<
-  Response,
-  InputProps,
-  Props
-> = graphql(firstPage, {
+const withData = graphql(firstPage, {
   options: ({ slug }) => ({
     variables: {
       input: {
@@ -73,7 +48,7 @@ const withData: OperationComponent<
   }),
 });
 
-const Home = ({ page }: Props) => (
+const Home = ({ page }) => (
   <HomeContainer>
     <Column id="home" screen={{ tablet: '100%', desktop: '70%' }}>
       <Welcome description={page.description} />
@@ -88,5 +63,14 @@ const Home = ({ page }: Props) => (
     </SideBarColumn>
   </HomeContainer>
 );
+
+Home.propTypes = {
+  page: PropTypes.shape({
+    description: PropTypes.string,
+    getInvolved: PropTypes.string,
+    aboutUs: PropTypes.string,
+    contactUs: PropTypes.string,
+  }).isRequired,
+};
 
 export default withData(Home);

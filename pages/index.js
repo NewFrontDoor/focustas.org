@@ -1,12 +1,10 @@
-// @flow
-
-import * as React from 'react';
-import {hydrate, injectGlobal, fontFace} from 'emotion';
+import React from 'react';
+import { hydrate, injectGlobal, fontFace } from 'emotion';
 import styled from 'react-emotion';
 import withData from '../lib/with-data';
 import NavBar from '../components/NavBar/NavBar';
 import Home from '../components/Home';
-import {raleway, ralewayBold, typography} from '../config/constants';
+import { raleway, ralewayBold, typography } from '../config/constants';
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -24,10 +22,10 @@ const Footer = styled.footer`
 
 export default withData(() => (
   <div>
-    <NavBar/>
-    <Home slug="home"/>
+    <NavBar />
+    <Home slug="home" />
     <Footer>
-      <hr/>
+      <hr />
       <p>© Shiloh Design 2014</p>
     </Footer>
   </div>

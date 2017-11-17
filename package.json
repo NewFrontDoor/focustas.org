@@ -7,53 +7,83 @@
     "dev": "nodemon index.js",
     "build": "next build",
     "start": "NODE_ENV=production node index.js",
-    "test": "nyc ava",
+    "test": "eslint --ignore-path .gitignore '**/*.js' && nyc ava",
     "test:watch": "ava --watch",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^8.0.6",
+    "apollo-cache-inmemory": "^1.1.1",
+    "apollo-client": "^2.0.3",
+    "apollo-link-http": "^1.2.0",
+    "babel-plugin-emotion": "^8.0.10",
     "classnames": "^2.2.5",
-    "emotion": "^8.0.6",
-    "emotion-server": "^8.0.6",
+    "emotion": "^8.0.10",
+    "emotion-server": "^8.0.10",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
     "graphql": "^0.11.7",
-    "graphql-compose": "^2.4.0",
-    "graphql-compose-connection": "^2.2.2",
-    "graphql-compose-mongoose": "^1.8.1",
+    "graphql-compose": "^2.9.6",
+    "graphql-compose-connection": "^2.5.4",
+    "graphql-compose-mongoose": "^1.9.6",
+    "graphql-tag": "^2.5.0",
     "isomorphic-fetch": "^2.2.1",
-    "keystone": "^4.0.0-beta.5",
+    "keystone": "^4.0.0-beta.7",
     "lodash": "^4.17.4",
     "model-transform": "^2.0.0",
-    "next": "^4.0.3",
+    "next": "^4.1.4",
     "pino-colada": "^1.4.2",
     "pino-http": "^2.6.2",
-    "polished": "^1.8.0",
-    "react": "^16.0.0",
-    "react-apollo": "^1.4.16",
-    "react-dom": "^16.0.0",
-    "react-emotion": "^8.0.6",
+    "polished": "^1.9.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.1",
+    "react-apollo": "^2.0.1",
+    "react-dom": "^16.1.1",
+    "react-emotion": "^8.0.10",
     "react-redux": "^5.0.6",
-    "react-scroll": "^1.5.3",
+    "react-scroll": "^1.6.4",
     "redux": "^3.6.0",
-    "typeface-raleway": "^0.0.35",
+    "typeface-raleway": "^0.0.45",
     "typography": "^0.16.4"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "babel-eslint": "^8.0.1",
-    "eslint-config-xo-react": "^0.13.0",
-    "eslint-plugin-flowtype": "^2.35.1",
+    "ava": "^0.23.0",
+    "babel-eslint": "^8.0.2",
+    "codecov": "^3.0.0",
+    "eslint": "^4.11.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-config-xo-react": "^0.14.0",
+    "eslint-config-xo-space": "^0.17.0",
+    "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.3.0",
-    "flow-bin": "^0.57.2",
     "husky": "^0.14.3",
-    "lint-staged": "^4.2.3",
+    "lint-staged": "^5.0.0",
     "mongomem": "^0.1.9",
     "nodemon": "^1.11.0",
-    "nyc": "^11.1.0",
-    "prettier": "^1.7.4",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "nyc": "^11.3.0",
+    "prettier": "^1.8.2",
+    "webpack-bundle-analyzer": "^2.9.1"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "xo-space/esnext",
+      "xo-react/space",
+      "prettier"
+    ],
+    "rules": {
+      "react/jsx-tag-spacing": [
+        "error",
+        {
+          "closingSlash": "never",
+          "beforeSelfClosing": "always",
+          "afterOpening": "never"
+        }
+      ]
+    }
   },
   "nodemonConfig": {
     "watch": [

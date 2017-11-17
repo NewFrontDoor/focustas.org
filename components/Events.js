@@ -1,24 +1,13 @@
-// @flow
-
-import type { OperationComponent, QueryProps } from 'react-apollo';
-
-import * as React from 'react';
-import { gql, graphql } from 'react-apollo';
+import React from 'react';
+import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import kebabCase from 'lodash/kebabCase';
 import styled from 'react-emotion';
 import { Link } from 'react-scroll';
-import type { Event } from '../types';
 import { media } from '../config/constants';
 import Blurb from './Blurb';
 import Heading from './Heading';
-
-type Response = {
-  events: Array<Event>,
-};
-
-type InputProps = {};
-
-type Props = Response & QueryProps;
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -52,17 +41,13 @@ const events = gql`
   }
 `;
 
-const withData: OperationComponent<
-  Response,
-  InputProps,
-  Props
-> = graphql(events, {
+const withData = graphql(events, {
   props: ({ data }) => ({
     events: data.events || [],
   }),
 });
 
-const Events = ({ events }: Props) => {
+const Events = ({ events }) => {
   const elements = events.map(item => (
     <Blurb key={item.name} h3={item.name} text={item.description}>
       <ul>
@@ -112,6 +97,25 @@ const Events = ({ events }: Props) => {
       {elements}
     </Container>
   );
+};
+
+Events.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      name: PropTypes.string,
+      description: PropTypes.string,
+      what: PropTypes.string,
+      when: PropTypes.string,
+      where: PropTypes.shape({
+        name: PropTypes.string,
+        description: PropTypes.string,
+        location: PropTypes.shape({
+          street1: PropTypes.string,
+        }),
+      }),
+    })
+  ).isRequired,
 };
 
 export default withData(Events);

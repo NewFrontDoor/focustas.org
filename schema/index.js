@@ -1,9 +1,7 @@
-// @flow
-
 const keystone = require('keystone');
-const {GraphQLString, GraphQLBoolean} = require('graphql');
-const {GQC} = require('graphql-compose');
-const {composeWithMongoose} = require('graphql-compose-mongoose');
+const { GraphQLString, GraphQLBoolean } = require('graphql');
+const { GQC } = require('graphql-compose');
+const { composeWithMongoose } = require('graphql-compose-mongoose');
 
 const UserTC = composeWithMongoose(keystone.list('User').model);
 const PageTC = composeWithMongoose(keystone.list('Page').model);
@@ -19,11 +17,11 @@ VenueTC.addFields({
   hasLocation: {
     type: GraphQLBoolean,
     resolve: source => source.location.street1 !== null,
-    projection: {location: true}
+    projection: { location: true },
   },
   mapUrl: {
     type: GraphQLString,
-    resolve: ({location}) => {
+    resolve: ({ location }) => {
       const query = [
         location.number,
         location.name,
@@ -33,35 +31,40 @@ VenueTC.addFields({
         location.suburb,
         location.state,
         location.postcode,
-        location.country
-      ].filter(Boolean).join('').replace(/\s/, '+');
+        location.country,
+      ]
+        .filter(Boolean)
+        .join('')
+        .replace(/\s/, '+');
 
-      return `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${query}`;
+      return `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${
+        query
+      }`;
     },
-    projection: {location: true}
-  }
+    projection: { location: true },
+  },
 });
 
 PageTC.addRelation('events', {
   resolver: () => EventTC.getResolver('findByIds'),
   prepareArgs: {
-    _ids: source => source.events || []
+    _ids: source => source.events || [],
   },
-  projection: {events: true}
+  projection: { events: true },
 });
 
 EventTC.addRelation('venue', {
   resolver: () => VenueTC.getResolver('findById'),
   prepareArgs: {
-    _id: source => source.venue
+    _id: source => source.venue,
   },
-  projection: {venue: true}
+  projection: { venue: true },
 });
 
 GQC.rootQuery().addFields({
   hello: {
     type: GraphQLString,
-    resolve: () => 'Hi! How are you?'
+    resolve: () => 'Hi! How are you?',
   },
 
   userById: UserTC.getResolver('findById'),
@@ -97,7 +100,7 @@ GQC.rootQuery().addFields({
   staffOne: StaffTC.getResolver('findOne'),
   staffMany: StaffTC.getResolver('findMany'),
   stafftotal: StaffTC.getResolver('count'),
-  staffConnection: StaffTC.getResolver('connection')
+  staffConnection: StaffTC.getResolver('connection'),
 });
 
 const schema = GQC.buildSchema();

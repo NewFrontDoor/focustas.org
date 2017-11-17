@@ -1,6 +1,5 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
 const Mug = styled.img`
@@ -14,35 +13,35 @@ const Mug = styled.img`
   margin-top: 1.5rem;
 `;
 
-type Props = {
-  h2?: string;
-  h3?: string;
-  teamImg?: string;
-  text?: string;
-  children?: React.Node;
-};
-
-const Blurb = ({h2, h3, teamImg, children, text}: Props) => (
+const Blurb = ({ h2, h3, teamImg, children, text }) => (
   <div>
     {h2 && <h2>{h2}</h2>}
     {h3 && <h3>{h3}</h3>}
-    {teamImg && <Mug src={teamImg}/>}
+    {teamImg && <Mug src={teamImg} />}
     {children}
     {text && (
       <p
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{__html: text}}
+        dangerouslySetInnerHTML={{ __html: text }}
       />
     )}
   </div>
- );
+);
+
+Blurb.propTypes = {
+  h2: PropTypes.string,
+  h3: PropTypes.string,
+  teamImg: PropTypes.string,
+  text: PropTypes.string,
+  children: PropTypes.string,
+};
 
 Blurb.defaultProps = {
   h2: undefined,
   h3: undefined,
   teamImg: undefined,
   text: undefined,
-  children: undefined
+  children: undefined,
 };
 
 export default Blurb;

@@ -1,9 +1,0 @@
-[ignore]
-.*/node_modules/typography/src/.*
-.*/node_modules/apollo-client/node_modules/.*
-
-[include]
-
-[libs]
-
-[options]
