@@ -17,3 +17,8 @@ RUN npm install
 
 # Add app files
 COPY . ./
+
+# Build next.js files
+RUN npm run build
+
+CMD npm start

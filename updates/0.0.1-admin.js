@@ -6,11 +6,11 @@ module.exports = done => {
   new User({
     name: {
       first: 'Demo',
-      last: 'User'
+      last: 'User',
     },
     email: 'admin@vision100it.org',
     password: 'admin',
     isAdmin: true,
-    isProtected: true
+    isProtected: true,
   }).save(done);
 };
