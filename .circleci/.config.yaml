@@ -1,0 +1,16 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:8.9
+
+version: 2
+jobs:
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - run: npx npm@5.7.1 ci
+
+      - run: npm test
