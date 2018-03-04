@@ -6,7 +6,7 @@ const pinoHttp = require('pino-http');
 
 const dev = process.env.NODE_ENV !== 'production';
 
-const start = ({ config, handle = () => {} }) => {
+const start = ({config, handle = () => {}}) => {
   const app = express();
   const pretty = pinoColada();
   pretty.pipe(process.stdout);
@@ -25,7 +25,7 @@ const start = ({ config, handle = () => {} }) => {
   app.use(keystone.expressSession);
   app.use(keystone.session.persist);
 
-  app.use(pinoHttp({ stream: pretty }));
+  app.use(pinoHttp({stream: pretty}));
   app.use('/keystone', keystone.Admin.Server.createDynamicRouter(keystone));
 
   app.use(
@@ -33,8 +33,8 @@ const start = ({ config, handle = () => {} }) => {
     expressGraphQL(req => ({
       schema: require('./schema'),
       graphiql: dev,
-      rootValue: { request: req },
-      pretty: dev,
+      rootValue: {request: req},
+      pretty: dev
     }))
   );
 
@@ -54,14 +54,18 @@ const start = ({ config, handle = () => {} }) => {
 };
 
 const stop = server =>
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     keystone.closeDatabaseConnection(() => {
-      server.close();
+      try {
+        server.close();
+      } catch (err) {
+        reject(err);
+      }
       resolve();
     });
   });
 
 module.exports = {
   start,
-  stop,
+  stop
 };

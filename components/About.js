@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 import styled from 'react-emotion';
-import Blurb from './Blurb';
-import Heading from './Heading';
+import Blurb from './blurb';
+import Heading from './heading';
 
 const staffMembers = gql`
   {
@@ -21,21 +21,21 @@ const staffMembers = gql`
 `;
 
 const withData = graphql(staffMembers, {
-  props: ({ data }) => ({
-    staffMembers: data.staffMembers || [],
-  }),
+  props: ({data}) => ({
+    staffMembers: data.staffMembers || []
+  })
 });
 
 const Container = styled.div`
   margin-top: 6rem;
 `;
 
-const About = ({ description, staffMembers }) => (
+const About = ({description, staffMembers}) => (
   <Container id="about">
     <Heading image="/static/apple.png">About us</Heading>
     <div
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: description }}
+      dangerouslySetInnerHTML={{__html: description}}
     />
     {staffMembers.map(member => (
       <Blurb
@@ -57,10 +57,10 @@ About.propTypes = {
       image: PropTypes.string,
       name: PropTypes.shape({
         first: PropTypes.string,
-        last: PropTypes.string,
-      }),
+        last: PropTypes.string
+      })
     })
-  ).isRequired,
+  ).isRequired
 };
 
 export default withData(About);

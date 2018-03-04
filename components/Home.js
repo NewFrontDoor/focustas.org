@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 import styled from 'react-emotion';
-import { media } from '../config/constants';
-import Welcome from './Welcome';
-import Events from './Events';
-import Involved from './Involved';
-import Contact from './Contact';
-import Where from './Where';
-import About from './About';
-import SideBar from './SideBar';
-import { createContainer, Column } from './Container';
+import {media} from '../config/constants';
+import Welcome from './welcome';
+import Events from './events';
+import Involved from './involved';
+import Contact from './contact';
+import Where from './where';
+import About from './about';
+import SideBar from './side-bar';
+import {createContainer, Column} from './container';
 
 const HomeContainer = styled(createContainer())`
   padding-top: 4rem;
@@ -36,30 +36,30 @@ const firstPage = gql`
 `;
 
 const withData = graphql(firstPage, {
-  options: ({ slug }) => ({
+  options: ({slug}) => ({
     variables: {
       input: {
-        slug,
-      },
-    },
+        slug
+      }
+    }
   }),
-  props: ({ data }) => ({
-    page: data.page || { aboutUs: {} },
-  }),
+  props: ({data}) => ({
+    page: data.page || {aboutUs: {}}
+  })
 });
 
-const Home = ({ page }) => (
+const Home = ({page}) => (
   <HomeContainer>
-    <Column id="home" screen={{ tablet: '100%', desktop: '70%' }}>
-      <Welcome description={page.description} />
-      <Events />
-      <Involved description={page.getInvolved} />
-      <About description={page.aboutUs} />
-      <Where />
-      <Contact description={page.contactUs} />
+    <Column id="home" screen={{tablet: '100%', desktop: '70%'}}>
+      <Welcome description={page.description}/>
+      <Events/>
+      <Involved description={page.getInvolved}/>
+      <About description={page.aboutUs}/>
+      <Where/>
+      <Contact description={page.contactUs}/>
     </Column>
-    <SideBarColumn screen={{ tablet: '100%', desktop: '30%' }}>
-      <SideBar />
+    <SideBarColumn screen={{tablet: '100%', desktop: '30%'}}>
+      <SideBar/>
     </SideBarColumn>
   </HomeContainer>
 );
@@ -69,8 +69,8 @@ Home.propTypes = {
     description: PropTypes.string,
     getInvolved: PropTypes.string,
     aboutUs: PropTypes.string,
-    contactUs: PropTypes.string,
-  }).isRequired,
+    contactUs: PropTypes.string
+  }).isRequired
 };
 
 export default withData(Home);

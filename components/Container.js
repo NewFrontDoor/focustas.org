@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
-import { media } from '../config/constants';
+import {media} from '../config/constants';
 
-export const createContainer = (type: ?string = 'div') => styled(type)`
+export const createContainer = (type = 'div') => styled(type)`
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -20,10 +20,10 @@ export const Column = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   ${media.tablet} {
-    flex-basis: ${({ screen }) => screen.tablet};
+    flex-basis: ${({screen}) => screen.tablet};
   }
   ${media.desktop} {
-    flex-basis: ${({ screen }) => screen.desktop};
+    flex-basis: ${({screen}) => screen.desktop};
   }
 `;
 

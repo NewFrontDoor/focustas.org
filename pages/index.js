@@ -1,31 +1,26 @@
 import React from 'react';
-import { hydrate, injectGlobal, fontFace } from 'emotion';
 import styled from 'react-emotion';
+import {flow} from 'lodash';
 import withData from '../lib/with-data';
-import NavBar from '../components/NavBar/NavBar';
-import Home from '../components/Home';
-import { raleway, ralewayBold, typography } from '../config/constants';
-
-// Adds server generated styles to emotion cache.
-// '__NEXT_DATA__.ids' is set in '_document.js'
-if (typeof global.window !== 'undefined') {
-  hydrate(global.window.__NEXT_DATA__.ids);
-}
-
-injectGlobal(typography.toString());
-fontFace(raleway);
-fontFace(ralewayBold);
+import withEmotion from '../lib/with-emotion';
+import NavBar from '../components/nav-bar/nav-bar';
+import Home from '../components/home';
 
 const Footer = styled.footer`
   padding: 2rem 1.5rem;
 `;
 
-export default withData(() => (
+const enhance = flow(
+  withEmotion,
+  withData,
+);
+
+export default enhance(() => (
   <div>
-    <NavBar />
-    <Home slug="home" />
+    <NavBar/>
+    <Home slug="home"/>
     <Footer>
-      <hr />
+      <hr/>
       <p>© Shiloh Design 2014</p>
     </Footer>
   </div>

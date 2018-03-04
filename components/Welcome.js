@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import { media } from '../config/constants';
+import {media} from '../config/constants';
 
 const Logo = styled.img`
   margin-left: 0;
@@ -57,36 +57,35 @@ const Photo = styled.img`
   margin-top: -40px;
   max-height: 90px;
   width: auto;
-  display: ${({ mobile }) => (mobile ? 'block' : 'none')};
+  display: ${({mobile}) => (mobile ? 'block' : 'none')};
   ${media.tablet} {
     max-height: 100%;
-    display: ${({ mobile }) => (mobile ? 'none' : 'block')};
+    display: ${({mobile}) => (mobile ? 'none' : 'block')};
   }
 `;
 
-const Welcome = ({ description }) => (
+const Welcome = ({description}) => (
   <div>
-    <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves" />
+    <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves"/>
 
     <Jumbotron>
       <Heading>
-        Welcome
-        <br />
+        Welcome<br/>
         <To>to</To> FOCUS
       </Heading>
       <Description
         dangerouslySetInnerHTML={{
-          __html: description,
+          __html: description
         }}
       />
     </Jumbotron>
-    <Photo src="/static/students_for_web.png" />
-    <Photo mobile src="/static/icon_row_small.png" />
+    <Photo src="/static/students_for_web.png"/>
+    <Photo mobile src="/static/icon_row_small.png"/>
   </div>
 );
 
 Welcome.propTypes = {
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
 };
 
 export default Welcome;

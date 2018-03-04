@@ -4,17 +4,17 @@ const transform = require('model-transform');
 const Types = keystone.Field.Types;
 
 const Page = new keystone.List('Page', {
-  autokey: { path: 'slug', from: 'name', unique: true },
-  track: true,
+  autokey: {path: 'slug', from: 'name', unique: true},
+  track: true
 });
 
 Page.add({
-  name: { type: String, required: true },
-  description: { type: Types.Html, wysiwyg: true, height: 150 },
-  events: { type: Types.Relationship, ref: 'Event', many: true },
-  getInvolved: { type: Types.Html, wysiwyg: true, height: 150 },
-  aboutUs: { type: Types.Html, wysiwyg: true, height: 150 },
-  contactUs: { type: Types.Html, wysiwyg: true, height: 150 },
+  name: {type: String, required: true},
+  description: {type: Types.Html, wysiwyg: true, height: 150},
+  events: {type: Types.Relationship, ref: 'Event', many: true},
+  getInvolved: {type: Types.Html, wysiwyg: true, height: 150},
+  aboutUs: {type: Types.Html, wysiwyg: true, height: 150},
+  contactUs: {type: Types.Html, wysiwyg: true, height: 150}
 });
 
 Page.defaultColumns = 'name, description';

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import { Link } from 'react-scroll';
-import { media } from '../../config/constants';
+import {Link} from 'react-scroll';
+import {media} from '../../config/constants';
 
 const NavCollapse = styled.div`
   max-height: 340px;
@@ -14,8 +14,8 @@ const NavCollapse = styled.div`
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   --webkit-overflow-scrolling: touch;
-  height: ${({ collapsed }) => (collapsed ? '1px' : 'auto')};
-  display: ${({ collapsed }) => (collapsed ? 'none' : 'block')};
+  height: ${({collapsed}) => (collapsed ? '1px' : 'auto')};
+  display: ${({collapsed}) => (collapsed ? 'none' : 'block')};
   margin-left: -1rem;
   margin-right: -1rem;
   ${media.tablet} {
@@ -67,7 +67,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-const Nav = ({ collapsed }) => {
+const Nav = ({collapsed}) => {
   return (
     <NavCollapse collapsed={collapsed}>
       <NavList>
@@ -120,7 +120,7 @@ const Nav = ({ collapsed }) => {
 };
 
 Nav.propTypes = {
-  collapsed: PropTypes.bool.isRequired,
+  collapsed: PropTypes.bool.isRequired
 };
 
 export default Nav;

@@ -13,16 +13,16 @@ const Mug = styled.img`
   margin-top: 1.5rem;
 `;
 
-const Blurb = ({ h2, h3, teamImg, children, text }) => (
+const Blurb = ({h2, h3, teamImg, children, text}) => (
   <div>
     {h2 && <h2>{h2}</h2>}
     {h3 && <h3>{h3}</h3>}
-    {teamImg && <Mug src={teamImg} />}
+    {teamImg && <Mug src={teamImg}/>}
     {children}
     {text && (
       <p
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: text }}
+        dangerouslySetInnerHTML={{__html: text}}
       />
     )}
   </div>
@@ -33,7 +33,7 @@ Blurb.propTypes = {
   h3: PropTypes.string,
   teamImg: PropTypes.string,
   text: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.string
 };
 
 Blurb.defaultProps = {
@@ -41,7 +41,7 @@ Blurb.defaultProps = {
   h3: undefined,
   teamImg: undefined,
   text: undefined,
-  children: undefined,
+  children: undefined
 };
 
 export default Blurb;

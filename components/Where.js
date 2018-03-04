@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 import styled from 'react-emotion';
 import kebabCase from 'lodash/kebabCase';
-import GoogleMap from './GoogleMap';
-import Heading from './Heading';
+import GoogleMap from './google-map';
+import Heading from './heading';
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -30,12 +30,12 @@ const venues = gql`
 `;
 
 const withData = graphql(venues, {
-  props: ({ data }) => ({
-    venues: (data.venues || []).filter(item => item.hasLocation),
-  }),
+  props: ({data}) => ({
+    venues: (data.venues || []).filter(item => item.hasLocation)
+  })
 });
 
-const Where = ({ venues }) => (
+const Where = ({venues}) => (
   <Container id="where">
     <Heading image="/static/coffee-icon.png">Where we meet</Heading>
     <div id="map">
@@ -43,10 +43,10 @@ const Where = ({ venues }) => (
         <div key={venue._id} id={kebabCase(venue.location.street1)}>
           <div
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: venue.description }}
+            dangerouslySetInnerHTML={{__html: venue.description}}
           />
           <MapContainer>
-            <GoogleMap query={venue.mapUrl} />
+            <GoogleMap query={venue.mapUrl}/>
           </MapContainer>
         </div>
       ))}
@@ -62,10 +62,10 @@ Where.propTypes = {
       hasLocation: PropTypes.string,
       mapUrl: PropTypes.string,
       location: PropTypes.shape({
-        street1: PropTypes.string,
-      }),
+        street1: PropTypes.string
+      })
     })
-  ).isRequired,
+  ).isRequired
 };
 
 export default withData(Where);

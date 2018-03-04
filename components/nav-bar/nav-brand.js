@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'react-emotion';
-import { media } from '../../config/constants';
+import {media} from '../../config/constants';
 
 const BrandImage = styled.img`
   margin: 0;
@@ -24,7 +24,7 @@ const BrandLink = styled.a`
 
 const NavBrand = () => (
   <BrandLink href="#focus">
-    <BrandImage src="/static/logo-long-white.png" alt="focus logo" />
+    <BrandImage src="/static/logo-long-white.png" alt="focus logo"/>
   </BrandLink>
 );
 

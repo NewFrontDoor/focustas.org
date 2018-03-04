@@ -21,14 +21,14 @@ const MapFrame = styled.iframe`
   border: 0;
 `;
 
-const GoogleMap = ({ query }) => (
+const GoogleMap = ({query}) => (
   <MapContainer>
-    <MapFrame title={`Google map ${query}`} src={query} allowFullScreen />
+    <MapFrame title={`Google map ${query}`} src={query} allowFullScreen/>
   </MapContainer>
 );
 
 GoogleMap.propTypes = {
-  query: PropTypes.string.isRequired,
+  query: PropTypes.string.isRequired
 };
 
 export default GoogleMap;

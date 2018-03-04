@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 import kebabCase from 'lodash/kebabCase';
 import styled from 'react-emotion';
-import { Link } from 'react-scroll';
-import { media } from '../config/constants';
-import Blurb from './Blurb';
-import Heading from './Heading';
+import {Link} from 'react-scroll';
+import {media} from '../config/constants';
+import Blurb from './blurb';
+import Heading from './heading';
 
 const Container = styled.div`
   margin-top: 6rem;
@@ -15,10 +15,10 @@ const Container = styled.div`
 
 const Photo = styled.img`
   width: auto;
-  display: ${({ mobile }) => (mobile ? 'block' : 'none')};
+  display: ${({mobile}) => (mobile ? 'block' : 'none')};
   ${media.tablet} {
     max-height: 100%;
-    display: ${({ mobile }) => (mobile ? 'none' : 'block')};
+    display: ${({mobile}) => (mobile ? 'none' : 'block')};
   }
 `;
 
@@ -42,12 +42,12 @@ const events = gql`
 `;
 
 const withData = graphql(events, {
-  props: ({ data }) => ({
-    events: data.events || [],
-  }),
+  props: ({data}) => ({
+    events: data.events || []
+  })
 });
 
-const Events = ({ events }) => {
+const Events = ({events}) => {
   const elements = events.map(item => (
     <Blurb key={item.name} h3={item.name} text={item.description}>
       <ul>
@@ -88,7 +88,7 @@ const Events = ({ events }) => {
   elements.splice(
     3,
     0,
-    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png" />
+    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png"/>
   );
 
   return (
@@ -111,11 +111,11 @@ Events.propTypes = {
         name: PropTypes.string,
         description: PropTypes.string,
         location: PropTypes.shape({
-          street1: PropTypes.string,
-        }),
-      }),
+          street1: PropTypes.string
+        })
+      })
     })
-  ).isRequired,
+  ).isRequired
 };
 
 export default withData(Events);

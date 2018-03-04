@@ -4,7 +4,7 @@ const api = {
   // API URL to be used in the server-side code
   serverUrl:
     process.env.API_SERVER_URL ||
-    `http://localhost:${process.env.PORT || 3000}`,
+    `http://localhost:${process.env.PORT || 3000}`
 };
 
 const analytics = {};
@@ -24,14 +24,14 @@ const options = {
   session: true,
   auth: true,
   'user model': 'User',
-  'cookie secret': process.env.COOKIE_SECRET || 'focustas',
+  'cookie secret': process.env.COOKIE_SECRET || 'focustas'
 };
 
 const locals = {};
 
 const nav = {
   people: ['users', 'staffs'],
-  content: ['pages', 'venues', 'events'],
+  content: ['pages', 'venues', 'events']
 };
 
 module.exports = {
@@ -39,5 +39,5 @@ module.exports = {
   analytics,
   options,
   locals,
-  nav,
+  nav
 };
