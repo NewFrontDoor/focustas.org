@@ -25,13 +25,13 @@ jobs:
 
 workflows:
   version: 2
-  build-deploy:
+  build-and-deploy:
     jobs:
       - build
       - deploy:
           requires:
             - build
-      -promote:
+      - promote:
           requires:
             - deploy
           filters:
