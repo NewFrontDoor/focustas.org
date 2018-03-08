@@ -1,16 +1,31 @@
 const next = require('next');
+const pinoColada = require('pino-colada');
 const config = require('./config');
-const server = require('./server');
+const {start, stop} = require('./server');
 
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({dev});
+let pretty;
+let server;
+
+const app = next({dev: config.dev});
+
+if (config.dev) {
+  pretty = pinoColada();
+  pretty.pipe(process.stdout);
+}
 
 module.exports = app
   .prepare()
-  .then(() =>
-    server.start({
+  .then(async () => {
+    server = await start({
       config,
+      pretty,
       handle: app.getRequestHandler()
-    })
-  )
+    });
+  })
   .catch(err => console.error(err));
+
+process.once('SIGUSR2', () => {
+  stop(server).then(() => {
+    process.kill(process.pid, 'SIGUSR2');
+  });
+});

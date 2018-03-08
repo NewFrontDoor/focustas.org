@@ -1,15 +1,14 @@
+const util = require('util');
 const express = require('express');
 const expressGraphQL = require('express-graphql');
 const keystone = require('keystone');
-const pinoColada = require('pino-colada');
 const pinoHttp = require('pino-http');
 
-const dev = process.env.NODE_ENV !== 'production';
+const openDatabaseConnection = util.promisify(keystone.openDatabaseConnection.bind(keystone));
+const closeDatabaseConnection = util.promisify(keystone.closeDatabaseConnection.bind(keystone));
 
-const start = ({config, handle = () => {}}) => {
+const start = async ({config, handle = () => {}, pretty}) => {
   const app = express();
-  const pretty = pinoColada();
-  pretty.pipe(process.stdout);
 
   keystone.init(config.options);
   keystone.import('models');
@@ -32,38 +31,25 @@ const start = ({config, handle = () => {}}) => {
     '/graphql',
     expressGraphQL(req => ({
       schema: require('./schema'),
-      graphiql: dev,
+      graphiql: config.dev,
       rootValue: {request: req},
-      pretty: dev
+      pretty: config.dev
     }))
   );
 
   app.get('*', handle);
 
-  return new Promise((resolve, reject) => {
-    keystone.openDatabaseConnection(() => {
-      const server = app.listen(3000, err => {
-        if (err) {
-          return reject(err);
-        }
-        console.log('> Ready on http://localhost:3000');
-        return resolve(server);
-      });
-    });
+  await openDatabaseConnection();
+
+  return app.listen(config.port, () => {
+    console.log(`> Ready on http://localhost:${config.port}`);
   });
 };
 
-const stop = server =>
-  new Promise((resolve, reject) => {
-    keystone.closeDatabaseConnection(() => {
-      try {
-        server.close();
-      } catch (err) {
-        reject(err);
-      }
-      resolve();
-    });
-  });
+const stop = async server => {
+  await closeDatabaseConnection();
+  server.close();
+};
 
 module.exports = {
   start,

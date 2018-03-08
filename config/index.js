@@ -1,10 +1,14 @@
+const dev = process.env.NODE_ENV !== 'production';
+
+const port = process.env.PORT || 3000;
+
 const api = {
   // API URL to be used in the client-side code
   clientUrl: process.env.API_CLIENT_URL || '',
   // API URL to be used in the server-side code
   serverUrl:
     process.env.API_SERVER_URL ||
-    `http://localhost:${process.env.PORT || 3000}`
+    `http://localhost:${port}`
 };
 
 const analytics = {};
@@ -36,8 +40,10 @@ const nav = {
 
 module.exports = {
   api,
+  dev,
   analytics,
   options,
   locals,
-  nav
+  nav,
+  port
 };
