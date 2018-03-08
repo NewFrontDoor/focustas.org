@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      - checkout
+
+      - run: npx npm@5.7.1 ci
+
+      - run: npm test
+
+  deploy:
+    working_directory: ~/repo
+    machine: true
+
+    steps:
+      - run: docker build -t focustas_web:$CIRCLE_BRANCH .
+
+  promote:
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+      -promote:
+          requires:
+            -deploy
+          filters:
+            branches:
+              only: master

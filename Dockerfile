@@ -1,24 +1,32 @@
-FROM node:8.9-alpine
+FROM node:8.9 as builder
 
 MAINTAINER v100it Team "it@vision100.org"
 
-EXPOSE 3000
+ARG NODE_ENV
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV APP_DIR /var/www
-ENV TZ Australia/Sydney
+WORKDIR /var/www
 
-RUN mkdir -p ${APP_DIR}
-WORKDIR ${APP_DIR}
-
-# Add needed files (.npmrc needed for npm login)
 COPY package.json ./
+
+# install dependencies
 RUN npm install
 
 # Add app files
 COPY . ./
 
+# small server
+FROM node:8.9-alpine
+
+ENV TZ Australia/Sydney
+
+WORKDIR /var/www
+
+# copy built files
+COPY --from=builder /var/www .
+
 # Build next.js files
 RUN npm run build
+
+EXPOSE 3000
 
 CMD npm start

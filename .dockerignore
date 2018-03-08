@@ -1,0 +1,6 @@
+.circleci
+.git
+.next
+node_modules
+data
+test
