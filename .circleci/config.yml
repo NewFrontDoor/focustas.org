@@ -20,6 +20,7 @@ jobs:
       - run: docker build -t focustas_web:$CIRCLE_BRANCH .
 
   promote:
+    steps:
       - run: echo "promote!"
 
 workflows:
