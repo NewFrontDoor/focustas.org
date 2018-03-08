@@ -17,7 +17,9 @@ jobs:
     machine: true
 
     steps:
-      - run: docker build -t focustas_web:$CIRCLE_BRANCH .
+      - checkout
+
+      - run: docker build -t focustas_web:$CIRCLE_BRANCH --build-arg NODE_ENV=production .
 
   promote:
     working_directory: ~/repo
