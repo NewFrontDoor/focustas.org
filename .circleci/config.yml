@@ -33,7 +33,7 @@ workflows:
             - build
       -promote:
           requires:
-            -deploy
+            - deploy
           filters:
             branches:
               only: master
