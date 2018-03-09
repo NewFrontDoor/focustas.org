@@ -47,7 +47,9 @@ class NavBar extends React.Component {
     collapsed: true
   };
 
-  static toggle = ({collapse}) => ({collapse: !collapse});
+  static toggle = ({collapsed}) => {
+    return ({collapsed: !collapsed});
+  }
 
   componentDidMount() {
     Events.scrollEvent.register('begin', () => {
@@ -55,10 +57,7 @@ class NavBar extends React.Component {
     });
   }
 
-  handleCollapse = event => {
-    event.preventDefault();
-    this.setState(NavBar.toggle);
-  }
+  handleCollapse = () => this.setState(NavBar.toggle)
 
   render() {
     return (
