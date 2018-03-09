@@ -107,7 +107,8 @@ Events.propTypes = {
       description: PropTypes.string,
       what: PropTypes.string,
       when: PropTypes.string,
-      where: PropTypes.shape({
+      where: PropTypes.string,
+      venue: PropTypes.shape({
         name: PropTypes.string,
         description: PropTypes.string,
         location: PropTypes.shape({

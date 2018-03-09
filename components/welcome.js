@@ -65,7 +65,7 @@ const Photo = styled.img`
 `;
 
 const Welcome = ({description}) => (
-  <div>
+  <React.Fragment>
     <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves"/>
 
     <Jumbotron>
@@ -81,7 +81,7 @@ const Welcome = ({description}) => (
     </Jumbotron>
     <Photo src="/static/students_for_web.png"/>
     <Photo mobile src="/static/icon_row_small.png"/>
-  </div>
+  </React.Fragment>
 );
 
 Welcome.propTypes = {

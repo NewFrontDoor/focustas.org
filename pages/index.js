@@ -16,12 +16,12 @@ const enhance = flow(
 );
 
 export default enhance(() => (
-  <div>
+  <React.Fragment>
     <NavBar/>
     <Home slug="home"/>
     <Footer>
       <hr/>
-      <p>© Shiloh Design 2014</p>
+      <p>© Shiloh Design 2018</p>
     </Footer>
-  </div>
+  </React.Fragment>
 ));

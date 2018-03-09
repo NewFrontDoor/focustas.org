@@ -48,7 +48,9 @@ const start = async ({config, handle = () => {}, pretty}) => {
 
 const stop = async server => {
   await closeDatabaseConnection();
-  server.close();
+  if (server) {
+    server.close();
+  }
 };
 
 module.exports = {

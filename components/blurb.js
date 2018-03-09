@@ -14,18 +14,18 @@ const Mug = styled.img`
 `;
 
 const Blurb = ({h2, h3, teamImg, children, text}) => (
-  <div>
+  <React.Fragment>
     {h2 && <h2>{h2}</h2>}
     {h3 && <h3>{h3}</h3>}
     {teamImg && <Mug src={teamImg}/>}
     {children}
     {text && (
-      <p
+      <div
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{__html: text}}
       />
     )}
-  </div>
+  </React.Fragment>
 );
 
 Blurb.propTypes = {
@@ -33,7 +33,7 @@ Blurb.propTypes = {
   h3: PropTypes.string,
   teamImg: PropTypes.string,
   text: PropTypes.string,
-  children: PropTypes.string
+  children: PropTypes.node
 };
 
 Blurb.defaultProps = {

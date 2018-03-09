@@ -44,7 +44,7 @@ const withData = graphql(firstPage, {
     }
   }),
   props: ({data}) => ({
-    page: data.page || {aboutUs: {}}
+    page: data.page || {}
   })
 });
 
