@@ -59,7 +59,7 @@ Where.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string,
       description: PropTypes.string,
-      hasLocation: PropTypes.string,
+      hasLocation: PropTypes.bool,
       mapUrl: PropTypes.string,
       location: PropTypes.shape({
         street1: PropTypes.string
