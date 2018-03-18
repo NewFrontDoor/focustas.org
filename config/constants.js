@@ -65,7 +65,7 @@ export const typography = new Typography({
       color: '#3C3',
       fontWeight: 500,
       marginBottom: 0,
-      marginTop: "28.854px"
+      marginTop: '28.854px'
     },
     ul: {
       ...adjustFontSizeTo('14px'),
