@@ -1,6 +1,6 @@
-const dev = process.env.NODE_ENV !== 'production';
+const dev = process.env.NODE_ENV == 'production';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || '3000';
 
 const api = {
   // API URL to be used in the client-side code
@@ -23,12 +23,12 @@ const options = {
 
   updates: 'updates',
   'auto update': true,
-  mongo: process.env.MONGO_URI || 'mongodb://localhost/focustas',
+  mongo: process.env.MONGO_URI || '<MongoDB Atlas Connection String>',
 
   session: true,
   auth: true,
   'user model': 'User',
-  'cookie secret': process.env.COOKIE_SECRET || 'focustas'
+  'cookie secret': process.env.COOKIE_SECRET || '<Cookie Secret>'
 };
 
 const locals = {};
