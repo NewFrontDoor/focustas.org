@@ -1,14 +1,10 @@
-const dev = process.env.NODE_ENV === 'production';
-
-const port = process.env.PORT || '3000';
+const config = require('config');
 
 const api = {
   // API URL to be used in the client-side code
-  clientUrl: process.env.API_CLIENT_URL || '',
+  clientUrl: config.get('API_CLIENT_URL'),
   // API URL to be used in the server-side code
-  serverUrl:
-    process.env.API_SERVER_URL ||
-    `http://localhost:${port}`
+  serverUrl: config.get('API_SERVER_URL')
 };
 
 const analytics = {};
@@ -23,12 +19,12 @@ const options = {
 
   updates: 'updates',
   'auto update': true,
-  mongo: process.env.MONGO_URI || '<MongoDB Atlas Connection String>',
+  mongo: config.get('MONGO_URI'),
 
   session: true,
   auth: true,
   'user model': 'User',
-  'cookie secret': process.env.COOKIE_SECRET || '<Cookie Secret>'
+  'cookie secret': config.get('COOKIE_SECRET')
 };
 
 const locals = {};
@@ -40,10 +36,8 @@ const nav = {
 
 module.exports = {
   api,
-  dev,
   analytics,
   options,
   locals,
-  nav,
-  port
+  nav
 };

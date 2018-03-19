@@ -3,17 +3,21 @@ const express = require('express');
 const expressGraphQL = require('express-graphql');
 const keystone = require('keystone');
 const pinoHttp = require('pino-http');
+const config = require('config');
 
 const openDatabaseConnection = util.promisify(keystone.openDatabaseConnection.bind(keystone));
 const closeDatabaseConnection = util.promisify(keystone.closeDatabaseConnection.bind(keystone));
 
-const start = async ({config, handle = () => {}, pretty}) => {
+const start = async ({handle = () => {}, pretty}) => {
+  const keystoneConfig = require('./config/keystone');
+  const port = config.get('PORT');
+
   const app = express();
 
-  keystone.init(config.options);
+  keystone.init(keystoneConfig.options);
   keystone.import('models');
-  keystone.set('locals', config.locals);
-  keystone.set('nav', config.nav);
+  keystone.set('locals', keystoneConfig.locals);
+  keystone.set('nav', keystoneConfig.nav);
 
   keystone.initDatabaseConfig();
   keystone.initExpressSession();
@@ -41,8 +45,8 @@ const start = async ({config, handle = () => {}, pretty}) => {
 
   await openDatabaseConnection();
 
-  return app.listen(config.port, () => {
-    console.log(`> Ready on http://localhost:${config.port}`);
+  return app.listen(port, () => {
+    console.log(`> Ready on http://localhost:${port}`);
   });
 };
 

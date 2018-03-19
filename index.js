@@ -1,6 +1,6 @@
 const next = require('next');
 const pinoColada = require('pino-colada');
-const config = require('./config');
+const config = require('config');
 const {start, stop} = require('./server');
 
 let pretty;
@@ -17,7 +17,6 @@ module.exports = app
   .prepare()
   .then(async () => {
     server = await start({
-      config,
       pretty,
       handle: app.getRequestHandler()
     });
