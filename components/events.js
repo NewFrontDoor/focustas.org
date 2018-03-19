@@ -6,7 +6,6 @@ import kebabCase from 'lodash/kebabCase';
 import styled from 'react-emotion';
 import {Link} from 'react-scroll';
 import {media} from '../config/constants';
-import Blurb from './blurb';
 import Heading from './heading';
 
 const Container = styled.div`
@@ -49,7 +48,8 @@ const withData = graphql(events, {
 
 const Events = ({events}) => {
   const elements = events.map(item => (
-    <Blurb key={item.name} h3={item.name} text={item.description}>
+    <React.Fragment key={item.name}>
+      <h3>{item.name}</h3>
       <ul>
         <li>
           <b>What:</b> {item.what}
@@ -72,7 +72,11 @@ const Events = ({events}) => {
           )}
         </li>
       </ul>
-    </Blurb>
+      <div
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{__html: item.description}}
+      />
+    </React.Fragment>
   ));
 
   elements.splice(
@@ -83,12 +87,12 @@ const Events = ({events}) => {
       className="events-image"
       src="/static/students_small.png"
       alt="Group of students"
-    />
+    />,
   );
   elements.splice(
     3,
     0,
-    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png"/>
+    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png"/>,
   );
 
   return (
@@ -115,7 +119,7 @@ Events.propTypes = {
           street1: PropTypes.string
         })
       })
-    })
+    }),
   ).isRequired
 };
 

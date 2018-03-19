@@ -2,8 +2,8 @@ import test from 'ava';
 import pinoColada from 'pino-colada';
 import {MongoDBServer} from 'mongomem';
 import fetch from 'isomorphic-fetch';
+import config from 'config';
 import server from '../server';
-import getConfig from './_config';
 
 const pretty = pinoColada();
 pretty.pipe(process.stdout);
@@ -12,8 +12,8 @@ let testServer;
 
 test.before('start server', async () => {
   await MongoDBServer.start();
-  const config = await getConfig();
-  testServer = await server.start({config, pretty});
+  config.MONGO_URI = await MongoDBServer.getConnectionString();
+  testServer = await server.start({pretty});
 });
 
 test.after.always('cleanup database', async () => {
