@@ -3,8 +3,7 @@ services:
   web:
     build: .
     command: npm start
-    environment:
-      MONGO_URI: mongodb://mongo/focustas
+    env_file: .env
     ports:
       - "3000:3000"
     volumes:
