@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "flow": "flow",
-    "dev": "nodemon --verbose index.js",
+    "dev": "nodemon -L --verbose index.js",
     "build": "next build",
     "start": "NODE_ENV=production node index.js",
     "test": "xo && nyc ava",
