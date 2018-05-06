@@ -29,13 +29,17 @@ const events = gql`
       what
       when
       where
+      testfile {
+        url
+        filename
+      }
       venue {
         name
         description
         location {
           street1
         }
-      }
+    }
     }
   }
 `;
@@ -70,6 +74,11 @@ const Events = ({events}) => {
               (See map)
             </Link>
           )}
+        </li>
+        <li>
+        <a href={item.testfile.url}>
+          {item.testfile.filename}
+        </a>
         </li>
       </ul>
       <div

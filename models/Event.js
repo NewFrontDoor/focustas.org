@@ -1,5 +1,6 @@
 const keystone = require('keystone');
 const transform = require('model-transform');
+const keystoneConfig = require('../config/keystone')
 
 const Types = keystone.Field.Types;
 
@@ -11,7 +12,11 @@ Event.add({
   what: {type: String},
   when: {type: String},
   where: {type: String},
-  venue: {type: Types.Relationship, ref: 'Venue'}
+  venue: {type: Types.Relationship, ref: 'Venue'},
+  testfile: {
+      type: Types.File,
+      storage: keystoneConfig.storage
+  }
 });
 
 Event.defaultColumns = 'name';
