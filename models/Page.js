@@ -1,7 +1,7 @@
 const keystone = require('keystone');
 const transform = require('model-transform');
 
-const Types = keystone.Field.Types;
+const {Types} = keystone.Field;
 
 const Page = new keystone.List('Page', {
   autokey: {path: 'slug', from: 'name', unique: true},

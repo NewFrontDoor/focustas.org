@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 import {media} from '../../config/constants';
 
-const ToggleButton = styled.button`
+const ToggleButton = styled('button')`
   align-self: flex-start;
   padding-top: 12px;
   padding-right: 10px;

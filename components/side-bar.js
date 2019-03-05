@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 
-const FrameContainer = styled.div`
+const FrameContainer = styled('div')`
   position: relative;
   display: block;
   width: 100%;
@@ -10,7 +10,7 @@ const FrameContainer = styled.div`
   height: 500px;
 `;
 
-const IFrame = styled.iframe`
+const IFrame = styled('iframe')`
   position: absolute;
   top: 0;
   bottom: 0;

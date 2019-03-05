@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import {media} from '../../config/constants';
 
-const BrandImage = styled.img`
+const BrandImage = styled('img')`
   margin: 0;
   vertical-align: middle;
   width: 160px;
@@ -11,7 +11,7 @@ const BrandImage = styled.img`
   }
 `;
 
-const BrandLink = styled.a`
+const BrandLink = styled('a')`
   text-align: right;
   display: inline-block;
   font-size: 1.25rem;
@@ -24,7 +24,7 @@ const BrandLink = styled.a`
 
 const NavBrand = () => (
   <BrandLink href="#focus">
-    <BrandImage src="/static/logo-long-white.png" alt="focus logo"/>
+    <BrandImage src="/static/logo-long-white.png" alt="focus logo" />
   </BrandLink>
 );
 

@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-const SrOnly = styled.span`
+const SrOnly = styled('span')`
   position: absolute;
   width: 1px;
   height: 1px;

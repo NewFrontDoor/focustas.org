@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import {Link} from 'react-scroll';
+import {Link as ScrollLink} from 'react-scroll';
 import {media} from '../../config/constants';
 
-const NavCollapse = styled.div`
+const NavCollapse = styled('div')`
   max-height: 340px;
   overflow-x: visible;
   padding-top: 0.5rem;
@@ -25,7 +25,7 @@ const NavCollapse = styled.div`
   }
 `;
 
-const NavList = styled.ul`
+const NavList = styled('ul')`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -40,12 +40,12 @@ const NavList = styled.ul`
   }
 `;
 
-const NavItem = styled.li`
+const NavItem = styled('li')`
   display: list-item;
   margin-bottom: 0;
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled(ScrollLink)`
   display: inline-block;
   position: relative;
   padding: 10px 1rem;
@@ -72,15 +72,15 @@ const Nav = ({collapsed}) => {
     <NavCollapse collapsed={collapsed}>
       <NavList>
         <NavItem>
-          <NavLink href="#home" to="home" smooth duration={500} offset={-70}>
+          <NavLink smooth href="#home" to="home" duration={500} offset={-70}>
             Home
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
+            smooth
             href="#events"
             to="events"
-            smooth
             duration={500}
             offset={-70}
           >
@@ -89,9 +89,9 @@ const Nav = ({collapsed}) => {
         </NavItem>
         <NavItem>
           <NavLink
+            smooth
             href="#involved"
             to="involved"
-            smooth
             duration={500}
             offset={-70}
           >
@@ -99,15 +99,15 @@ const Nav = ({collapsed}) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#about" to="about" smooth duration={500} offset={-70}>
+          <NavLink smooth href="#about" to="about" duration={500} offset={-70}>
             About us
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
+            smooth
             href="#contact"
             to="contact"
-            smooth
             duration={500}
             offset={-70}
           >

@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 import {media} from '../config/constants';
 
-const Heading = styled.h2`
+const Heading = styled('h2')`
   position: relative;
   ${media.desktop} {
     :before {

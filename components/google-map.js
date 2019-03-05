@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 
-const MapContainer = styled.div`
+const MapContainer = styled('div')`
   position: relative;
   display: block;
   width: 100%;
@@ -11,7 +11,7 @@ const MapContainer = styled.div`
   padding-bottom: 50vh;
 `;
 
-const MapFrame = styled.iframe`
+const MapFrame = styled('iframe')`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -23,7 +23,7 @@ const MapFrame = styled.iframe`
 
 const GoogleMap = ({query}) => (
   <MapContainer>
-    <MapFrame title={`Google map ${query}`} src={query} allowFullScreen/>
+    <MapFrame allowFullScreen title={`Google map ${query}`} src={query} />
   </MapContainer>
 );
 

@@ -63,7 +63,7 @@ test('should respond with User fields', async t => {
 });
 
 test('should error when query for email or password fields', async t => {
-  const port = testServer.address().port;
+  const {port} = testServer.address();
   const query = `{
     userMany {
       email

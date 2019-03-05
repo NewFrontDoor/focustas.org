@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import Heading from './heading';
 
-const Container = styled.div`
+const Container = styled('div')`
   margin-top: 6rem;
 `;
 
@@ -14,7 +14,7 @@ const Involved = ({description}) => (
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{__html: description}}
     />
-    <img src="/static/girls_on_bridge_small.jpg" alt="Girls on a bridge"/>
+    <img src="/static/girls_on_bridge_small.jpg" alt="Girls on a bridge" />
   </Container>
 );
 

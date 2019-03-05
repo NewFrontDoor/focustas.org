@@ -1,5 +1,51 @@
 import Typography from 'typography';
-import {fontFace} from 'polished';
+import {fontFace, adjustHue} from 'polished';
+import {createTheme} from 'mineral-ui/themes';
+
+// H   S   B
+// 40
+// 60
+// 80
+// 100
+// 120 100 60
+// 140
+// 160
+// 1080
+// 200
+// 220
+
+const themeColour = 'hsl(120, 100%, 60%)';
+
+const focusColours = {
+  10: adjustHue(-50, themeColour),
+  20: adjustHue(-40, themeColour),
+  30: adjustHue(-30, themeColour),
+  40: adjustHue(-20, themeColour),
+  50: adjustHue(-10, themeColour),
+  60: themeColour,
+  70: adjustHue(10, themeColour),
+  80: adjustHue(20, themeColour),
+  90: adjustHue(30, themeColour),
+  100: adjustHue(40, themeColour)
+};
+
+export const theme = createTheme({
+  colors: {
+    theme: focusColours,
+    danger: 'bronze',
+    warning: 'dusk',
+    success: 'teal'
+  },
+  overrides: {
+    fontFamily: 'Raleway',
+    h1_fontWeight: 200,
+    h2_fontWeight: 200,
+    h3_fontWeight: 200,
+    h4_fontWeight: 200,
+    h5_fontWeight: 200,
+    h6_fontWeight: 200
+  }
+});
 
 export const lrgDesktopMinWidth = 1441;
 export const desktopMaxWidth = 1440;

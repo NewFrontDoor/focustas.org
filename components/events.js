@@ -8,11 +8,11 @@ import {Link} from 'react-scroll';
 import {media} from '../config/constants';
 import Heading from './heading';
 
-const Container = styled.div`
+const Container = styled('div')`
   margin-top: 6rem;
 `;
 
-const Photo = styled.img`
+const Photo = styled('img')`
   width: auto;
   display: ${({mobile}) => (mobile ? 'block' : 'none')};
   ${media.tablet} {
@@ -61,9 +61,9 @@ const Events = ({events}) => {
           <b>Where:</b> {item.where}{' '}
           {item.venue && (
             <Link
+              smooth
               href={`#${kebabCase(item.venue.location.street1)}`}
               to={kebabCase(item.venue.location.street1)}
-              smooth
               duration={500}
               offset={-70}
             >
@@ -87,12 +87,12 @@ const Events = ({events}) => {
       className="events-image"
       src="/static/students_small.png"
       alt="Group of students"
-    />,
+    />
   );
   elements.splice(
     3,
     0,
-    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png"/>,
+    <Photo key="icon-row-small" mobile src="/static/icon_row_small.png" />
   );
 
   return (
@@ -119,7 +119,7 @@ Events.propTypes = {
           street1: PropTypes.string
         })
       })
-    }),
+    })
   ).isRequired
 };
 

@@ -5,8 +5,12 @@ const keystone = require('keystone');
 const pinoHttp = require('pino-http');
 const config = require('config');
 
-const openDatabaseConnection = util.promisify(keystone.openDatabaseConnection.bind(keystone));
-const closeDatabaseConnection = util.promisify(keystone.closeDatabaseConnection.bind(keystone));
+const openDatabaseConnection = util.promisify(
+  keystone.openDatabaseConnection.bind(keystone)
+);
+const closeDatabaseConnection = util.promisify(
+  keystone.closeDatabaseConnection.bind(keystone)
+);
 
 const start = async ({handle = () => {}, pretty}) => {
   const keystoneConfig = require('./config/keystone');

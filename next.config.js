@@ -1,6 +1,10 @@
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
+const config = require('config');
 
-module.exports = withBundleAnalyzer({
-  analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
-  analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE)
-});
+module.exports = {
+  publicRuntimeConfig: {
+    dev: config.get('dev')
+  },
+  onDemandEntries: {
+    websocketPort: 3100
+  }
+};

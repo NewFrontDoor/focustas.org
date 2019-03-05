@@ -8,7 +8,7 @@ import Nav from './nav';
 import ToggleButton from './toggle-button';
 import NavBrand from './nav-brand';
 
-const FixedNavBar = styled.header`
+const FixedNavBar = styled('header')`
   background-image: url(/static/background.jpg);
   background-repeat: repeat-x;
   left: 0;
@@ -28,7 +28,7 @@ const NavBarContainer = styled(createContainer('nav'))`
   }
 `;
 
-const IconBar = styled.div`
+const IconBar = styled('div')`
   background-color: #fff;
   display: block;
   width: 22px;
@@ -37,7 +37,7 @@ const IconBar = styled.div`
   margin-top: ${({marginTop}) => marginTop};
 `;
 
-const FlexContainer = styled.div`
+const FlexContainer = styled('div')`
   display: flex;
   justify-content: flex-end;
 `;
@@ -48,8 +48,8 @@ class NavBar extends React.Component {
   };
 
   static toggle = ({collapsed}) => {
-    return ({collapsed: !collapsed});
-  }
+    return {collapsed: !collapsed};
+  };
 
   componentDidMount() {
     Events.scrollEvent.register('begin', () => {
@@ -57,22 +57,22 @@ class NavBar extends React.Component {
     });
   }
 
-  handleCollapse = () => this.setState(NavBar.toggle)
+  handleCollapse = () => this.setState(NavBar.toggle);
 
   render() {
     return (
       <FixedNavBar>
         <NavBarContainer role="navigation">
           <FlexContainer>
-            <NavBrand/>
+            <NavBrand />
             <ToggleButton type="button" onClick={this.handleCollapse}>
               <SrOnly>Toggle navigation</SrOnly>
-              <IconBar/>
-              <IconBar marginTop="4px"/>
-              <IconBar marginTop="4px"/>
+              <IconBar />
+              <IconBar marginTop="4px" />
+              <IconBar marginTop="4px" />
             </ToggleButton>
           </FlexContainer>
-          <Nav collapsed={this.state.collapsed}/>
+          <Nav collapsed={this.state.collapsed} />
         </NavBarContainer>
       </FixedNavBar>
     );

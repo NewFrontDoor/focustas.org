@@ -37,9 +37,7 @@ VenueTC.addFields({
         .join('')
         .replace(/\s/, '+');
 
-      return `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${
-        query
-      }`;
+      return `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${query}`;
     },
     projection: {location: true}
   }

@@ -51,15 +51,15 @@ const withData = graphql(firstPage, {
 const Home = ({page}) => (
   <HomeContainer>
     <Column id="home" screen={{tablet: '100%', desktop: '70%'}}>
-      <Welcome description={page.description}/>
-      <Events/>
-      <Involved description={page.getInvolved}/>
-      <About description={page.aboutUs}/>
-      <Where/>
-      <Contact description={page.contactUs}/>
+      <Welcome description={page.description} />
+      <Events />
+      <Involved description={page.getInvolved} />
+      <About description={page.aboutUs} />
+      <Where />
+      <Contact description={page.contactUs} />
     </Column>
     <SideBarColumn screen={{tablet: '100%', desktop: '30%'}}>
-      <SideBar/>
+      <SideBar />
     </SideBarColumn>
   </HomeContainer>
 );

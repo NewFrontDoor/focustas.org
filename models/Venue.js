@@ -1,7 +1,7 @@
 const keystone = require('keystone');
 const transform = require('model-transform');
 
-const Types = keystone.Field.Types;
+const {Types} = keystone.Field;
 
 const Venue = new keystone.List('Venue');
 

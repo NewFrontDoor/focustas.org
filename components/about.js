@@ -25,15 +25,15 @@ const withData = graphql(staffMembers, {
   })
 });
 
-const Container = styled.div`
+const Container = styled('div')`
   margin-top: 6rem;
 `;
 
-const Flex = styled.div`
+const Flex = styled('div')`
   display: flex;
 `;
 
-const Mug = styled.img`
+const Mug = styled('img')`
   background-color: #036;
   height: 100px;
   width: 100px;
@@ -54,7 +54,7 @@ const About = ({description, staffMembers}) => (
       <React.Fragment key={member._id}>
         <h3>{`${member.name.first} ${member.name.last}`}</h3>
         <Flex>
-          <Mug src={member.image}/>
+          <Mug src={member.image} />
           <p
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{__html: member.bio}}

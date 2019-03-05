@@ -6,7 +6,9 @@ const {start, stop} = require('./server');
 let pretty;
 let server;
 
-const app = next({dev: config.dev});
+const dev = config.get('dev');
+
+const app = next({dev});
 
 if (config.dev) {
   pretty = pinoColada();
@@ -21,10 +23,14 @@ module.exports = app
       handle: app.getRequestHandler()
     });
   })
-  .catch(err => console.error(err));
+  .catch(error => console.error(error));
 
-process.once('SIGUSR2', () => {
-  stop(server).then(() => {
-    process.kill(process.pid, 'SIGUSR2');
-  });
+process.once('SIGUSR2', async () => {
+  try {
+    await stop(server);
+    process.kill(process.pid, 'SIGINT');
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 });

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import {media} from '../config/constants';
 
@@ -16,7 +17,7 @@ export const createContainer = (type = 'div') => styled(type)`
   }
 `;
 
-export const Column = styled.div`
+export const Column = styled('div')`
   padding-left: 1rem;
   padding-right: 1rem;
   ${media.tablet} {
@@ -26,5 +27,12 @@ export const Column = styled.div`
     flex-basis: ${({screen}) => screen.desktop};
   }
 `;
+
+Column.propTypes = {
+  screen: PropTypes.shape({
+    tablet: PropTypes.string,
+    desktop: PropTypes.string
+  }).isRequired
+};
 
 export default createContainer;

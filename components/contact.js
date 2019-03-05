@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import Heading from './heading';
 
-const Container = styled.div`
+const Container = styled('div')`
   margin-top: 6rem;
 `;
 

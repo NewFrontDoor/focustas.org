@@ -7,11 +7,11 @@ import kebabCase from 'lodash/kebabCase';
 import GoogleMap from './google-map';
 import Heading from './heading';
 
-const Container = styled.div`
+const Container = styled('div')`
   margin-top: 6rem;
 `;
 
-const MapContainer = styled.div`
+const MapContainer = styled('div')`
   margin-bottom: 1.5rem;
 `;
 
@@ -46,7 +46,7 @@ const Where = ({venues}) => (
             dangerouslySetInnerHTML={{__html: venue.description}}
           />
           <MapContainer>
-            <GoogleMap query={venue.mapUrl}/>
+            <GoogleMap query={venue.mapUrl} />
           </MapContainer>
         </div>
       ))}
