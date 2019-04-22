@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
+import {css} from '@emotion/core';
 import {graphql} from 'react-apollo';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
+import Flex, {FlexItem} from 'mineral-ui/Flex';
 import {media} from '../config/constants';
 import Welcome from './welcome';
 import Events from './events';
@@ -11,11 +13,8 @@ import Contact from './contact';
 import Where from './where';
 import About from './about';
 import SideBar from './side-bar';
-import {createContainer, Column} from './container';
-
-const HomeContainer = styled(createContainer())`
-  padding-top: 4rem;
-`;
+import SiteWrapper from './site-wrapper';
+import {Column} from './container';
 
 const SideBarColumn = styled(Column)`
   padding-top: 4rem;
@@ -49,19 +48,33 @@ const withData = graphql(firstPage, {
 });
 
 const Home = ({page}) => (
-  <HomeContainer>
-    <Column id="home" screen={{tablet: '100%', desktop: '70%'}}>
-      <Welcome description={page.description} />
-      <Events />
-      <Involved description={page.getInvolved} />
-      <About description={page.aboutUs} />
-      <Where />
-      <Contact description={page.contactUs} />
-    </Column>
-    <SideBarColumn screen={{tablet: '100%', desktop: '30%'}}>
-      <SideBar />
-    </SideBarColumn>
-  </HomeContainer>
+  <SiteWrapper>
+    <Flex
+      paddingTop="4rem"
+      breakpoints={['medium']}
+      direction={['column', 'row']}
+    >
+      <FlexItem id="home" paddingHorizontal="1rem">
+        <Welcome description={page.description} />
+        <Events />
+        <Involved description={page.getInvolved} />
+        <About description={page.aboutUs} />
+        <Where />
+        <Contact description={page.contactUs} />
+      </FlexItem>
+      <FlexItem
+        paddingTop="4rem"
+        paddingHorizontal="1rem"
+        css={css`
+          ${media.tablet} {
+            min-width: 340px;
+          }
+        `}
+      >
+        <SideBar />
+      </FlexItem>
+    </Flex>
+  </SiteWrapper>
 );
 
 Home.propTypes = {

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
+import {css} from '@emotion/core';
+import styled from '@emotion/styled';
+import Flex, {FlexItem} from 'mineral-ui/Flex';
 import {Link as ScrollLink} from 'react-scroll';
 import {media} from '../../config/constants';
 
@@ -21,39 +23,14 @@ const NavCollapse = styled('div')`
   ${media.tablet} {
     height: auto;
     display: flex;
-    flex-basis: 100;
   }
-`;
-
-const NavList = styled('ul')`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: space-between;
-  padding-left: 0;
-  margin: 0;
-  flex-basis: 100%;
-  list-style: none;
-  ${media.tablet} {
-    justify-content: flex-end;
-  }
-`;
-
-const NavItem = styled('li')`
-  display: list-item;
-  margin-bottom: 0;
 `;
 
 const NavLink = styled(ScrollLink)`
-  display: inline-block;
-  position: relative;
-  padding: 10px 1rem;
   color: #fff;
   font-family: Raleway;
   font-size: 1rem;
   font-weight: normal;
-  line-height: 30px;
   text-decoration: none;
   &:hover,
   &:focus,
@@ -62,21 +39,32 @@ const NavLink = styled(ScrollLink)`
     color: #fff;
     text-decoration: none;
   }
-  ${media.tablet} {
-    padding: 0 30px;
-  }
+`;
+
+const NavItem = styled(FlexItem)`
+  display: flex;
+  align-items: center;
 `;
 
 const Nav = ({collapsed}) => {
   return (
     <NavCollapse collapsed={collapsed}>
-      <NavList>
-        <NavItem>
+      <Flex
+        wrap
+        as="ul"
+        breakpoints={['medium']}
+        justifyContent={['start', 'end']}
+        css={css`
+          margin: 0;
+          list-style: none;
+        `}
+      >
+        <NavItem as="li" padding="sm">
           <NavLink smooth href="#home" to="home" duration={500} offset={-70}>
             Home
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem as="li" padding="sm">
           <NavLink
             smooth
             href="#events"
@@ -87,7 +75,7 @@ const Nav = ({collapsed}) => {
             Events
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem as="li" padding="sm">
           <NavLink
             smooth
             href="#involved"
@@ -98,12 +86,12 @@ const Nav = ({collapsed}) => {
             Get involved
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem as="li" padding="sm">
           <NavLink smooth href="#about" to="about" duration={500} offset={-70}>
             About us
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem as="li" padding="sm">
           <NavLink
             smooth
             href="#contact"
@@ -114,7 +102,7 @@ const Nav = ({collapsed}) => {
             Contact
           </NavLink>
         </NavItem>
-      </NavList>
+      </Flex>
     </NavCollapse>
   );
 };

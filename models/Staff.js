@@ -1,5 +1,6 @@
 const keystone = require('keystone');
 const transform = require('model-transform');
+const imageStorage = require('../lib/image-storage');
 
 const {Types} = keystone.Field;
 
@@ -12,7 +13,11 @@ const Staff = new keystone.List('Staff', {
 Staff.add({
   name: {type: Types.Name, required: true, index: true},
   bio: {type: Types.Text},
-  image: {type: Types.Url}
+  image: {
+    type: Types.File,
+    storage: imageStorage,
+    initial: false
+  }
 });
 
 transform.toJSON(Staff);

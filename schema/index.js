@@ -1,6 +1,6 @@
 const keystone = require('keystone');
 const {GraphQLString, GraphQLBoolean} = require('graphql');
-const {GQC} = require('graphql-compose');
+const {schemaComposer} = require('graphql-compose');
 const {composeWithMongoose} = require('graphql-compose-mongoose');
 
 const UserTC = composeWithMongoose(keystone.list('User').model);
@@ -59,7 +59,7 @@ EventTC.addRelation('venue', {
   projection: {venue: true}
 });
 
-GQC.rootQuery().addFields({
+schemaComposer.Query.addFields({
   hello: {
     type: GraphQLString,
     resolve: () => 'Hi! How are you?'
@@ -101,6 +101,6 @@ GQC.rootQuery().addFields({
   staffConnection: StaffTC.getResolver('connection')
 });
 
-const schema = GQC.buildSchema();
+const schema = schemaComposer.buildSchema();
 
 module.exports = schema;

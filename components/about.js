@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import Heading from './heading';
 
 const staffMembers = gql`
@@ -10,7 +10,9 @@ const staffMembers = gql`
     staffMembers: staffMany {
       _id
       bio
-      image
+      image {
+        url
+      }
       name {
         first
         last
@@ -54,7 +56,7 @@ const About = ({description, staffMembers}) => (
       <React.Fragment key={member._id}>
         <h3>{`${member.name.first} ${member.name.last}`}</h3>
         <Flex>
-          <Mug src={member.image} />
+          {member.image && <Mug src={member.image.url} />}
           <p
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{__html: member.bio}}
@@ -71,7 +73,9 @@ About.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string,
       bio: PropTypes.string,
-      image: PropTypes.string,
+      image: PropTypes.shape({
+        url: PropTypes.string
+      }),
       name: PropTypes.shape({
         first: PropTypes.string,
         last: PropTypes.string

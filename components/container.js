@@ -1,21 +1,6 @@
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import {media} from '../config/constants';
-
-export const createContainer = (type = 'div') => styled(type)`
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  ${media.tablet} {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    display: flex;
-    max-width: 970px;
-  }
-  ${media.desktop} {
-    max-width: 1170px;
-  }
-`;
 
 export const Column = styled('div')`
   padding-left: 1rem;
@@ -34,5 +19,3 @@ Column.propTypes = {
     desktop: PropTypes.string
   }).isRequired
 };
-
-export default createContainer;

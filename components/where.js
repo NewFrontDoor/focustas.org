@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import kebabCase from 'lodash/kebabCase';
 import GoogleMap from './google-map';
 import Heading from './heading';

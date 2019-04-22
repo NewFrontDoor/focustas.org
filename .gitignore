@@ -1,13 +1,18 @@
-/node_modules
-/coverage
-/.next
-/.nyc_output
-/data
-/out
+node_modules
+coverage
+.next
+.nyc_output
+data
+out
+config/local*
 
 # misc
+*.sql
 .DS_Store
-.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# secrets shh...
+now-secrets.json
+!now-secrets.example.json

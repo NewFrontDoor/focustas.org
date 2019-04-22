@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
+import Flex, {FlexItem} from 'mineral-ui/Flex';
 import {Events} from 'react-scroll';
 import SrOnly from '../sr-only';
-import {createContainer} from '../container';
 import {media} from '../../config/constants';
+import SiteWrapper from '../site-wrapper';
 import Nav from './nav';
 import ToggleButton from './toggle-button';
 import NavBrand from './nav-brand';
@@ -20,14 +21,6 @@ const FixedNavBar = styled('header')`
   }
 `;
 
-const NavBarContainer = styled(createContainer('nav'))`
-  display: flex;
-  flex-direction: column;
-  ${media.tablet} {
-    flex-direction: row;
-  }
-`;
-
 const IconBar = styled('div')`
   background-color: #fff;
   display: block;
@@ -35,11 +28,6 @@ const IconBar = styled('div')`
   height: 2px;
   border-radius: 1px;
   margin-top: ${({marginTop}) => marginTop};
-`;
-
-const FlexContainer = styled('div')`
-  display: flex;
-  justify-content: flex-end;
 `;
 
 class NavBar extends React.Component {
@@ -62,18 +50,26 @@ class NavBar extends React.Component {
   render() {
     return (
       <FixedNavBar>
-        <NavBarContainer role="navigation">
-          <FlexContainer>
-            <NavBrand />
-            <ToggleButton type="button" onClick={this.handleCollapse}>
-              <SrOnly>Toggle navigation</SrOnly>
-              <IconBar />
-              <IconBar marginTop="4px" />
-              <IconBar marginTop="4px" />
-            </ToggleButton>
-          </FlexContainer>
-          <Nav collapsed={this.state.collapsed} />
-        </NavBarContainer>
+        <SiteWrapper>
+          <Flex
+            as="nav"
+            role="navigation"
+            breakpoints={['medium']}
+            direction={['column', 'row']}
+            justifyContent="between"
+          >
+            <Flex justifyContent="between">
+              <NavBrand />
+              <ToggleButton type="button" onClick={this.handleCollapse}>
+                <SrOnly>Toggle navigation</SrOnly>
+                <IconBar />
+                <IconBar marginTop="4px" />
+                <IconBar marginTop="4px" />
+              </ToggleButton>
+            </Flex>
+            <Nav collapsed={this.state.collapsed} />
+          </Flex>
+        </SiteWrapper>
       </FixedNavBar>
     );
   }

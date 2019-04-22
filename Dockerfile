@@ -1,8 +1,12 @@
+# small server
 FROM keymetrics/pm2:8-alpine
 
 MAINTAINER v100it Team "it@vision100.org"
 
 ARG NODE_ENV
+ENV NODE_ENV $NODE_ENV
+
+ENV TZ Australia/Sydney
 
 WORKDIR /var/www
 
@@ -15,7 +19,7 @@ RUN npm install
 COPY . ./
 
 # Build next.js files
-# RUN npm run build
+RUN npm run build
 
 EXPOSE 3000
 

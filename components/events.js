@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {graphql} from 'react-apollo';
 import kebabCase from 'lodash/kebabCase';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import {Link} from 'react-scroll';
 import {media} from '../config/constants';
 import Heading from './heading';

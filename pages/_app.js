@@ -1,7 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import App, {Container} from 'next/app';
+import {Global} from '@emotion/core';
+import {ThemeProvider} from 'mineral-ui/themes';
 import Analytics from '../components/analytics';
+import {theme, raleway, ralewayBold, typography} from '../config/constants';
 
 class MyApp extends App {
   static async getInitialProps({Component, ctx}) {
@@ -19,11 +22,18 @@ class MyApp extends App {
 
     return (
       <Container>
-        <Head>
-          <title>FOCUS</title>
-        </Head>
-        <Component {...pageProps} />
-        <Analytics />
+        <ThemeProvider theme={theme}>
+          <>
+            <Head>
+              <title>FOCUS</title>
+            </Head>
+            <Global styles={typography.toString()} />
+            <Global styles={raleway} />
+            <Global styles={ralewayBold} />
+            <Component {...pageProps} />
+            <Analytics />
+          </>
+        </ThemeProvider>
       </Container>
     );
   }
