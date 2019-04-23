@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import {Link} from 'react-scroll';
 import {media} from '../config/constants';
 import Heading from './heading';
+import LeavesOverlay from './leaves-overlay';
 
 const Container = styled('div')`
   margin-top: 6rem;
@@ -46,7 +47,7 @@ const withData = graphql(events, {
   })
 });
 
-const Events = ({events}) => {
+const Events = ({image, events}) => {
   const elements = events.map(item => (
     <React.Fragment key={item.name}>
       <h3>{item.name}</h3>
@@ -79,16 +80,16 @@ const Events = ({events}) => {
     </React.Fragment>
   ));
 
-  elements.splice(
-    1,
-    0,
-    <img
-      key="group-of-students"
-      className="events-image"
-      src="/static/students_small.png"
-      alt="Group of students"
-    />
-  );
+  if (image) {
+    elements.splice(
+      1,
+      0,
+      <LeavesOverlay key="group-of-students" mobile position="right">
+        <img className="events-image" src={image.url} alt="Group of students" />
+      </LeavesOverlay>
+    );
+  }
+
   elements.splice(
     3,
     0,
@@ -120,7 +121,14 @@ Events.propTypes = {
         })
       })
     })
-  ).isRequired
+  ).isRequired,
+  image: PropTypes.shape({
+    url: PropTypes.string
+  })
+};
+
+Events.defaultProps = {
+  image: null
 };
 
 export default withData(Events);

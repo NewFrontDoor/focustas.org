@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {css} from '@emotion/core';
 import styled from '@emotion/styled';
 import {media} from '../config/constants';
+import LeavesOverlay from './leaves-overlay';
 
 const Logo = styled('img')`
   margin-left: 0;
@@ -31,8 +33,11 @@ const Heading = styled('h1')`
   font-weight: 700;
   line-height: 1.1;
   ${media.tablet} {
-    font-size: 6rem;
+    font-size: 3rem;
     letter-spacing: -2pt;
+  }
+  ${media.desktop} {
+    font-size: 6rem;
   }
 `;
 
@@ -64,7 +69,7 @@ const Photo = styled('img')`
   }
 `;
 
-const Welcome = ({description}) => (
+const Welcome = ({description, image}) => (
   <>
     <Logo id="logo" src="/static/Just_leaves-01_small.png" alt="Focus Leaves" />
 
@@ -80,13 +85,31 @@ const Welcome = ({description}) => (
         }}
       />
     </Jumbotron>
-    <Photo src="/static/students_for_web.png" />
+    {image && (
+      <LeavesOverlay
+        css={css`
+          display: none;
+          ${media.tablet} {
+            display: block;
+          }
+        `}
+      >
+        <Photo src={image.url} />
+      </LeavesOverlay>
+    )}
     <Photo mobile src="/static/icon_row_small.png" />
   </>
 );
 
 Welcome.propTypes = {
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  image: PropTypes.shape({
+    url: PropTypes.string
+  })
+};
+
+Welcome.defaultProps = {
+  image: null
 };
 
 export default Welcome;

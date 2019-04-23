@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {css} from '@emotion/core';
 import {graphql} from 'react-apollo';
-import styled from '@emotion/styled';
 import Flex, {FlexItem} from 'mineral-ui/Flex';
 import {media} from '../config/constants';
 import Welcome from './welcome';
@@ -14,14 +13,6 @@ import Where from './where';
 import About from './about';
 import SideBar from './side-bar';
 import SiteWrapper from './site-wrapper';
-import {Column} from './container';
-
-const SideBarColumn = styled(Column)`
-  padding-top: 4rem;
-  ${media.tablet} {
-    min-width: 340px;
-  }
-`;
 
 const firstPage = gql`
   query firstPage($input: FilterFindOnePageInput) {
@@ -30,6 +21,15 @@ const firstPage = gql`
       getInvolved
       aboutUs
       contactUs
+      heroImage {
+        url
+      }
+      getInvolvedImage {
+        url
+      }
+      eventsImage {
+        url
+      }
     }
   }
 `;
@@ -54,22 +54,24 @@ const Home = ({page}) => (
       breakpoints={['medium']}
       direction={['column', 'row']}
     >
-      <FlexItem id="home" paddingHorizontal="1rem">
-        <Welcome description={page.description} />
-        <Events />
-        <Involved description={page.getInvolved} />
+      <FlexItem id="home" grow={1} paddingHorizontal="1rem">
+        <Welcome description={page.description} image={page.heroImage} />
+        <Events image={page.eventsImage} />
+        <Involved
+          description={page.getInvolved}
+          image={page.getInvolvedImage}
+        />
         <About description={page.aboutUs} />
         <Where />
         <Contact description={page.contactUs} />
       </FlexItem>
       <FlexItem
+        flex
+        shrink={0}
         paddingTop="4rem"
         paddingHorizontal="1rem"
-        css={css`
-          ${media.tablet} {
-            min-width: 340px;
-          }
-        `}
+        breakpoints={['medium']}
+        width={['100%', '340px']}
       >
         <SideBar />
       </FlexItem>
