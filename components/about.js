@@ -52,14 +52,14 @@ const About = ({description, staffMembers}) => (
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{__html: description}}
     />
-    {staffMembers.map(member => (
-      <React.Fragment key={member._id}>
-        <h3>{`${member.name.first} ${member.name.last}`}</h3>
+    {staffMembers.map(({image, _id, name, bio}) => (
+      <React.Fragment key={_id}>
+        <h3>{`${name.first} ${name.last}`}</h3>
         <Flex>
-          {member.image && <Mug src={member.image.url} />}
+          {image && image.url && <Mug src={image.url} />}
           <p
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{__html: member.bio}}
+            dangerouslySetInnerHTML={{__html: bio}}
           />
         </Flex>
       </React.Fragment>

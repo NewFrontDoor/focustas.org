@@ -85,7 +85,7 @@ const Welcome = ({description, image}) => (
         }}
       />
     </Jumbotron>
-    {image && (
+    {image && image.url && (
       <LeavesOverlay
         css={css`
           display: none;

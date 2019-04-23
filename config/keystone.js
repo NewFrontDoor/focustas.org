@@ -23,6 +23,8 @@ const options = {
 
   session: true,
   auth: true,
+  'trust proxy': true,
+  'session store': 'mongo',
   'user model': 'User',
   'cookie secret': config.get('COOKIE_SECRET')
 };

@@ -15,7 +15,7 @@ const Involved = ({description, image}) => (
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{__html: description}}
     />
-    {image && (
+    {image && image.url && (
       <LeavesOverlay mobile position="right">
         <img src={image.url} alt="Girls on a bridge" />
       </LeavesOverlay>

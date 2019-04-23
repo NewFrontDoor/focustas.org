@@ -24,7 +24,7 @@ const start = async ({handle = () => {}, pretty}) => {
   keystone.set('nav', keystoneConfig.nav);
 
   keystone.initDatabaseConfig();
-  keystone.initExpressSession();
+  keystone.initExpressSession(keystone.mongoose);
 
   app.use('/keystone', keystone.Admin.Server.createStaticRouter(keystone));
   app.use(express.static('static'));
