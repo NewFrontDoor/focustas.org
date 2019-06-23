@@ -34,8 +34,8 @@ VenueTC.addFields({
         location.country
       ]
         .filter(Boolean)
-        .join('')
-        .replace(/\s/, '+');
+        .join(' ')
+        .replace(/\s/g, '+');
 
       return `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${query}`;
     },
