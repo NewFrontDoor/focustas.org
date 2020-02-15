@@ -1,0 +1,21 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "Document",
+        "possibleTypes": [
+          {
+            "name": "Main"
+          },
+          {
+            "name": "Segment"
+          },
+          {
+            "name": "Profile"
+          }
+        ]
+      }
+    ]
+  }
+}

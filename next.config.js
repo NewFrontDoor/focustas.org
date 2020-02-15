@@ -1,12 +1,21 @@
-const config = require('config');
+require('dotenv').config();
+const bundleAnalyzer = require('@next/bundle-analyzer');
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true'
+});
 
-module.exports = {
-  publicRuntimeConfig: {
-    dev: config.get('dev'),
-    graphqlUri: config.get('GRAPHQL_URI'),
-    hostUrl: config.get('HOST_URL')
+let HOST_URL = 'http://localhost:3000';
+
+if (process.env.NODE_ENV === 'production') {
+  HOST_URL = process.env.HOST_URL;
+}
+
+module.exports = withBundleAnalyzer({
+  env: {
+    HOST_URL
   },
-  onDemandEntries: {
-    websocketPort: 3100
+  webpack(config) {
+    config.node = {fs: 'empty'};
+    return config;
   }
-};
+});

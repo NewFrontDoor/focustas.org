@@ -1,30 +1,6 @@
 {
-  "version": 1,
-  "type": "docker",
+  "version": 2,
   "alias": [
     "focustas.now.sh",
-    "www.focustas.org"
-  ],
-  "env": {
-    "HOST": "focustas.now.sh",
-    "HOST_URL": "https://focustas.now.sh",
-
-    "API_CLIENT_URL": "http://localhost:3000",
-    "API_SERVER_URL": "http://localhost:3000",
-
-    "S3_KEY": "@focustas-s3-key",
-    "S3_SECRET": "@focustas-s3-secret",
-    "S3_BUCKET": "www.focustas.org",
-    "S3_REGION": "ap-southeast-2",
-    "CLOUDFRONT_PUBLIC_URL": "https://d38v66wy6kr5uf.cloudfront.net",
-
-    "MONGO_URI": "@focustas-mongo-uri",
-
-    "COOKIE_SECRET": "@focustas-cookie-secret"
-  },
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
-  }
+  ]
 }
