@@ -5,13 +5,14 @@
   "scripts": {
     "build": "next build",
     "start": "next dev",
-    "test": "xo",
+    "test": "xo --extension=js --extension=ts --extension=tsx",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@babel/core": "^7.8.4",
     "@emotion/core": "^10.0.27",
+    "@reach/visually-hidden": "^0.8.2",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.148.1",
     "@sanity/image-url": "^0.140.17",

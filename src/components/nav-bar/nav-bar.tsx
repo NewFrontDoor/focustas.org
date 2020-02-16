@@ -3,7 +3,7 @@ import {FC, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {jsx, Flex} from 'theme-ui';
 import {Events} from 'react-scroll';
-import SrOnly from '../sr-only';
+import VisuallyHidden from '@reach/visually-hidden';
 import SiteWrapper from '../site-wrapper';
 import Nav from './nav';
 import ToggleButton from './toggle-button';
@@ -76,7 +76,7 @@ const NavBar: FC = () => {
               type="button"
               onClick={() => setCollapsed(!collapsed)}
             >
-              <SrOnly>Toggle navigation</SrOnly>
+              <VisuallyHidden>Toggle navigation</VisuallyHidden>
               <IconBar />
               <IconBar marginTop="4px" />
               <IconBar marginTop="4px" />

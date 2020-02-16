@@ -7,21 +7,28 @@ import LeavesOverlay from './leaves-overlay';
 import {builder} from './block-content';
 
 type PhotoProps = {
-  mobile?: boolean;
+  isMobileOnly?: boolean;
   src: string;
 };
 
-const Photo: FC<PhotoProps> = ({mobile, ...props}) => (
+const Photo: FC<PhotoProps> = ({isMobileOnly, ...props}) => (
   <img
     {...props}
     sx={{
       marginTop: '-40px',
       width: 'auto',
-      display: [mobile ? 'block' : 'none', mobile ? 'none' : 'block'],
+      display: [
+        isMobileOnly ? 'block' : 'none',
+        isMobileOnly ? 'none' : 'block'
+      ],
       maxHeight: ['90px', '100%']
     }}
   />
 );
+
+Photo.propTypes = {
+  isMobileOnly: PropTypes.bool
+};
 
 type WelcomeProps = {
   children: ReactNode;
@@ -93,7 +100,7 @@ const Welcome: FC<WelcomeProps> = ({children, image}) => (
         <Photo src={builder.image(image).url()} />
       </LeavesOverlay>
     )}
-    <Photo mobile src="/icon_row_small.png" />
+    <Photo isMobileOnly src="/icon_row_small.png" />
   </>
 );
 
