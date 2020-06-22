@@ -13,6 +13,7 @@
     "@babel/core": "^7.8.4",
     "@emotion/core": "^10.0.27",
     "@reach/visually-hidden": "^0.8.2",
+    "@react-google-maps/api": "^1.9.7",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.148.1",
     "@sanity/image-url": "^0.140.17",

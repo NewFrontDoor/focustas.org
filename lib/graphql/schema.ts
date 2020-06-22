@@ -10,6 +10,8 @@ export const schema = gql`
 
   scalar JSON
 
+  scalar Geopoint
+
   input FilterFindOnePageInput {
     slug: String
   }
@@ -55,6 +57,16 @@ export const schema = gql`
     bodyText: JSON
     image: JSON
     name: String
+  }
+
+  type Maps implements Document {
+    _createdAt: Date
+    _id: ID!
+    _rev: String
+    _type: String
+    _updatedAt: Date
+    title: String
+    location: Geopoint
   }
 
   type SEO {
