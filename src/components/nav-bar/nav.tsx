@@ -55,6 +55,12 @@ const NavLink: FC<LinkProps> = props => (
 
 const NavItem: FC = props => <Flex {...props} alignItems="center" />;
 
+/*
+Nav is currently hard-coded - when and if FOCUS want
+different segments on their front page we can use
+Sanity to dynamically build the Nav
+*/
+
 const Nav: FC<NavCollapseProps> = ({isCollapsed}) => {
   return (
     <NavCollapse isCollapsed={isCollapsed}>
