@@ -41,6 +41,17 @@ export type Main = Document & {
   seo?: Maybe<Seo>,
 };
 
+export type Maps = Document & {
+   __typename?: 'Maps',
+  _createdAt?: Maybe<Scalars['Date']>,
+  _id: Scalars['ID'],
+  _rev?: Maybe<Scalars['String']>,
+  _type?: Maybe<Scalars['String']>,
+  _updatedAt?: Maybe<Scalars['Date']>,
+  title?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
+};
+
 export type Profile = Document & {
    __typename?: 'Profile',
   _createdAt?: Maybe<Scalars['Date']>,
@@ -167,6 +178,7 @@ export type ResolversTypes = {
   SEO: ResolverTypeWrapper<any>,
   Profile: ResolverTypeWrapper<any>,
   Boolean: ResolverTypeWrapper<any>,
+  Maps: ResolverTypeWrapper<any>,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -183,6 +195,7 @@ export type ResolversParentTypes = {
   SEO: any,
   Profile: any,
   Boolean: any,
+  Maps: any,
 };
 
 export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
@@ -190,7 +203,7 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type DocumentResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Document'] = ResolversParentTypes['Document']> = {
-  __resolveType: TypeResolveFn<'Main' | 'Segment' | 'Profile', ParentType, ContextType>,
+  __resolveType: TypeResolveFn<'Main' | 'Segment' | 'Profile' | 'Maps', ParentType, ContextType>,
   _createdAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>,
   _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   _rev?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
@@ -212,6 +225,17 @@ export type MainResolvers<ContextType = Context, ParentType extends ResolversPar
   hero?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType>,
   mainBody?: Resolver<Maybe<ResolversTypes['JSON']>, ParentType, ContextType>,
   seo?: Resolver<Maybe<ResolversTypes['SEO']>, ParentType, ContextType>,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
+};
+
+export type MapsResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Maps'] = ResolversParentTypes['Maps']> = {
+  _createdAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>,
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
+  _rev?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  _type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  _updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>,
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  address?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
@@ -255,6 +279,7 @@ export type Resolvers<ContextType = Context> = {
   Document?: DocumentResolvers,
   JSON?: GraphQLScalarType,
   Main?: MainResolvers<ContextType>,
+  Maps?: MapsResolvers<ContextType>,
   Profile?: ProfileResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   Segment?: SegmentResolvers<ContextType>,

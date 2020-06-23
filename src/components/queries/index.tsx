@@ -42,6 +42,17 @@ export type Main = Document & {
   seo?: Maybe<Seo>,
 };
 
+export type Maps = Document & {
+   __typename?: 'Maps',
+  _createdAt?: Maybe<Scalars['Date']>,
+  _id: Scalars['ID'],
+  _rev?: Maybe<Scalars['String']>,
+  _type?: Maybe<Scalars['String']>,
+  _updatedAt?: Maybe<Scalars['Date']>,
+  title?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
+};
+
 export type Profile = Document & {
    __typename?: 'Profile',
   _createdAt?: Maybe<Scalars['Date']>,

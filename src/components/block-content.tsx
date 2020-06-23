@@ -3,7 +3,8 @@ import {Styled, Image} from 'theme-ui';
 import SanityBlockContent from '@sanity/block-content-to-react';
 import imageUrlBuilder from '@sanity/image-url';
 import StaffProfile from './staff-profile';
-import {Profile} from './queries';
+import GoogleMap from './google-map';
+import {Profile, Maps} from './queries';
 
 const sanityConfig = {
   projectId: '7z5g5vzl',
@@ -20,6 +21,10 @@ type ImageProps = {
   node: {
     asset: object;
   };
+};
+
+type MapsProps = {
+  node: Maps;
 };
 
 type LinkProps = {
@@ -66,6 +71,9 @@ const serializers = {
     },
     profile: ({node}: StaffProfileProps) => {
       return <StaffProfile {...node} />;
+    },
+    maps: ({node}: MapsProps) => {
+      return <GoogleMap {...node} />;
     },
     image: ({node}: ImageProps) => {
       return <Image src={builder.image(node.asset).url()} />;

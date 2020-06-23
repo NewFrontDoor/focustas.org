@@ -57,6 +57,16 @@ export const schema = gql`
     name: String
   }
 
+  type Maps implements Document {
+    _createdAt: Date
+    _id: ID!
+    _rev: String
+    _type: String
+    _updatedAt: Date
+    title: String
+    address: String
+  }
+
   type SEO {
     title: String
   }
