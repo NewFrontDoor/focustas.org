@@ -64,7 +64,8 @@ const Welcome: FC<WelcomeProps> = ({children, image}) => (
           fontWeight: 700,
           lineHeight: '1.1',
           fontSize: ['3rem', '3rem', '6rem'],
-          letterSpacing: [0, '-2pt']
+          letterSpacing: [0, '-2pt'],
+          marginTop: 0
         }}
       >
         Welcome

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Global} from '@emotion/core';
+import {Global, css} from '@emotion/core';
 import {raleway, ralewayBold} from '../../lib/constants';
 
 const GlobalStyles: FC = () => {
@@ -7,6 +7,13 @@ const GlobalStyles: FC = () => {
     <>
       <Global styles={raleway} />
       <Global styles={ralewayBold} />
+      <Global
+        styles={css`
+          html {
+            font-size: 125%;
+          }
+        `}
+      />
     </>
   );
 };

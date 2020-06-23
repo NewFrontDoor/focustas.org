@@ -7,8 +7,8 @@ const NavBrand: FC = () => (
     href="#focus"
     sx={{
       display: 'inline-block',
-      fontSize: '1.25rem',
-      lineHeight: '3rem',
+      fontSize: '1rem',
+      lineHeight: '1rem',
       whiteSpace: 'nowrap',
       textAlign: ['right', 'left']
     }}

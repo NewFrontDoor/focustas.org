@@ -10,6 +10,7 @@ const theme = {
     monospace: 'Menlo, monospace'
   },
   fontSizes: [15, 16, 20, 28, 35, 50],
+  // fontSizes: [18.75, 20, 25, 35, 43.75, 62.5],
   fontWeights: {
     body: 200,
     heading: 200,
@@ -26,6 +27,7 @@ const theme = {
     white: '#fff',
     text: 'rgb(85, 85, 85)',
     heading: 'hsl(120, 60%, 40%)',
+    headingLight: 'rgb(51, 204, 51)',
     background: '#fff'
   },
   images: {
@@ -103,7 +105,7 @@ const theme = {
       marginBottom: 4
     },
     h3: {
-      color: 'heading',
+      color: 'headingLight',
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',

@@ -37,7 +37,7 @@ const Home: FC<HomeProps> = ({slug}) => {
   return (
     <SiteWrapper>
       <Flex
-        paddingTop={5}
+        paddingTop="80px"
         sx={{
           flexDirection: ['column', 'row']
         }}
