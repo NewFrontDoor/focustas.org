@@ -13,7 +13,6 @@ export type Scalars = {
   Float: number,
   Date: any,
   JSON: any,
-  Geopoint: any,
 };
 
 
@@ -28,7 +27,6 @@ export type Document = {
 export type FilterFindOnePageInput = {
   slug?: Maybe<Scalars['String']>,
 };
-
 
 
 export type Main = Document & {
@@ -52,7 +50,7 @@ export type Maps = Document & {
   _type?: Maybe<Scalars['String']>,
   _updatedAt?: Maybe<Scalars['Date']>,
   title?: Maybe<Scalars['String']>,
-  location?: Maybe<Scalars['Geopoint']>,
+  address?: Maybe<Scalars['String']>,
 };
 
 export type Profile = Document & {

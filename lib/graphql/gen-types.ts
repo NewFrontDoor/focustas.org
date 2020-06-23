@@ -12,7 +12,6 @@ export type Scalars = {
   Float: number,
   Date: any,
   JSON: any,
-  Geopoint: any,
 };
 
 
@@ -27,7 +26,6 @@ export type Document = {
 export type FilterFindOnePageInput = {
   slug?: Maybe<Scalars['String']>,
 };
-
 
 
 export type Main = Document & {
@@ -51,7 +49,7 @@ export type Maps = Document & {
   _type?: Maybe<Scalars['String']>,
   _updatedAt?: Maybe<Scalars['Date']>,
   title?: Maybe<Scalars['String']>,
-  location?: Maybe<Scalars['Geopoint']>,
+  address?: Maybe<Scalars['String']>,
 };
 
 export type Profile = Document & {
@@ -180,7 +178,6 @@ export type ResolversTypes = {
   SEO: ResolverTypeWrapper<any>,
   Profile: ResolverTypeWrapper<any>,
   Boolean: ResolverTypeWrapper<any>,
-  Geopoint: ResolverTypeWrapper<any>,
   Maps: ResolverTypeWrapper<any>,
 };
 
@@ -198,7 +195,6 @@ export type ResolversParentTypes = {
   SEO: any,
   Profile: any,
   Boolean: any,
-  Geopoint: any,
   Maps: any,
 };
 
@@ -214,10 +210,6 @@ export type DocumentResolvers<ContextType = Context, ParentType extends Resolver
   _type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   _updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>,
 };
-
-export interface GeopointScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Geopoint'], any> {
-  name: 'Geopoint'
-}
 
 export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
   name: 'JSON'
@@ -243,7 +235,7 @@ export type MapsResolvers<ContextType = Context, ParentType extends ResolversPar
   _type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   _updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>,
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
-  location?: Resolver<Maybe<ResolversTypes['Geopoint']>, ParentType, ContextType>,
+  address?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
@@ -285,7 +277,6 @@ export type SeoResolvers<ContextType = Context, ParentType extends ResolversPare
 export type Resolvers<ContextType = Context> = {
   Date?: GraphQLScalarType,
   Document?: DocumentResolvers,
-  Geopoint?: GraphQLScalarType,
   JSON?: GraphQLScalarType,
   Main?: MainResolvers<ContextType>,
   Maps?: MapsResolvers<ContextType>,

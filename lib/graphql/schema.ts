@@ -10,8 +10,6 @@ export const schema = gql`
 
   scalar JSON
 
-  scalar Geopoint
-
   input FilterFindOnePageInput {
     slug: String
   }
@@ -66,7 +64,7 @@ export const schema = gql`
     _type: String
     _updatedAt: Date
     title: String
-    location: Geopoint
+    address: String
   }
 
   type SEO {
