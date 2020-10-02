@@ -7,7 +7,6 @@ import {jsx, ThemeProvider} from 'theme-ui';
 
 import GlobalStyles from './global-styles';
 
-import Analytics from './analytics';
 import NavBar from './nav-bar/nav-bar';
 
 import theme from './theme';
@@ -30,7 +29,6 @@ const PageLayout: FC = ({children}) => {
           <hr />
           <p>© Shiloh Design 2018</p>
         </footer>
-        <Analytics />
       </>
     </ThemeProvider>
   );
